@@ -15,7 +15,7 @@ export function calculateMostPlayedCharacter(player: STRIKR.API.PlayerObjectType
     }
   }
 
-  return mostPlayedCharacter
+  return mostPlayedCharacter || ''
 }
 
 export function calculateWinRate(player: STRIKR.API.PlayerObjectType): number {
