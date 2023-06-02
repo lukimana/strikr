@@ -25,7 +25,7 @@ const HeroSection: React.FunctionComponent = () => {
   >
     {/* BG Image */}
     <div 
-      className='bg-center bg-cover bg-no-repeat bg-[url(/i/misc/T_UI_SPLASH.png)] absolute inset-0 w-full h-full z-[0] opacity-20' 
+      className='bg-center bg-cover bg-no-repeat bg-[url(/i/misc/ui_splash.png)] absolute inset-0 w-full h-full z-[0] opacity-20' 
     />
     {/* SHADE CURTAIN */}
     <div
