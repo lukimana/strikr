@@ -20,4 +20,4 @@ jobs:
         
       - name: Execute SSH command
         run: |
-          ssh root@${{ secrets.REMOTE_HOST }}  -o StrictHostKeyChecking=no "cd /root/strikr && yarn && yarn build && yarn start"
+          ssh root@${{ secrets.REMOTE_HOST }} -o StrictHostKeyChecking=no cd /root/strikr && git reset --hard origin/master && && yarn && yarn build && pm2 restart website"
