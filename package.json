@@ -1,0 +1,46 @@
+{
+  "name": "omega-stats",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "@apollo/client": "^3.7.14",
+    "@phosphor-icons/react": "^2.0.9",
+    "@radix-ui/react-dialog": "^1.0.4",
+    "@radix-ui/react-tooltip": "^1.0.6",
+    "@types/node": "20.2.1",
+    "@types/react": "18.2.6",
+    "@types/react-dom": "18.2.4",
+    "@vercel/og": "^0.5.6",
+    "autoprefixer": "10.4.14",
+    "axios": "^1.4.0",
+    "chart.js": "^4.3.0",
+    "clsx": "^1.2.1",
+    "dayjs": "^1.11.7",
+    "eslint": "8.40.0",
+    "eslint-config-next": "13.4.3",
+    "framer-motion": "^10.12.16",
+    "graphql": "^16.6.0",
+    "jotai": "^2.1.0",
+    "next": "13.4.3",
+    "nprogress": "^0.2.0",
+    "postcss": "8.4.23",
+    "react": "18.2.0",
+    "react-chartjs-2": "^5.2.0",
+    "react-dom": "18.2.0",
+    "react-hook-form": "^7.44.1",
+    "sass": "^1.62.1",
+    "tailwind-scrollbar": "^3.0.4",
+    "tailwindcss": "3.3.2",
+    "turnstone": "^2.2.0",
+    "typescript": "5.0.4"
+  },
+  "devDependencies": {
+    "@types/nprogress": "^0.2.0"
+  }
+}
