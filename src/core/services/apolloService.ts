@@ -1,7 +1,7 @@
 import { ApolloClient, InMemoryCache } from '@apollo/client'
 
 const client = new ApolloClient({
-  uri: 'http://172.245.142.218:5000/graphql',
+  uri: 'https://api.strikr.gg',
   cache: new InMemoryCache({
     resultCaching: true,
   }),

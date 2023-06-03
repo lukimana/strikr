@@ -74,7 +74,10 @@ const PilotPage: React.FunctionComponent<IPilotPageProps> = ({ pilot }) => {
   })
 
   const elo = getEloFromLP(pilot.rating)
-  const roleRatio = pilot.roleRatio
+  const roleRatio = pilot.roleRatio || {
+    forwardPercentage: 50,
+    goaliePercentage: 50
+  }
   
   const OGURL = new URLSearchParams()
   OGURL.set('isVerified', String(pilot?.tags?.includes('verified') || 'false' ))
@@ -90,7 +93,7 @@ const PilotPage: React.FunctionComponent<IPilotPageProps> = ({ pilot }) => {
   OGURL.set('elo', elo.rank || 'Unknown')
   OGURL.set('eloImage', getEloImage(elo.rank).replace('.png', ''))
   OGURL.set('eloColor', getEloColor(elo.rank) || 'Unknown')
-  OGURL.set('role', pilot.roleRatio.forwardPercentage > 60 ? pilot.roleRatio.goaliePercentage > 60 ? '🥅 Goalie' : '🦐 Forward'  : '✨ Flex' || 'Unknown')
+  OGURL.set('role', roleRatio.forwardPercentage > 60 ? roleRatio.goaliePercentage > 60 ? '🥅 Goalie' : '🦐 Forward'  : '✨ Flex' || 'Unknown')
   OGURL.set('character', getCharacterById(pilot.mostPlayedCharacterId)?.name || 'Unknown')
   OGURL.set('characterImage', getCharacterById(pilot.mostPlayedCharacterId)?.goalscore.replace('.png', '') || 'Unknown')
 
@@ -101,14 +104,14 @@ const PilotPage: React.FunctionComponent<IPilotPageProps> = ({ pilot }) => {
   <Head>
         <title>{`${pilot.username} - Strikr.gg`}</title>
         <meta name="description" content={`${pilot.username} Statistics, guides & playstyle @ strikr.gg`} key="desc" />
-        <meta property="og:title" content={`${pilot.username} - Main ${pilot.roleRatio.forwardPercentage > 60 ? pilot.roleRatio.goaliePercentage > 60 ? 'Goalie' : 'Forward'  : '✨ Flex' || 'Unknown'} ${getCharacterById(pilot.mostPlayedCharacterId)?.name} @ ${pilot.rating}LP (${elo.rank})`} />
+        <meta property="og:title" content={`${pilot.username} - Main ${roleRatio.forwardPercentage > 60 ? roleRatio.goaliePercentage > 60 ? 'Goalie' : 'Forward'  : '✨ Flex' || 'Unknown'} ${getCharacterById(pilot.mostPlayedCharacterId)?.name} @ ${pilot.rating}LP (${elo.rank})`} />
         <meta
           property="og:description"
           content="Strikr.gg Analyze your GamePlay, track your progress and improve your skills."
         />
         <meta
           property="og:image"
-          content={`http://179.106.175.51:3000/api/pilotcard?${OGURL.toString()}`}
+          content={`https://strikr.gg/api/pilotcard?${OGURL.toString()}`}
         />
         <meta property="og:image:width" content="1200" />
         <meta property="og:image:height" content="630" />
@@ -131,7 +134,7 @@ const PilotPage: React.FunctionComponent<IPilotPageProps> = ({ pilot }) => {
             tags={pilot.tags}
             username={pilot.username}
             titleId={pilot.titleId}
-            mainRole={pilot.roleRatio.forwardPercentage > 60 ? pilot.roleRatio.goaliePercentage > 60 ? '🥅 Goalie' : '🦐 Forward'  : '✨ Flex'}
+            mainRole={roleRatio.forwardPercentage > 60 ? roleRatio.goaliePercentage > 60 ? '🥅 Goalie' : '🦐 Forward'  : '✨ Flex'}
             mainCharacter={getCharacterById(pilot.mostPlayedCharacterId)?.name || 'Omega Strikers'}
           />
         </div>
@@ -450,7 +453,10 @@ const getServerSideProps: GetServerSideProps = async (context) => {
           ratingGraphLabels,
           mostPlayedCharacterId: [...query.data.ensurePlayer.characterRatings].sort( (a, b) => b.games - a.games )[0].character,
           updatedAt: latestPilotRating.createdAt,
-          roleRatio: calculateGoalieForwardPercentage(query.data.ensurePlayer, 'RankedInitial'),
+          roleRatio: calculateGoalieForwardPercentage(query?.data?.ensurePlayer, 'RankedInitial') || {
+            forwardPercentage: 50,
+            goaliePercentage: 50
+          },
           playerId: query.data.ensurePlayer.id,
         },
         characters: {
