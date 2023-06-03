@@ -15,12 +15,11 @@ const AwakeninBlock: React.FunctionComponent<AwakeninBlockProps> = ({ id }) => {
     {
         <FloatingAwakeningTip id={id} key={id}>
           <div className='flex flex-col'>
-            <div className='flex items-center justify-center w-full p-2 duration-300 rounded-lg aspect-square bg-secondary hover:bg-tertiary cursor-help relative'>
-              <Image 
+            <div className='relative flex items-center justify-center w-full p-2 duration-300 rounded-lg aspect-square bg-secondary hover:bg-tertiary cursor-help'>
+              <img 
                 className='w-full h-full bg-center bg-no-repeat bg-contain'
                 src={`/i/awakening/${id}.png`}
                 alt={getAwakeningLocale(id)}
-                fill
                 placeholder="blur"
               />
             </div>

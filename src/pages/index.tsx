@@ -1,20 +1,19 @@
 import GeneralLayout from '@/components/layout/General'
-import { MagnifyingGlass } from '@phosphor-icons/react'
-import { useRef } from 'react'
-import { useRouter } from 'next/router'
 import HeroSection from '@/components/section/Hero'
 import AwakeningsRotationSection from '@/components/section/AwakeningRotation'
 import EsportsSection from '@/components/section/Esports'
-
+import Head from 'next/head'
 
 export default function Home() {
-  return (
+  return <>
+    <Head>
+      <title>Strikr</title>
+      <meta name="description" content="OS Statistics & community hub." />
+    </Head>
     <GeneralLayout>
       <HeroSection />
-      <div className='mt-10'>
-        <AwakeningsRotationSection />
-      </div>
+      <AwakeningsRotationSection />
       <EsportsSection />
     </GeneralLayout>
-  )
+  </>
 }

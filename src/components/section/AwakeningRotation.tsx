@@ -12,7 +12,7 @@ const AwakeningsRotationSection: React.FunctionComponent<IAwakeningsTotationProp
   const [showRotation, setShowRotation] = useAtom(preferenceShowAwakeningRotation)
 
   return <section
-    className='flex flex-col gap-8 px-20'
+    className='flex flex-col gap-8 px-8 sm:px-20'
   >
     <h3 
       className='flex items-center justify-between text-lg font-semibold'
@@ -30,7 +30,7 @@ const AwakeningsRotationSection: React.FunctionComponent<IAwakeningsTotationProp
     <AnimatePresence>
       {showRotation ? (
         <motion.div 
-          className='grid w-full grid-cols-12 gap-4'
+          className='grid w-full grid-cols-4 gap-4 md:grid-cols-6 lg:grid-cols-8 xl:grid-cols-10 2xl:grid-cols-12'
           initial={{
             opacity: 0,
           }}

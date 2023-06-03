@@ -21,7 +21,7 @@ const HeroSection: React.FunctionComponent = () => {
   }
 
   return <section 
-    className='relative flex flex-col gap-8 px-20 pt-40 pb-28'
+    className='relative flex flex-col gap-8 px-6 pt-40 pb-10 sm:pb-20 lg:px-20'
   >
     {/* BG Image */}
     <div 
@@ -42,7 +42,7 @@ const HeroSection: React.FunctionComponent = () => {
         opacity: scrollYProgress
       }}
     >
-      <h1 className='text-3xl font-bold'>Search for pilot statistics & track progress</h1>
+      <h1 className='font-bold sm:text-3xl'>Search for pilot statistics & track progress</h1>
       <form 
         className='flex w-full gap-4'
         onSubmit={handleSubmit(onSubmit)}

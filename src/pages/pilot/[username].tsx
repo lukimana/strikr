@@ -10,12 +10,13 @@ import { Line } from 'react-chartjs-2'
 import PlayStyleChart from '@/components/charts/Playstyle'
 import dayjs from 'dayjs'
 import relative from 'dayjs/plugin/relativeTime'
-import { getEloColor, getEloFromLP } from '@/core/relations/resolver'
+import { getEloColor, getEloFromLP, getEloImage, getEmoticonFromdata } from '@/core/relations/resolver'
 import { ArrowClockwise, CaretDown, ChartLine, ChartPieSlice, ClockCountdown, Eye } from '@phosphor-icons/react'
 import RatingChart from '@/components/charts/Rating'
 import ChartLayout from '@/components/layout/Chart'
 import RatingHistoryChart from '@/components/charts/RatingHistory'
 import PilotCard from '@/components/charts/PilotCard'
+import Head from 'next/head'
 
 import { getPlayer } from '@/core/queries/getPlayerCharacter'
 import { ensurePlayer } from '@/core/queries/ensurePlayer'
@@ -74,12 +75,43 @@ const PilotPage: React.FunctionComponent<IPilotPageProps> = ({ pilot }) => {
 
   const elo = getEloFromLP(pilot.rating)
   const roleRatio = pilot.roleRatio
+  
+  const OGURL = new URLSearchParams()
+  OGURL.set('isVerified', String(pilot?.tags?.includes('verified') || 'false' ))
+  OGURL.set('isStaff', String(pilot?.tags?.includes('STAFF') || 'false' ))
+  OGURL.set('username', pilot.username || 'Unknown')
+  OGURL.set('title', pilot.titleId || 'Unknown')
+  OGURL.set('rank', String(pilot.rank || 'Unknown') )
+  OGURL.set('lp', String(pilot.rating || 'Unknown') )
+  OGURL.set('win', String(pilot.wins || 'Unknown') )
+  OGURL.set('loss', String(pilot.losses || 'Unknown') )
+  OGURL.set('region', pilot.region || 'Unknown')
+  OGURL.set('emote', getEmoticonFromdata(pilot.emoticonId)?.image || '/i/emoticon/T_Emoticon_ThumbsUp-512x512.png')
+  OGURL.set('elo', elo.rank || 'Unknown')
+  OGURL.set('eloImage', getEloImage(elo.rank).replace('.png', ''))
+  OGURL.set('eloColor', getEloColor(elo.rank) || 'Unknown')
+  OGURL.set('role', pilot.roleRatio.forwardPercentage > 60 ? pilot.roleRatio.goaliePercentage > 60 ? '🥅 Goalie' : '🦐 Forward'  : '✨ Flex' || 'Unknown')
+  OGURL.set('character', getCharacterById(pilot.mostPlayedCharacterId)?.name || 'Unknown')
+  OGURL.set('characterImage', getCharacterById(pilot.mostPlayedCharacterId)?.goalscore.replace('.png', '') || 'Unknown')
 
-  // if (loadingCharacters) return <span></span>
   if (!pilot) return <GeneralLayout>
   </GeneralLayout>
 
-  return <GeneralLayout>
+  return <>
+  <Head>
+        <title>{`${pilot.username} - Strikr.gg`}</title>
+        <meta name="description" content={`${pilot.username} Statistics, guides & playstyle @ strikr.gg`} key="desc" />
+        <meta property="og:title" content={`${pilot.username} - Main ${pilot.roleRatio.forwardPercentage > 60 ? pilot.roleRatio.goaliePercentage > 60 ? 'Goalie' : 'Forward'  : '✨ Flex' || 'Unknown'} ${getCharacterById(pilot.mostPlayedCharacterId)?.name} @ ${pilot.rating}LP (${elo.rank})`} />
+        <meta
+          property="og:description"
+          content="Strikr.gg Analyze your GamePlay, track your progress and improve your skills."
+        />
+        <meta
+          property="og:image"
+          content={`http://179.106.175.51:3000/api/pilotcard?${OGURL.toString()}`}
+        />
+  </Head>
+  <GeneralLayout>
     <div 
       className='absolute inset-0 w-full h-screen bg-no-repeat z-[0]' 
       style={{
@@ -97,7 +129,7 @@ const PilotPage: React.FunctionComponent<IPilotPageProps> = ({ pilot }) => {
             tags={pilot.tags}
             username={pilot.username}
             titleId={pilot.titleId}
-            mainRole={pilot.roleRatio.forwardPercentage > 60 ? pilot.roleRatio.goaliePercentage > 60 ? 'Goalie' : 'Forward'  : 'Flex'}
+            mainRole={pilot.roleRatio.forwardPercentage > 60 ? pilot.roleRatio.goaliePercentage > 60 ? '🥅 Goalie' : '🦐 Forward'  : '✨ Flex'}
             mainCharacter={getCharacterById(pilot.mostPlayedCharacterId)?.name || 'Omega Strikers'}
           />
         </div>
@@ -365,7 +397,7 @@ const PilotPage: React.FunctionComponent<IPilotPageProps> = ({ pilot }) => {
       </div>
     </section>
   </GeneralLayout>
-
+  </>
 }
 
 const getServerSideProps: GetServerSideProps = async (context) => {
@@ -378,7 +410,6 @@ const getServerSideProps: GetServerSideProps = async (context) => {
     masteryLevel: 0,
   }
   try {
-    console.log('context.query.username', context.query.username)
     if (!context.query.username) { return { props: {} } }
     
     const query = await client.query<PilotQuery>({

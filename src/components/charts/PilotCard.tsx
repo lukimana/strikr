@@ -7,7 +7,7 @@ interface IPilotProps {
   tags: string[]
   username: string
   titleId?: string
-  mainRole: 'Forward' | 'Goalie' | 'Flex'
+  mainRole: '🦐 Forward' | '🥅 Goalie' | '✨ Flex'
   mainCharacter: string
 }
 
