@@ -109,12 +109,12 @@ const PilotPage: React.FunctionComponent<IPilotPageProps> = ({ pilot }) => {
           property="og:description"
           content="Strikr.gg Analyze your GamePlay, track your progress and improve your skills."
         />
-        <meta
+        {/* <meta
           property="og:image"
           content={`https://strikr.gg/api/pilotcard?${OGURL.toString()}`}
         />
         <meta property="og:image:width" content="1200" />
-        <meta property="og:image:height" content="630" />
+        <meta property="og:image:height" content="630" /> */}
   </Head>
   <GeneralLayout>
     <div 
