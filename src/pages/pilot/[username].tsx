@@ -110,6 +110,8 @@ const PilotPage: React.FunctionComponent<IPilotPageProps> = ({ pilot }) => {
           property="og:image"
           content={`http://179.106.175.51:3000/api/pilotcard?${OGURL.toString()}`}
         />
+        <meta property="og:image:width" content="1200" />
+        <meta property="og:image:height" content="630" />
   </Head>
   <GeneralLayout>
     <div 
