@@ -29,7 +29,7 @@ const GeneralLayout: React.FunctionComponent<IGeneralLayoutProps> = ({ children 
   })
 
   
-  return <main className={'flex flex-col w-full h-full ' + font.className}>
+  return <main className={'flex flex-col w-full h-full min-h-[100vh] ' + font.className}>
     <Navbar
       showSearch={showSearch}
     />
