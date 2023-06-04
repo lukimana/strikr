@@ -13,7 +13,7 @@ interface IPilotProps {
 
 const PilotCard: React.FunctionComponent<IPilotProps> = ({ emoticonId, tags, username, titleId, mainRole, mainCharacter}) => {
   return <div className='flex w-full gap-4'>
-  <picture className='w-32 h-32 p-3 rounded-lg bg-secondary'>
+  <picture className='w-24 h-24 p-3 rounded-lg md:w-32 md:h-32 bg-secondary'>
     <img src={`${getEmoticonFromdata(emoticonId || 'default').image}`} alt='Emoticon' />
   </picture>
   <div className='flex flex-col gap-1.5'>

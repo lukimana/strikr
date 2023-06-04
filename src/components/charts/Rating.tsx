@@ -24,9 +24,9 @@ const RatingChart: React.FunctionComponent<IRatingChartProps> = ({ color, elo, r
       backgroundColor: color
     }}
   />
-  <div className='relative flex w-1/2 h-full z-[1] px-4 items-center gap-4'>
+  <div className='relative flex w-1/2 h-full z-[1] px-2 md:px-4 items-center gap-4 whitespace-nowrap'>
     <div
-      className='w-16 h-16 bg-center bg-no-repeat bg-contain aspect-square'
+      className='w-12 h-12 bg-center bg-no-repeat bg-contain md:w-16 md:h-16 aspect-square'
       style={{
         backgroundImage: `url('${getEloImage(elo)}')`
       }}
@@ -48,7 +48,7 @@ const RatingChart: React.FunctionComponent<IRatingChartProps> = ({ color, elo, r
       </p>
     </div>
   </div>
-  <hr className='border border-subtle/40 h-2/6 z-[1]' />
+  <hr className='border border-subtle/40 h-2/6 z-[1] hidden md:block' />
   <div className='w-1/2 z-[1] flex-col items-end justify-center text-end pr-4 flex'>
         <span className='text-lg font-bold text-white'>#{rank}</span>
         <span className='text-sm text-white/60'>{getRegionLocale(region)?.en}</span>

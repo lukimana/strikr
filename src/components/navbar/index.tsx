@@ -40,9 +40,9 @@ const Navbar: React.FunctionComponent<{showSearch?: boolean}> = ({ showSearch })
   
   return <nav 
     className={clsx({
-      'fixed z-50 flex items-center w-[calc(100%-1rem)] lg:w-[calc(100%-10rem)] py-2 mt-4 md:mt-8 duration-200 rounded-lg min-h-[4rem] justify-center md:justify-start': true,
+      'fixed z-50 flex items-center w-full lg:w-[calc(100%-10rem)] py-2 mt-0 md:mt-8 duration-200 rounded-lg min-h-[4rem] justify-center md:justify-start': true,
       'bg-primary/20 backdrop-blur-md mx-2 md:mx-8 lg:mx-20 px-2 lg:px-4': showSearch,
-      'bg-transparent mx-2 md:mx-4 lg:mx-20 px-0': !showSearch
+      'bg-transparent md:mx-4 lg:mx-20 px-0': !showSearch
     })}
   >
     {/* LEFT SIDE */}
@@ -92,7 +92,7 @@ const Navbar: React.FunctionComponent<{showSearch?: boolean}> = ({ showSearch })
               href={item.href} 
               key={`nav.item.${item.name}`}
               className={clsx({
-                'font-normal opacity-60 hover:opacity-100 duration-200 hover:text-accent': true,
+                'font-normal opacity-60 hover:opacity-100 duration-200 hover:text-accent text-sm': true,
                 '!font-bold !opacity-100': router.asPath === item.href
               })}
             >
