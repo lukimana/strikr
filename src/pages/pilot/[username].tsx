@@ -17,10 +17,15 @@ import ChartLayout from '@/components/layout/Chart'
 import RatingHistoryChart from '@/components/charts/RatingHistory'
 import PilotCard from '@/components/charts/PilotCard'
 import Head from 'next/head'
+import clsx from 'clsx'
 
 import { getPlayer } from '@/core/queries/getPlayerCharacter'
 import { ensurePlayer } from '@/core/queries/ensurePlayer'
 import CharacterStatsModal from '@/components/character/CharacterStatsModal'
+import { motion } from 'framer-motion'
+import CharacterStat from '@/components/character/CharacterPortrait'
+import PlayerCharacterStats from '@/components/character/PlayerCharacterStats'
+import CharacterPortrait from '@/components/character/CharacterPortrait'
 
 dayjs.extend(relative)
 
@@ -72,30 +77,56 @@ const PilotPage: React.FunctionComponent<IPilotPageProps> = ({ pilot }) => {
     },
     fetchPolicy: 'no-cache'
   })
+  const [selectedCharacter, selectCharacter] = useState<string | undefined>()
 
   const elo = getEloFromLP(pilot.rating)
   const roleRatio = pilot.roleRatio || {
     forwardPercentage: 50,
     goaliePercentage: 50
   }
-  
-  const OGURL = new URLSearchParams()
-  OGURL.set('isVerified', String(pilot?.tags?.includes('verified') || 'false' ))
-  OGURL.set('isStaff', String(pilot?.tags?.includes('STAFF') || 'false' ))
-  OGURL.set('username', pilot.username || 'Unknown')
-  OGURL.set('title', pilot.titleId || 'Unknown')
-  OGURL.set('rank', String(pilot.rank || 'Unknown') )
-  OGURL.set('lp', String(pilot.rating || 'Unknown') )
-  OGURL.set('win', String(pilot.wins || 'Unknown') )
-  OGURL.set('loss', String(pilot.losses || 'Unknown') )
-  OGURL.set('region', pilot.region || 'Unknown')
-  OGURL.set('emote', getEmoticonFromdata(pilot.emoticonId)?.image || '/i/emoticon/T_Emoticon_ThumbsUp-512x512.png')
-  OGURL.set('elo', elo.rank || 'Unknown')
-  OGURL.set('eloImage', getEloImage(elo.rank).replace('.png', ''))
-  OGURL.set('eloColor', getEloColor(elo.rank) || 'Unknown')
-  OGURL.set('role', roleRatio.forwardPercentage > 60 ? roleRatio.goaliePercentage > 60 ? '🥅 Goalie' : '🦐 Forward'  : '✨ Flex' || 'Unknown')
-  OGURL.set('character', getCharacterById(pilot.mostPlayedCharacterId)?.name || 'Unknown')
-  OGURL.set('characterImage', getCharacterById(pilot.mostPlayedCharacterId)?.goalscore.replace('.png', '') || 'Unknown')
+
+  // const OGURL = new URLSearchParams()
+  // OGURL.set('isVerified', String(pilot?.tags?.includes('verified') || 'false' ))
+  // OGURL.set('isStaff', String(pilot?.tags?.includes('STAFF') || 'false' ))
+  // OGURL.set('username', pilot.username || 'Unknown')
+  // OGURL.set('title', pilot.titleId || 'Unknown')
+  // OGURL.set('rank', String(pilot.rank || 'Unknown') )
+  // OGURL.set('lp', String(pilot.rating || 'Unknown') )
+  // OGURL.set('win', String(pilot.wins || 'Unknown') )
+  // OGURL.set('loss', String(pilot.losses || 'Unknown') )
+  // OGURL.set('region', pilot.region || 'Unknown')
+  // OGURL.set('emote', getEmoticonFromdata(pilot.emoticonId)?.image || '/i/emoticon/T_Emoticon_ThumbsUp-512x512.png')
+  // OGURL.set('elo', elo.rank || 'Unknown')
+  // OGURL.set('eloImage', getEloImage(elo.rank).replace('.png', ''))
+  // OGURL.set('eloColor', getEloColor(elo.rank) || 'Unknown')
+  // OGURL.set('role', roleRatio.forwardPercentage > 60 ? roleRatio.goaliePercentage > 60 ? '🥅 Goalie' : '🦐 Forward'  : '✨ Flex' || 'Unknown')
+  // OGURL.set('character', getCharacterById(pilot.mostPlayedCharacterId)?.name || 'Unknown')
+  // OGURL.set('characterImage', getCharacterById(pilot.mostPlayedCharacterId)?.goalscore.replace('.png', '') || 'Unknown')
+
+  const totalGoalieStats = [...dataCharacters?.getPlayer.characterRatings || []]
+  .filter( rating => {
+    return rating.gamemode === gamemode && rating.role === 'Goalie'
+  })
+
+  const sumGoalieStats = {
+    scores: totalGoalieStats.reduce((a, b) => a + b.scores, 0),
+    assists: totalGoalieStats.reduce((a, b) => a + b.assists, 0),
+    saves: totalGoalieStats.reduce((a, b) => a + b.saves, 0),
+    knockouts: totalGoalieStats.reduce((a, b) => a + b.knockouts, 0)
+  }
+
+  const totalForwardStats = [...dataCharacters?.getPlayer.characterRatings || []]
+  .filter( rating => {
+    return rating.gamemode === gamemode && rating.role === 'Forward'
+  })
+
+  const sumForwardStats = {
+    scores: totalForwardStats.reduce((a, b) => a + b.scores, 0),
+    assists: totalForwardStats.reduce((a, b) => a + b.assists, 0),
+    saves: totalForwardStats.reduce((a, b) => a + b.saves, 0),
+    knockouts: totalForwardStats.reduce((a, b) => a + b.knockouts, 0)
+  }
+
 
   if (!pilot) return <GeneralLayout>
   </GeneralLayout>
@@ -127,8 +158,8 @@ const PilotPage: React.FunctionComponent<IPilotPageProps> = ({ pilot }) => {
       />
     <div className='absolute inset-0 w-full h-full backdrop-blur-sm z-[1]' />
     <section className='flex flex-col w-full gap-6 px-4 md:px-20 pt-36 z-[2]' >
-      <div className='flex flex-col w-full gap-4 md:flex-row'>
-        <div className='flex w-full md:w-1/3'>
+      <div className='flex flex-col w-full gap-4 xl:flex-row'>
+        <div className='flex w-full xl:w-1/3'>
           <PilotCard
             emoticonId={pilot.emoticonId}
             tags={pilot.tags}
@@ -138,19 +169,27 @@ const PilotPage: React.FunctionComponent<IPilotPageProps> = ({ pilot }) => {
             mainCharacter={getCharacterById(pilot.mostPlayedCharacterId)?.name || 'Omega Strikers'}
           />
         </div>
-        <div className='flex flex-col w-full gap-4 md:w-2/3'>
+        <div className='flex flex-col w-full gap-4 xl:w-2/3'>
           <div className='flex justify-between w-full'>
-            <button className='flex items-center justify-between w-full gap-4 px-4 py-2 duration-200 rounded-lg md:justify-start md:w-min bg-secondary text-white/60 hover:text-white hover:bg-accent'>
-              Ranked
+            <button className='flex items-center justify-between w-full gap-4 px-4 py-2 duration-200 rounded-lg lg:justify-start lg:w-min bg-secondary text-white/60 hover:text-white hover:bg-accent'>
+              {gamemode}
               <CaretDown />
             </button>
           </div>
-          <div className='flex flex-col justify-end w-full gap-8 p-4 rounded-lg md:flex-row bg-secondary'>
+          <div className='flex flex-col justify-end w-full gap-8 p-4 rounded-lg lg:flex-row bg-secondary'>
               <div className='flex flex-col w-1/2'>
                 <h3 className='text-lg font-bold'>Lifetime Stats</h3>
                 <span className='text-xs text-white/60'>Based on Ody collected data</span>
               </div>
-              <div className='flex items-center justify-start w-full gap-8 md:justify-end md:w-1/2'>
+              <div className='flex items-center justify-start w-full gap-8 lg:justify-end lg:w-1/2'>
+                <div className='flex flex-col'>
+                  <h6 className='text-xs text-white/40'>Games</h6>
+                  <span className='text-xl font-bold'>{pilot.games}</span>
+                </div>
+                <div className='flex flex-col'>
+                  <h6 className='text-xs text-white/40'>Winrate</h6>
+                  <span className='text-xl font-bold'>{(pilot.wins / pilot.games * 100).toFixed(2)}</span>
+                </div>
                 <div className='flex flex-col'>
                   <h6 className='text-xs text-white/40'>Wins</h6>
                   <span className='text-xl font-bold'>{pilot.wins}</span>
@@ -171,8 +210,8 @@ const PilotPage: React.FunctionComponent<IPilotPageProps> = ({ pilot }) => {
           </div>
         </div>
       </div>
-      <div className='flex flex-col w-full gap-4 md:flex-row'>
-        <aside className='flex flex-col w-full h-full gap-6 md:w-1/3'>
+      <div className='flex flex-col w-full gap-4 xl:flex-row'>
+        <aside className='flex flex-col w-full h-full gap-6 xl:w-1/3'>
           <RatingChart
             color={getEloColor(elo.rank)}
             losses={pilot.losses}
@@ -196,19 +235,17 @@ const PilotPage: React.FunctionComponent<IPilotPageProps> = ({ pilot }) => {
               }
               bottomLine={Number(elo.closestBottomLine)}
             />
+            <span className='absolute hidden text-xs -translate-x-1/2 -bottom-2 left-1/2 opacity-60 whitespace-nowrap md:flex'>Scroll to zoom | Hold Ctrl to pan | Hold Shift to select & zoom</span>
           </ChartLayout>
           {/* PLAYSTYLE */}
           <ChartLayout
             title='Playstyle'
             subtitle='Based on all time stats for this gamemode'
           >
-            <div className='flex flex-col items-center justify-center w-full h-min'>
+            <div className='flex flex-col items-center justify-center w-full min-h-[40vh] lg:min-h-[0px]'>
               {pilot && <PlayStyleChart
-                assists={pilot.assists}
-                goals={pilot.goals}
-                knockouts={pilot.knockouts}
-                saves={pilot.saves}
-                gamemode={gamemode} 
+                forward={sumForwardStats}
+                goalie={sumGoalieStats}
               /> }
             </div>
 
@@ -241,162 +278,62 @@ const PilotPage: React.FunctionComponent<IPilotPageProps> = ({ pilot }) => {
           </ChartLayout>
 
         </aside>
-        <div className='flex flex-col w-full gap-4 pt-6 md:pt-0 md:w-2/3'>
+        <div className='flex flex-col w-full gap-4 pt-6 lg:pt-0 xl:w-2/3'>
           {loadingCharacters && <div className='flex flex-col items-center justify-center w-full gap-2 py-16'>
             <img src='/i/emoticon/T_AimiSweat-512x512.webp' alt='aimiType' className='w-14 h-14'/>
             <span className='text-white/60'>Ai.Mi is working on this</span>
           </div>}
-          {dataCharacters && <ChartLayout
+            {dataCharacters && <ChartLayout
               title='Character Stats'
               subtitle='Based on all time stats for this gamemode, ordered by most played'
-            /> }
-            <div className='flex flex-col gap-4'>
-            {dataCharacters && <>
-                <div className='flex flex-col pt-4'>
-                  {[...dataCharacters.getPlayer.characterMastery.characterMasteries]
-                    .sort((a, b) => b.currentTier - a.currentTier)
+            >
+                <div 
+                  className='grid w-full grid-cols-4 gap-4 lg:grid-cols-6 xl:grid-cols-10 2xl:grid-cols-12'
+                >
+                  {
+                    !selectedCharacter &&
+                    [...dataCharacters.getPlayer.characterMastery.characterMasteries]
+                    .sort( (a,b) => {
+                      const characterRatingsA = [...dataCharacters.getPlayer.characterRatings].filter( rating => rating.character === a.characterAssetName)
+                        .map( rating => rating.games)
+                        .reduce( (a,b) => a + b, 0)
+                      const characterRatingsB = [...dataCharacters.getPlayer.characterRatings].filter( rating => rating.character === b.characterAssetName)
+                      .map( rating => rating.games)
+                      .reduce( (a,b) => a + b, 0)
+
+                      return (characterRatingsB || 1 ) - (characterRatingsA || 1)
+                    })
                     .map((character) => {
-                      const goalieRating = [...dataCharacters.getPlayer.characterRatings]
-                        .sort((a, b) => dayjs(b.createdAt).unix() - dayjs(a.createdAt).unix())
-                        .find((rating) => {
-                          return (
-                            rating.character === character.characterAssetName &&
-                            rating.gamemode === gamemode &&
-                            rating.role === 'Goalie'
-                          )
-                        })
-
-                      const forwardRating = [...dataCharacters.getPlayer.characterRatings]
-                        .sort((a, b) => dayjs(b.createdAt).unix() - dayjs(a.createdAt).unix())
-                        .find((rating) => {
-                          return (
-                            rating.character === character.characterAssetName &&
-                            rating.gamemode === gamemode &&
-                            rating.role === 'Forward'
-                          )
-                        })
-
-                      return <>
-                        <div
-                          key={character.characterAssetName}
-                          className='flex items-center gap-4 px-4 py-2 mb-2 duration-200 rounded-lg bg-secondary-darker hover:bg-tertiary'
-                        >
-                          <div className='flex items-center gap-4 w-max'>
-                            <div
-                              className='w-10 h-10 bg-center bg-no-repeat bg-contain rounded-lg'
-                              style={{
-                                backgroundImage: `url(${getCharacterById(character.characterAssetName)?.portrait})`,
-                              }}
-                            />
-                            <p className='flex flex-col justify-center gap-2 text-lg font-bold whitespace-nowrap'>
-                              <h6 className='flex items-center gap-2'>
-                                {getCharacterById(character.characterAssetName)?.name}
-                                <span className='flex px-2 py-1 text-xs rounded-lg bg-primary w-min h-min'>🥅 Goalie</span>
-                              </h6>
-                              <span className='text-sm font-normal text-white/60'>
-                                {goalieRating?.games || '0' } Games <small className='text-xs text-white/40'>with</small> {((goalieRating?.wins || 0) / (goalieRating?.games || 1) * 100 || 0).toFixed()}% Winrate
-                              </span>
-                            </p>
-                          </div>
-                          <div className='flex w-full gap-4'>
-                            <div className='flex justify-end w-full gap-8 text-end'>
-                              <div className='flex flex-col'>
-                                <h6 className='text-xs text-white/40'>Wins</h6>
-                                <span className='text-xl font-bold'>{goalieRating?.wins || 0}</span>
-                              </div>
-                              <div className='flex flex-col'>
-                                <h6 className='text-xs text-white/40'>Losses</h6>
-                                <span className='text-xl font-bold'>{goalieRating?.losses || 0}</span>
-                              </div>
-                              <div className='flex flex-col'>
-                                <h6 className='text-xs text-white/40'>Scores</h6>
-                                <span className='text-xl font-bold'>{goalieRating?.scores || 0}</span>
-                              </div>
-                              <div className='flex flex-col'>
-                                <h6 className='text-xs text-white/40'>Assists</h6>
-                                <span className='text-xl font-bold'>{goalieRating?.assists || 0}</span>
-                              </div>
-                            </div>
-                            <CharacterStatsModal
-                              rating={goalieRating}
-                              username={pilot.username}
-                              mastery={character}
-                              ratings={[...dataCharacters.getPlayer.characterRatings]
-                                .sort((a, b) => dayjs(b.createdAt).unix() - dayjs(a.createdAt).unix())
-                                .filter((rating) => rating.character === character.characterAssetName && rating.role === 'Goalie' && rating.gamemode === gamemode)
-                              }
-                              role='Goalie'
-                            >
-                              <div className='flex items-center justify-center h-10 rounded-lg cursor-pointer text-white/60 aspect-square bg-secondary hover:bg-accent hover:text-secondary'>
-                                <ChartPieSlice size={22} weight='light' />
-                              </div>
-                            </CharacterStatsModal>
-                          </div>
-                        </div>
-
-                        <div
-                          key={character.characterAssetName + '-forward'}
-                          className='flex items-center gap-4 px-4 py-2 duration-200 rounded-lg bg-secondary-darker/80 hover:bg-tertiary'
-                        >
-                          <div className='flex items-center gap-4 w-max'>
-                            <div
-                              className='w-10 h-10 bg-center bg-no-repeat bg-contain w-'
-                              style={{
-                                backgroundImage: `url(${getCharacterById(character.characterAssetName)?.portrait})`,
-                              }}
-                            />
-                            <p className='flex flex-col justify-center gap-2 text-lg font-bold whitespace-nowrap'>
-                              <h6 className='flex items-center gap-2'>
-                                {getCharacterById(character.characterAssetName)?.name}
-                                <span className='flex px-2 py-1 text-xs rounded-lg bg-primary w-min h-min'>🦐 Forward</span>
-                              </h6>
-                              <span className='text-sm font-normal text-white/60'>
-                              {forwardRating?.games || '0' } Games <small className='text-xs text-white/40'>with</small> {((forwardRating?.wins || 0) / (forwardRating?.games || 1) * 100 || 0).toFixed()}% Winrate
-                              </span>
-                            </p>
-                          </div>
-                          <div className='flex w-full gap-4'>
-                            <div className='flex justify-end w-full gap-8 text-end'>
-                              <div className='flex flex-col'>
-                                <h6 className='text-xs text-white/40'>Wins</h6>
-                                <span className='text-xl font-bold'>{forwardRating?.wins || 0}</span>
-                              </div>
-                              <div className='flex flex-col'>
-                                <h6 className='text-xs text-white/40'>Losses</h6>
-                                <span className='text-xl font-bold'>{forwardRating?.losses || 0}</span>
-                              </div>
-                              <div className='flex flex-col'>
-                                <h6 className='text-xs text-white/40'>Scores</h6>
-                                <span className='text-xl font-bold'>{forwardRating?.scores || 0}</span>
-                              </div>
-                              <div className='flex flex-col'>
-                                <h6 className='text-xs text-white/40'>Assists</h6>
-                                <span className='text-xl font-bold'>{forwardRating?.assists || 0}</span>
-                              </div>
-                            </div>
-                            <CharacterStatsModal
-                              rating={forwardRating}
-                              username={pilot.username}
-                              mastery={character}
-                              role='Forward'
-                              ratings={[...dataCharacters.getPlayer.characterRatings]
-                                .sort((a, b) => dayjs(b.createdAt).unix() - dayjs(a.createdAt).unix())
-                                .filter((rating) => rating.character === character.characterAssetName && rating.role === 'Forward' && rating.gamemode === gamemode)
-                              }
-                            >
-                              <div className='flex items-center justify-center h-10 rounded-lg cursor-pointer text-white/60 aspect-square bg-secondary hover:bg-accent hover:text-secondary'>
-                                <ChartPieSlice size={22} weight='light' />
-                              </div>
-                            </CharacterStatsModal>
-                          </div>
-                        </div>
-
-                        <hr className='w-11/12 mx-auto my-4 border border-dashed border-secondary' />
-                      </>
-                    })}
+                        return (
+                          <CharacterPortrait
+                            characterId={character.characterAssetName}
+                            color={ selectedCharacter === character.characterAssetName ? 'accent' : 'tertiary'}
+                            size='fluid'
+                            key={character.characterAssetName}
+                            onClick={() => selectCharacter(character.characterAssetName)}
+                          />
+                        )
+                    })
+                  }
                 </div>
-            </>}
-          </div>
+                {selectedCharacter && (
+                  <PlayerCharacterStats
+                    username={pilot.username}
+                    goalieRating={dataCharacters.getPlayer.characterRatings.filter( rating => (rating.character === selectedCharacter) && (rating.role === 'Goalie') && (rating.gamemode === gamemode))}
+                    forwardRating={dataCharacters.getPlayer.characterRatings.filter( rating => (rating.character === selectedCharacter) && (rating.role  === 'Forward') && (rating.gamemode === gamemode))}
+                    onBack={() => selectCharacter(undefined)}
+                    mastery={dataCharacters.getPlayer.characterMastery.characterMasteries.find( mastery => mastery.characterAssetName === selectedCharacter) || {
+                      characterAssetName: selectedCharacter,
+                      currentTier: 0,
+                      currentTierXp: 0,
+                      idxHighestTierCollected: 0,
+                      maxTier: 0,
+                      totalXp: 0,
+                      xpToNextTier: 0
+                    }}
+                  />
+                )}
+            </ChartLayout>}
         </div>
       </div>
     </section>
@@ -412,6 +349,7 @@ const getServerSideProps: GetServerSideProps = async (context) => {
     losses: 0,
     rank: 10_001,
     masteryLevel: 0,
+    createdAt: new Date().toISOString()
   }
   try {
     if (!context.query.username) { return { props: {} } }
@@ -429,6 +367,8 @@ const getServerSideProps: GetServerSideProps = async (context) => {
     const latestPilotRating = orderedPilotRatings?.[0] || defaultRatingObject
     const ratingGraphData = orderedPilotRatings.map( rating => rating.rating )
     const ratingGraphLabels: string[] = orderedPilotRatings.map( rating => dayjs(rating.createdAt).format('MM/DD @ hh:MM A') )
+
+    console.log('Query Data', query.data.ensurePlayer.characterRatings)
 
     return {
       props: {

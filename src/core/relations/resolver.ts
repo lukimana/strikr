@@ -81,6 +81,7 @@ export type Rank =
   
     return {
       closestBottomLine: Object.keys(lookup).find(key => lookup[Number(key) as keyof typeof lookup] === rank),
+      closestTopLine: Object.keys(lookup).find(key => lookup[Number(key) as keyof typeof lookup] === nextRank),
       rank,
       nextRank,
     }

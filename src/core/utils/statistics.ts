@@ -48,15 +48,17 @@ export function calculateTotalGoals(player: STRIKR.API.PlayerObjectType, gamemod
   const scannedCharacters = new Set<string>()
 
   return player.characterRatings
+    .sort( (a, b) => dayjs(b.createdAt).unix() - dayjs(a.createdAt).unix())
     .filter(rating => {
-      if (rating.gamemode === gamemode) {
+      // if (rating.gamemode === gamemode) {
         if (scannedCharacters.has(rating.character)) {
           return false
         }
         scannedCharacters.add(rating.character)
         return true
       }
-    })
+    // }
+    )
     .reduce((sum, rating) => sum + rating.scores, 0)
 }
 
@@ -65,14 +67,15 @@ export function calculateTotalSaves(player: STRIKR.API.PlayerObjectType, gamemod
 
   return player.characterRatings
     .filter(rating => {
-      if (rating.gamemode === gamemode) {
+      // if (rating.gamemode === gamemode) {
         if (scannedCharacters.has(rating.character)) {
           return false
         }
         scannedCharacters.add(rating.character)
         return true
       }
-    })
+    // }
+    )
     .reduce((sum, rating) => sum + rating.saves, 0)
 }
 
@@ -81,13 +84,13 @@ export function calculateTotalAssists(player: STRIKR.API.PlayerObjectType, gamem
 
   return player.characterRatings
     .filter(rating => {
-      if (rating.gamemode === gamemode) {
+      // if (rating.gamemode === gamemode) {
         if (scannedCharacters.has(rating.character)) {
           return false
         }
         scannedCharacters.add(rating.character)
         return true
-      }
+      // }
     })
     .reduce((sum, rating) => sum + rating.assists, 0)
 }
@@ -97,14 +100,15 @@ export function calculateTotalKnockouts(player: STRIKR.API.PlayerObjectType, gam
 
   return player.characterRatings
     .filter(rating => {
-      if (rating.gamemode === gamemode) {
+      // if (rating.gamemode === gamemode) {
         if (scannedCharacters.has(rating.character)) {
           return false
         }
         scannedCharacters.add(rating.character)
         return true
       }
-    })
+    // }
+    )
     .reduce((sum, rating) => sum + rating.knockouts, 0)
 }
 

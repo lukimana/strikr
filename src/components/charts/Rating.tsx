@@ -13,7 +13,7 @@ interface IRatingChartProps {
 }
 
 const RatingChart: React.FunctionComponent<IRatingChartProps> = ({ color, elo, rank, games, rating, wins, losses, region}) => {
-  const pilotWinrate = useRef( (wins / games * 100).toFixed(0) )
+  const pilotWinrate = useRef( (wins / games * 100).toFixed(2) )
 
   return <div 
   className='relative flex items-center justify-between w-full h-24 overflow-hidden rounded-lg bg-secondary'
@@ -48,8 +48,8 @@ const RatingChart: React.FunctionComponent<IRatingChartProps> = ({ color, elo, r
       </p>
     </div>
   </div>
-  <hr className='border border-subtle/40 h-2/6 z-[1] hidden md:block' />
-  <div className='w-1/2 z-[1] flex-col items-end justify-center text-end pr-4 flex'>
+  <hr className='border border-subtle/40 h-2/6 z-[1] hidden 2xl:block' />
+  <div className='w-1/2 z-[1] flex md:hidden flex-col items-end justify-center text-end pr-4 2xl:flex'>
         <span className='text-lg font-bold text-white'>#{rank}</span>
         <span className='text-sm text-white/60'>{getRegionLocale(region)?.en}</span>
   </div>
