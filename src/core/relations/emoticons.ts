@@ -72,7 +72,7 @@ const emoticons = [
   { 'id': 'EmoticonData_Challenger', 'image': '/i/emoticon/T_UI_RankedEmblem_Master_Low.T_UI_RankedEmblem_Master_Low'},
   { 'id': 'EmoticonData_DefaultThumbsUp', 'image': '/i/emoticon/T_Emoticon_ThumbsUp-512x512.png'},
   { 'id': 'EmoticonData_Diamond', 'image': '/i/emoticon/T_UI_RankedEmblem_Diamond_Low.T_UI_RankedEmblem_Diamond_Low'},
-  { 'id': 'EmoticonData_DJAtlas', 'image': '/i/emoticon/T_DJAtlas-512x512.png'},
+  { 'id': 'EmoticonData_DJAtlas', 'image': '/i/emoticon/T_DJAtlas-512x512.webp'},
   { 'id': 'EmoticonData_DrekarDetective', 'image': '/i/emoticon/T_DrexWhat-512x512.png'},
   { 'id': 'EmoticonData_DrekarSpeechless', 'image': '/i/emoticon/T_DrexPog.T_DrexPog'},
   { 'id': 'EmoticonData_DubuBop', 'image': '/i/emoticon/T_DubuNOM.T_DubuNOM'},
