@@ -39,12 +39,18 @@ const PlayerCharacterStats: React.FunctionComponent<IPlayerCharacterStatsProps> 
         <CaretLeft size={24} /> Return to selection
       </button>
     </div>
-    <div className='flex flex-col w-full gap-6 p-4 rounded-lg lg:flex-row bg-secondary-darker'>
-
-      <div className='flex flex-col'>
-        <h2 className='text-2xl font-semibold'>{username}&apos;s {charRelation?.name}</h2>
-        <span className='text-sm text-white/60 whitespace-nowrap'>Total based on sum of roles in current gamemode</span>
-
+    <div className='flex flex-col w-full gap-4 p-4 overflow-hidden rounded-lg lg:items-center lg:flex-row bg-secondary-darker'>
+      <div className='flex w-full gap-4'>
+        <CharacterPortrait 
+          characterId={mastery.characterAssetName}
+          color='tertiary'
+          size='xs'
+          showName={false}
+        />
+        <div className='flex flex-col'>
+          <h2 className='text-2xl font-semibold'>{username}&apos;s {charRelation?.name}</h2>
+          <span className='text-sm text-white/60 whitespace-nowrap'>{}</span>
+        </div>
       </div>
       <div className='flex items-center justify-start w-full gap-8 lg:justify-end'>
         <div className='flex flex-col'>
@@ -85,7 +91,7 @@ const PlayerCharacterStats: React.FunctionComponent<IPlayerCharacterStatsProps> 
             backgroundColor: 'rgba(240, 84, 79,0.1)'
           }}
         >
-          <div className='flex items-center justify-center w-full gap-4 py-4'>
+          <div className='flex items-center justify-center w-full gap-8 py-4'>
             <div className='flex flex-col'>
               <h6 className='text-xs text-white/40'>Games</h6>
               <span className='text-xl font-bold'>{forwardRatingObj.games}</span>
@@ -145,7 +151,7 @@ const PlayerCharacterStats: React.FunctionComponent<IPlayerCharacterStatsProps> 
           style={{
             backgroundColor: 'rgba(191, 182, 252,0.1)'
           }}>
-        <div className='flex items-center justify-center w-full gap-4 py-4'>
+        <div className='flex items-center justify-center w-full gap-8 py-4'>
             <div className='flex flex-col'>
               <h6 className='text-xs text-white/40'>Games</h6>
               <span className='text-xl font-bold'>{goalieRatingObj.games}</span>

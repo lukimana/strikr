@@ -2,7 +2,7 @@ import { getCharacterById } from '@/core/utils/parsing'
 import clsx from 'clsx'
 
 interface ICharacterPortraitProps {
-  size: 'sm' | 'md' | 'lg' | 'xl' | '2xl' | 'fluid'
+  size:  'xs' | 'sm' | 'md' | 'lg' | 'xl' | '2xl' | 'fluid'
   color: 'primary' | 'secondary' | 'tertiary' | 'secondary-darker' | 'accent'
   characterId: string
   showName?: boolean
@@ -31,6 +31,7 @@ const CharacterPortrait: React.FunctionComponent<ICharacterPortraitProps> = ({ s
       <div
         className={clsx({
           'rounded-lg bg-contain bg-center group-hover:scale-110 duration-700': true,
+          'w-16 h-16': size === 'xs',
           'w-24 h-24': size === 'sm',
           'w-32 h-32': size === 'md',
           'w-40 h-40': size === 'lg',
