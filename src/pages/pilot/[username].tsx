@@ -165,7 +165,7 @@ const PilotPage: React.FunctionComponent<IPilotPageProps> = ({ pilot }) => {
             tags={pilot.tags}
             username={pilot.username}
             titleId={pilot.titleId}
-            mainRole={roleRatio.forwardPercentage > 60 ? roleRatio.goaliePercentage > 60 ? '🥅 Goalie' : '🦐 Forward'  : '✨ Flex'}
+            mainRole={roleRatio.goaliePercentage > 60 ? '🥅 Goalie' : roleRatio.forwardPercentage > 60 ? '🦐 Forward'  : '✨ Flex'}
             mainCharacter={getCharacterById(pilot.mostPlayedCharacterId)?.name || 'Omega Strikers'}
           />
         </div>
@@ -375,10 +375,10 @@ const getServerSideProps: GetServerSideProps = async (context) => {
         pilot: {
           games: latestPilotRating.games,
           wins: latestPilotRating.wins,
-          goals: calculateTotalGoals(query.data.ensurePlayer, 'RankedInitial'),
-          assists: calculateTotalAssists(query.data.ensurePlayer, 'RankedInitial'),
-          knockouts: calculateTotalKnockouts(query.data.ensurePlayer, 'RankedInitial'),
-          saves: calculateTotalSaves(query.data.ensurePlayer, 'RankedInitial'),
+          goals: calculateTotalGoals(query.data.ensurePlayer, context.query?.gamemode as string || 'RankedInitial'),
+          assists: calculateTotalAssists(query.data.ensurePlayer, context.query?.gamemode as string || 'RankedInitial'),
+          knockouts: calculateTotalKnockouts(query.data.ensurePlayer, context.query?.gamemode as string || 'RankedInitial'),
+          saves: calculateTotalSaves(query.data.ensurePlayer, context.query?.gamemode as string || 'RankedInitial'),
           losses: latestPilotRating.losses,
           rank: latestPilotRating.rank,
           rating: latestPilotRating.rating, // LP
@@ -392,7 +392,7 @@ const getServerSideProps: GetServerSideProps = async (context) => {
           ratingGraphLabels,
           mostPlayedCharacterId: [...query.data.ensurePlayer.characterRatings].sort( (a, b) => b.games - a.games )[0].character,
           updatedAt: latestPilotRating.createdAt,
-          roleRatio: calculateGoalieForwardPercentage(query?.data?.ensurePlayer, 'RankedInitial') || {
+          roleRatio: calculateGoalieForwardPercentage(query?.data?.ensurePlayer, context.query?.gamemode as string || 'RankedInitial') || {
             forwardPercentage: 50,
             goaliePercentage: 50
           },
