@@ -21,7 +21,7 @@ import clsx from 'clsx'
 
 import { getPlayer } from '@/core/queries/getPlayerCharacter'
 import { ensurePlayer } from '@/core/queries/ensurePlayer'
-import CharacterStatsModal from '@/components/character/CharacterStatsModal'
+// import CharacterStatsModal from '@/components/character/CharacterStatsModal'
 import { motion } from 'framer-motion'
 import CharacterStat from '@/components/character/CharacterPortrait'
 import PlayerCharacterStats from '@/components/character/PlayerCharacterStats'

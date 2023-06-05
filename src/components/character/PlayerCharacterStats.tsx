@@ -75,6 +75,18 @@ const PlayerCharacterStats: React.FunctionComponent<IPlayerCharacterStatsProps> 
         </div>
       </div>
     </div>
+
+    <div className='flex gap-1.5 flex-col w-full p-4 rounded-lg'>
+      <div className='flex items-center justify-between w-full'>
+        <span className='text-white/60'>Affinity Tier</span>
+        <span className='text-lg font-semibold'>{mastery.currentTier}</span>
+      </div>
+      <div className='flex items-center justify-between w-full'>
+        <span className='text-white/60'>Current XP</span>
+        <span className='text-lg font-semibold'>{mastery.currentTierXp} <small className='text-sm text-white/60'>/ {mastery.xpToNextTier + mastery.currentTierXp} xp</small></span>
+      </div>
+    </div>
+
     <div className='flex flex-col w-full gap-2 lg:flex-row'>
       <div className='w-full lg:w-1/2 '>
         <div 
@@ -98,7 +110,7 @@ const PlayerCharacterStats: React.FunctionComponent<IPlayerCharacterStatsProps> 
             </div>
             <div className='flex flex-col'>
               <h6 className='text-xs text-white/40'>Winrate</h6>
-              <span className='text-xl font-bold'>{((forwardRatingObj.wins) / (forwardRatingObj.games) * 100).toFixed(2)}</span>
+              <span className='text-xl font-bold'>{((forwardRatingObj.wins) / (forwardRatingObj.games) * 100).toFixed(2)}%</span>
             </div>
             <div className='flex flex-col'>
               <h6 className='text-xs text-white/40'>Wins</h6>
@@ -158,7 +170,7 @@ const PlayerCharacterStats: React.FunctionComponent<IPlayerCharacterStatsProps> 
             </div>
             <div className='flex flex-col'>
               <h6 className='text-xs text-white/40'>Winrate</h6>
-              <span className='text-xl font-bold'>{((goalieRatingObj.wins || 0) / (goalieRatingObj.games || 1) * 100).toFixed(2)}</span>
+              <span className='text-xl font-bold'>{((goalieRatingObj.wins || 0) / (goalieRatingObj.games || 1) * 100).toFixed(2)}%</span>
             </div>
             <div className='flex flex-col'>
               <h6 className='text-xs text-white/40'>Wins</h6>
