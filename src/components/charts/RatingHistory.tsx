@@ -57,16 +57,15 @@ const RatingHistoryChart: React.FunctionComponent<IRatingHistoryProps> = ({ data
               enabled: true,
               mode: 'xy',
             },
-            // limits: {
-            //   x: {
-            //     min: 0,
-            //     max: labels.length - 1
-            //   },
-            //   y: {
-            //     min: bottomLine || 0,
-            //     max: max
-            //   }
-            // }
+            limits: {
+              x: {
+                max: labels.length - 1
+              },
+              y: {
+                min: bottomLine || 0,
+                max: max
+              }
+            }
           },
           datalabels: {
             // @ts-expect-error - chartjs-plugin-datalabels is not typed

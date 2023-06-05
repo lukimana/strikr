@@ -39,8 +39,18 @@ const PlayStyleChart: React.FunctionComponent<IRadarChartProps> = ({ forward, go
         display: (!!goalie && !!forward)
       },
       datalabels: {
-        display: false
-      },
+        backgroundColor: 'rgb(64, 64, 64)',
+        borderRadius: 4,
+        // @ts-expect-error - chartjs-plugin-datalabels is not typed
+        color: function(context) {
+          return context.dataset.borderColor
+        },
+        font: {
+          weight: 'bold'
+        },
+        formatter: Math.round,
+        padding: 2
+      }
     }
   }}
   data={{
