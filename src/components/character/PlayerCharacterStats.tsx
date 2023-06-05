@@ -39,7 +39,7 @@ const PlayerCharacterStats: React.FunctionComponent<IPlayerCharacterStatsProps> 
         >
         <CaretLeft size={24} /> Return to selection
       </button>
-      <div className='flex flex-col w-full gap-4 p-4 overflow-hidden rounded-lg lg:items-center lg:flex-row bg-secondary-darker'>
+      <div className='flex flex-col w-full gap-4 p-4 overflow-hidden lg:items-center lg:flex-row bg-secondary-darker'>
         <div className='flex w-full gap-4'>
           <CharacterPortrait 
             characterId={mastery.characterAssetName}
@@ -49,10 +49,10 @@ const PlayerCharacterStats: React.FunctionComponent<IPlayerCharacterStatsProps> 
           />
           <div className='flex flex-col'>
             <h2 className='text-2xl font-semibold'>{username}&apos;s {charRelation?.name}</h2>
-            <span className='text-sm text-white/60 whitespace-nowrap'>{}</span>
+            <span className='text-sm text-white/60 whitespace-nowrap'>Lifetime stats for this gamemode</span>
           </div>
         </div>
-        <div className='flex items-center justify-start w-full gap-8 lg:justify-end'>
+        <div className='flex items-center justify-center w-full gap-8 py-4 -mb-4 border-t border-dashed lg:-m-0 border-subtle/10 lg:border-none lg:justify-end'>
           <div className='flex flex-col'>
             <h6 className='text-xs text-white/40'>Games</h6>
             <span className='text-xl font-bold'>{goalieRatingObj.games + forwardRatingObj.games}</span>
@@ -75,16 +75,15 @@ const PlayerCharacterStats: React.FunctionComponent<IPlayerCharacterStatsProps> 
           </div>
         </div>
       </div>
-    </div>
-
-    <div className='flex gap-1.5 flex-col w-full p-4 rounded-lg'>
-      <div className='flex items-center justify-between w-full'>
-        <span className='text-white/60'>Affinity Tier</span>
-        <span className='text-lg font-semibold'>{mastery.currentTier}</span>
-      </div>
-      <div className='flex items-center justify-between w-full'>
-        <span className='text-white/60'>Current XP</span>
-        <span className='text-lg font-semibold'>{mastery.currentTierXp} <small className='text-sm text-white/60'>/ {mastery.xpToNextTier + mastery.currentTierXp} xp</small></span>
+      <div className='flex gap-1.5 flex-col w-full p-4 rounded-b-lg bg-secondary-darker border-t border-dashed border-subtle/10'>
+        <div className='flex items-center justify-between w-full'>
+          <span className='text-white/60'>Affinity Tier</span>
+          <span className='text-lg font-semibold'>{mastery.currentTier}</span>
+        </div>
+        <div className='flex items-center justify-between w-full'>
+          <span className='text-white/60'>Current XP</span>
+          <span className='text-lg font-semibold'>{mastery.currentTierXp} <small className='text-sm text-white/60'>/ {mastery.xpToNextTier + mastery.currentTierXp} xp</small></span>
+        </div>
       </div>
     </div>
 
