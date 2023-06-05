@@ -31,47 +31,48 @@ const PlayerCharacterStats: React.FunctionComponent<IPlayerCharacterStatsProps> 
   return <div
     className='flex flex-col w-full gap-8 md:gap-4'
   >
-    <div className='flex items-center justify-end w-full md:justify-start'>
-      <button 
-        className='flex items-center w-full gap-4 px-4 py-6 duration-300 rounded-lg bg-secondary-darker hover:bg-accent hover:text-primary text-white/60'
-        onClick={onBack}
-      >
+    
+    <div>
+        <button 
+          className='flex items-center w-full gap-4 px-4 py-4 duration-300 border-b border-dashed rounded-t-lg bg-secondary-darker hover:bg-accent hover:text-primary text-white/60 border-subtle/10'
+          onClick={onBack}
+        >
         <CaretLeft size={24} /> Return to selection
       </button>
-    </div>
-    <div className='flex flex-col w-full gap-4 p-4 overflow-hidden rounded-lg lg:items-center lg:flex-row bg-secondary-darker'>
-      <div className='flex w-full gap-4'>
-        <CharacterPortrait 
-          characterId={mastery.characterAssetName}
-          color='tertiary'
-          size='xs'
-          showName={false}
-        />
-        <div className='flex flex-col'>
-          <h2 className='text-2xl font-semibold'>{username}&apos;s {charRelation?.name}</h2>
-          <span className='text-sm text-white/60 whitespace-nowrap'>{}</span>
+      <div className='flex flex-col w-full gap-4 p-4 overflow-hidden rounded-lg lg:items-center lg:flex-row bg-secondary-darker'>
+        <div className='flex w-full gap-4'>
+          <CharacterPortrait 
+            characterId={mastery.characterAssetName}
+            color='tertiary'
+            size='xs'
+            showName={false}
+          />
+          <div className='flex flex-col'>
+            <h2 className='text-2xl font-semibold'>{username}&apos;s {charRelation?.name}</h2>
+            <span className='text-sm text-white/60 whitespace-nowrap'>{}</span>
+          </div>
         </div>
-      </div>
-      <div className='flex items-center justify-start w-full gap-8 lg:justify-end'>
-        <div className='flex flex-col'>
-          <h6 className='text-xs text-white/40'>Games</h6>
-          <span className='text-xl font-bold'>{goalieRatingObj.games + forwardRatingObj.games}</span>
-        </div>
-        <div className='flex flex-col'>
-          <h6 className='text-xs text-white/40'>Winrate</h6>
-          <span className='text-xl font-bold'>{((goalieRatingObj.wins + forwardRatingObj.wins) / (goalieRatingObj.games + forwardRatingObj.games) * 100).toFixed(2)}</span>
-        </div>
-        <div className='flex flex-col'>
-          <h6 className='text-xs text-white/40'>Wins</h6>
-          <span className='text-xl font-bold'>{goalieRatingObj.wins + forwardRatingObj.wins}</span>
-        </div>
-        <div className='flex flex-col'>
-          <h6 className='text-xs text-white/40'>Losses</h6>
-          <span className='text-xl font-bold'>{goalieRatingObj.losses + forwardRatingObj.losses}</span>
-        </div>
-        <div className='flex flex-col'>
-          <h6 className='text-xs text-white/40'>Assists</h6>
-          <span className='text-xl font-bold'>{goalieRatingObj.assists + forwardRatingObj.assists}</span>
+        <div className='flex items-center justify-start w-full gap-8 lg:justify-end'>
+          <div className='flex flex-col'>
+            <h6 className='text-xs text-white/40'>Games</h6>
+            <span className='text-xl font-bold'>{goalieRatingObj.games + forwardRatingObj.games}</span>
+          </div>
+          <div className='flex flex-col'>
+            <h6 className='text-xs text-white/40'>Winrate</h6>
+            <span className='text-xl font-bold'>{((goalieRatingObj.wins + forwardRatingObj.wins) / (goalieRatingObj.games + forwardRatingObj.games) * 100).toFixed(2)}</span>
+          </div>
+          <div className='flex flex-col'>
+            <h6 className='text-xs text-white/40'>Wins</h6>
+            <span className='text-xl font-bold'>{goalieRatingObj.wins + forwardRatingObj.wins}</span>
+          </div>
+          <div className='flex flex-col'>
+            <h6 className='text-xs text-white/40'>Losses</h6>
+            <span className='text-xl font-bold'>{goalieRatingObj.losses + forwardRatingObj.losses}</span>
+          </div>
+          <div className='flex flex-col'>
+            <h6 className='text-xs text-white/40'>Assists</h6>
+            <span className='text-xl font-bold'>{goalieRatingObj.assists + forwardRatingObj.assists}</span>
+          </div>
         </div>
       </div>
     </div>
