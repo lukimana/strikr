@@ -130,8 +130,8 @@ const PlayerCharacterStats: React.FunctionComponent<IPlayerCharacterStatsProps> 
             subtitle=''
           >
             <RatingHistoryChart 
-              data={[...forwardRating].sort((a,b) => dayjs(b.createdAt).unix() - dayjs(a.createdAt).unix()).map( rating => rating.wins)}
-              labels={[...forwardRating].sort((a,b) => dayjs(b.createdAt).unix() - dayjs(a.createdAt).unix()).map( rating => dayjs(rating.createdAt).format('MM/DD/YY @ HH:mm A'))}
+              data={forwardRating.map( r => ({ value: r.wins, date: r.createdAt}))}
+              bottomLine={0}
             />
           </ChartLayout>
           <ChartLayout
@@ -190,8 +190,7 @@ const PlayerCharacterStats: React.FunctionComponent<IPlayerCharacterStatsProps> 
             subtitle=''
           >
             <RatingHistoryChart 
-              data={[...goalieRating].sort((a,b) => dayjs(b.createdAt).unix() - dayjs(a.createdAt).unix()).map( rating => rating.wins)}
-              labels={[...goalieRating].sort((a,b) => dayjs(b.createdAt).unix() - dayjs(a.createdAt).unix()).map( rating => dayjs(rating.createdAt).format('MM/DD/YY @ HH:mm A'))}
+              data={goalieRating.map( rating => { return { value: rating.wins, date: rating.createdAt } })}
             />
           </ChartLayout>
           <ChartLayout
