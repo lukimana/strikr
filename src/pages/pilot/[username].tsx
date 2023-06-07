@@ -26,6 +26,7 @@ import { motion } from 'framer-motion'
 import CharacterStat from '@/components/character/CharacterPortrait'
 import PlayerCharacterStats from '@/components/character/PlayerCharacterStats'
 import CharacterPortrait from '@/components/character/CharacterPortrait'
+import { data } from 'autoprefixer'
 
 dayjs.extend(relative)
 
@@ -51,8 +52,10 @@ interface IPilotPageProps {
     saves: number
     emoticonId: string
     titleId: string
-    ratingGraphData: number[]
-    ratingGraphLabels: string[]
+    ratingGraphData: {
+      value: number,
+      date: string
+    }[]
     mostPlayedCharacterId: string
     updatedAt: string
     roleRatio: { goaliePercentage: number, forwardPercentage: number }
@@ -228,10 +231,7 @@ const PilotPage: React.FunctionComponent<IPilotPageProps> = ({ pilot }) => {
           >
             <RatingHistoryChart
               data={
-                pilot.ratingGraphData?.reverse()
-              }
-              labels={
-                pilot.ratingGraphLabels?.reverse()
+                pilot.ratingGraphData
               }
               bottomLine={Number(elo.closestBottomLine)}
             />
@@ -365,7 +365,10 @@ const getServerSideProps: GetServerSideProps = async (context) => {
         
     const orderedPilotRatings = [...query.data.ensurePlayer.ratings].sort((a, b) => { return dayjs(b.createdAt).unix() -  dayjs(a.createdAt).unix() })
     const latestPilotRating = orderedPilotRatings?.[0] || defaultRatingObject
-    const ratingGraphData = orderedPilotRatings.map( rating => rating.rating )
+    const ratingGraphData = orderedPilotRatings.map( rating => { return {
+      value: rating.rating,
+      date: rating.createdAt
+    } })
     const ratingGraphLabels: string[] = orderedPilotRatings.map( rating => dayjs(rating.createdAt).format('MM/DD @ hh:MM A') )
 
     console.log('Query Data', query.data.ensurePlayer.characterRatings)
@@ -389,7 +392,6 @@ const getServerSideProps: GetServerSideProps = async (context) => {
           emoticonId: query.data.ensurePlayer.emoticonId,
           titleId: query.data.ensurePlayer.titleId,
           ratingGraphData,
-          ratingGraphLabels,
           mostPlayedCharacterId: [...query.data.ensurePlayer.characterRatings].sort( (a, b) => b.games - a.games )[0].character,
           updatedAt: latestPilotRating.createdAt,
           roleRatio: calculateGoalieForwardPercentage(query?.data?.ensurePlayer, context.query?.gamemode as string || 'RankedInitial') || {
@@ -397,9 +399,6 @@ const getServerSideProps: GetServerSideProps = async (context) => {
             goaliePercentage: 50
           },
           playerId: query.data.ensurePlayer.id,
-        },
-        characters: {
-
         },
         gamemode: 'RankedInitial'
       }

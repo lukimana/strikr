@@ -5,19 +5,23 @@ import gradient from 'chartjs-plugin-gradient'
 import datalabel from 'chartjs-plugin-datalabels'
 
 import { getEloColor, getEloFromLP } from '@/core/relations/resolver'
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
+import dayjs from 'dayjs'
 
 Chart.register(gradient)
 Chart.register(datalabel)
 interface IRatingHistoryProps {
-  data: number[]
-  labels: string[]
+  data: {
+    value: number,
+    date: string
+  }[]
   bottomLine?: number
 }
 
 
-const RatingHistoryChart: React.FunctionComponent<IRatingHistoryProps> = ({ data, labels, bottomLine}) => {
-  const max = Math.max(...data || [] )
+const RatingHistoryChart: React.FunctionComponent<IRatingHistoryProps> = ({ data, bottomLine}) => {
+  const max = Math.max(...data.map( d => d.value ) || [] )
+  const [isZoomed, setZoomed] = useState(false)
 
   useEffect(()=>{
     (async () => {
@@ -30,9 +34,9 @@ const RatingHistoryChart: React.FunctionComponent<IRatingHistoryProps> = ({ data
     })()
   }, [])
 
-  return <Line 
+  return <>
+    <Line 
       options={{
-        
         plugins: {
           legend: {
             display: false
@@ -44,13 +48,15 @@ const RatingHistoryChart: React.FunctionComponent<IRatingHistoryProps> = ({ data
                 modifierKey: 'shift',
               },
               wheel: {
-                enabled: true,
-                speed: 0.02
+                enabled: false
               },
               pinch: {
                 enabled: true
               },
               mode: 'xy',
+              onZoomComplete: ({chart}) => {
+                setZoomed(true)
+              }
             },
             pan: {
               modifierKey: 'ctrl',
@@ -59,7 +65,7 @@ const RatingHistoryChart: React.FunctionComponent<IRatingHistoryProps> = ({ data
             },
             limits: {
               x: {
-                max: labels.length - 1
+                max: data.length - 1
               },
               y: {
                 min: bottomLine || 0,
@@ -100,11 +106,11 @@ const RatingHistoryChart: React.FunctionComponent<IRatingHistoryProps> = ({ data
         },
       }}
       data={{
-        labels: labels,
+        labels: data.map( d => dayjs(d.date).format('MM/DD/YYYY @ ')),
         datasets: [
           {
             label: 'Rating',
-            data: data, // Use appropriate property for rating
+            data: data.map( d => d.value), // Use appropriate property for rating
             fill: true,
             // backgroundColor: 'rgba(19,219,154,0.1)',
             borderColor: 'rgba(19,219,154,1)',
@@ -127,6 +133,13 @@ const RatingHistoryChart: React.FunctionComponent<IRatingHistoryProps> = ({ data
         ],
       }}
     />
+    { isZoomed && <span 
+      className='absolute text-xs px-2 py-1.5 rounded-lg bg-primary right-0 -top-2'
+      onClick={()=> setZoomed(false)}
+    >
+        Reset zoom
+    </span> }
+  </>
 }
 
 export default RatingHistoryChart
