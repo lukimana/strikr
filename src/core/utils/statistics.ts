@@ -47,7 +47,7 @@ export function calculateTotalMatches(player:  STRIKR.API.PlayerObjectType): num
 export function calculateTotalGoals(player: STRIKR.API.PlayerObjectType, gamemode: string): number {
   const scannedCharacters = new Set<string>()
 
-  return player.characterRatings
+  return [...player.characterRatings]
     .sort( (a, b) => dayjs(b.createdAt).unix() - dayjs(a.createdAt).unix())
     .filter(rating => {
       // if (rating.gamemode === gamemode) {

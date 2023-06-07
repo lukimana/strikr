@@ -47,7 +47,7 @@ const AwakeningsRotationSection: React.FunctionComponent<IAwakeningsTotationProp
             ease: 'easeOut'
           }}
         >
-          {awakenings.sort().map( awakening => {
+          {[...awakenings].sort().map( awakening => {
             return <AwakeninBlock id={awakening} key={awakening}/>
           })}
         </motion.div>
