@@ -22,6 +22,7 @@ interface IRatingHistoryProps {
 const RatingHistoryChart: React.FunctionComponent<IRatingHistoryProps> = ({ data, bottomLine}) => {
   const max = Math.max(...data.map( d => d.value ) || [] )
   const [isZoomed, setZoomed] = useState(false)
+  const orderedData = data.sort((a, b) => dayjs(a.date).isBefore(dayjs(b.date)) ? -1 : 1)
 
   useEffect(()=>{
     (async () => {
@@ -106,11 +107,11 @@ const RatingHistoryChart: React.FunctionComponent<IRatingHistoryProps> = ({ data
         },
       }}
       data={{
-        labels: data.map( d => dayjs(d.date).format('MM/DD/YYYY @ ')),
+        labels: orderedData.map( d => dayjs(d.date).format('MM/DD/YYYY @ HH:MM A')),
         datasets: [
           {
             label: 'Rating',
-            data: data.map( d => d.value), // Use appropriate property for rating
+            data: orderedData.map( d => d.value), // Use appropriate property for rating
             fill: true,
             // backgroundColor: 'rgba(19,219,154,0.1)',
             borderColor: 'rgba(19,219,154,1)',
