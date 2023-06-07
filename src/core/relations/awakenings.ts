@@ -79,16 +79,6 @@ const awakenings = [
       en: '{damage:Hit} {value:35% harder (7% to Core)} against targets at {value:600+ range}.'
     }
   },
-  // {
-  //   'id': 'T_EjectButton',
-  //   'image': '/i/awakening/T_EjectButton.png',
-  //   'name': {
-  //     en: 'Eject Button'
-  //   },
-  //   'description': {
-  //     en: ''
-  //   }
-  // },
   {
     'id': 'T_ExtraSpecial',
     'image': '/i/awakening/T_ExtraSpecial.png',
@@ -129,16 +119,6 @@ const awakenings = [
       en: '{skill:SPECIAL} {damage:hits} {value:50% harder} ({value:10% to Core}) and {heal:heals} {value:50% more}.'
     }
   },
-  // {
-  //   'id': 'T_MagneticSoles',
-  //   'image': '/i/awakening/T_MagneticSoles.png',
-  //   'name': {
-  //     en: 'Magnetic Soles'
-  //   },
-  //   'description': {
-  //     en: ''
-  //   }
-  // },
   {
     'id': 'T_MissilePropulsion',
     'image': '/i/awakening/T_MissilePropulsion.png',
@@ -169,16 +149,6 @@ const awakenings = [
       en: '{skill_type:CREATIONS} gain {value:100%} {buff:size} and {damage:hit} {value:15% harder} ({value:4% to Core}).'
     }
   },
-  // {
-  //   'id': 'T_NanotechSiphoningWand',
-  //   'image': '/i/awakening/T_NanotechSiphoningWand.png',
-  //   'name': {
-  //     en: 'Nanotech Siphoning Wand'
-  //   },
-  //   'description': {
-  //     en: ''
-  //   }
-  // },
   {
     'id': 'T_OneTwoPunch',
     'image': '/i/awakening/T_OneTwoPunch.png',
@@ -259,16 +229,6 @@ const awakenings = [
       en: 'Begin each set with {value:1 Prize Fighter stack}, {value:granting 25 Power}.\nTakedowns grant {value:1 Prize Fighter stack (max 3 stacks)}, but {debuff:getting K.O.\'d removes 1 stack}.\nStacks resets between sets.'
     }
   },
-  // {
-  //   'id': 'T_Pummelers',
-  //   'image': '/i/awakening/T_Pummelers.png',
-  //   'name': {
-  //     en: ''
-  //   },
-  //   'description': {
-  //     en: ''
-  //   }
-  // },
   {
     'id': 'T_QuickStrike',
     'image': '/i/awakening/T_QuickStrike.png',
@@ -289,17 +249,6 @@ const awakenings = [
       en: '{skill:PRIMARY} {buff:cooldown reduced} {value:by 33%}.'
     }
   },
-  // Not available yet
-  // {
-  //   'id': 'T_Reverberation',
-  //   'image': '/i/awakening/T_Reverberation.png',
-  //   'name': {
-  //     en: 'Reverberation'
-  //   },
-  //   'description': {
-  //     en: ''
-  //   }
-  // },
   {
     'id': 'T_ShockAndAwe',
     'image': '/i/awakening/T_ShockAndAwe.png',
@@ -310,16 +259,6 @@ const awakenings = [
       en: '{skill_type:IMPACT} abilities {damage:hit} {value:15% harder (3% on {core:Core})}. Whenever you {damage:hit} {valueL2 or more targets with a single ability}, its {buff:cooldown} is {value:reduced by 25% (up to 10s)}.'
     }
   },
-  // {
-  //   'id': 'T_SlickKicks',
-  //   'image': '/i/awakening/T_SlickKicks.png',
-  //   'name': {
-  //     en: 'Slick Kicks'
-  //   },
-  //   'description': {
-  //     en: ''
-  //   }
-  // },
   {
     'id': 'T_SparkofAgility',
     'image': '/i/awakening/T_SparkofAgility.png',
@@ -390,16 +329,6 @@ const awakenings = [
       en: '{damage:Hits} deal {buff:bonus damage} {value:equal to 12%} of enemies\nmax Stagger over {time:2.5s}.'
     }
   },
-  // {
-  //   'id': 'T_StrikeShot',
-  //   'image': '/i/awakening/T_StrikeShot.png',
-  //   'name': {
-  //     en: 'Strike Shot'
-  //   },
-  //   'description': {
-  //     en: ''
-  //   }
-  // },
   {
     'id': 'T_SuperSurge',
     'image': '/i/awakening/T_SuperSurge.png',
@@ -451,18 +380,7 @@ const awakenings = [
       en: 'While not {effect:staggered}, {value:gain 90%} {buff:knockback} {buff:resistance} and {value:10%} {damage_reduction:damage reduction}'
     }
   }
-  ,
-  // {
-  //   'id': 'T_ViciousVambrace',
-  //   'image': '/i/awakening/T_ViciousVambrace.png',
-  //   'name': {
-  //     en: 'Vicious Vambrace'
-  //   },
-  //   'description': {
-  //     en: ''
-  //   }
-  // },
-  {
+  ,{
     'id': 'T_SpecializedTraining',
     'image': '/i/awakening/T_SpecializedTraining.png',
     'name': {
