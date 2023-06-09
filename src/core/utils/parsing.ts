@@ -1,4 +1,4 @@
-import characters from '@/core/relations/characters'
+import characters from '@/core/relations/objects/characters'
 
 export function parseStrikrMarkup(data: string) {
   // Regular expression pattern

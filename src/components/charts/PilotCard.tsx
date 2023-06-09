@@ -1,5 +1,5 @@
 import { getEmoticonFromdata } from '@/core/relations/resolver'
-import { getTitleLocale } from '@/core/relations/titles'
+import { getTitleLocale } from '@/core/relations/objects/titles'
 import { getCharacterById } from '@/core/utils/parsing'
 
 interface IPilotProps {

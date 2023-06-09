@@ -1,4 +1,4 @@
-[
+export default [
   "T_AdrenalineRush",
   "T_Aerials",
   "T_BigFish",

@@ -1,4 +1,4 @@
-import { Rank, getEloImage, getRegionLocale } from '@/core/relations/resolver'
+import { RankObject, getRegionLocale } from '@/core/relations/resolver'
 import { useRef } from 'react'
 
 interface IRatingChartProps {
@@ -7,7 +7,7 @@ interface IRatingChartProps {
   rating: number
   wins: number
   losses: number
-  elo: Rank
+  elo: RankObject
   games: number
   region: string
 }
@@ -28,7 +28,7 @@ const RatingChart: React.FunctionComponent<IRatingChartProps> = ({ color, elo, r
     <div
       className='w-12 h-12 bg-center bg-no-repeat bg-contain md:w-16 md:h-16 aspect-square'
       style={{
-        backgroundImage: `url('${getEloImage(elo)}')`
+        backgroundImage: `url('${elo.image}')`
       }}
     />
     <div className='flex flex-col'>
@@ -38,7 +38,7 @@ const RatingChart: React.FunctionComponent<IRatingChartProps> = ({ color, elo, r
           color: color
         }}
       >
-        {elo}
+        {elo.name}
       </h6>
       <span className='text-xs text-white/60'>{rating} LP {rank && `@ top ${(rank/10000 * 100).toFixed()}`}%</span>
       <p className='flex gap-1.5 text-xs uppercase text-white/60'>

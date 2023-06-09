@@ -1,4 +1,4 @@
-import awakenings from '@/core/relations/awakeningRotation.json'
+import awakenings from '@/core/relations/objects/awakeningRotation'
 import AwakeninBlock from '../awakening/Block'
 import { useAtom } from 'jotai'
 import { preferenceShowAwakeningRotation } from '@/core/stores/userPreference'

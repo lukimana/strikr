@@ -1,4 +1,4 @@
-import awakenings from '@/core/relations/awakenings'
+import awakenings from '@/core/relations/objects/awakenings'
 import { getAwakeningLocale } from '@/core/relations/resolver'
 import { parseStrikrMarkup } from '@/core/utils/parsing'
 import * as Tooltip from '@radix-ui/react-tooltip'

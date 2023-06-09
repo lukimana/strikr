@@ -27,7 +27,7 @@ const PlayerCharacterStats: React.FunctionComponent<IPlayerCharacterStatsProps> 
   const defaultRating = { assists: 0, character: mastery.characterAssetName, createdAt: new Date(), games: 0, scores: 0, saves: 0, losses: 0, wins: 0, knockouts: 0 }
   const goalieRatingObj = goalieRating?.length > 0 && goalieRating[0] || defaultRating
   const forwardRatingObj = forwardRating?.length > 0 && forwardRating[0] || defaultRating
-  console.log(goalieRatingObj, forwardRatingObj)
+
   return <div
     className='flex flex-col w-full gap-8 md:gap-4'
   >

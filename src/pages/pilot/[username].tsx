@@ -10,7 +10,7 @@ import { Line } from 'react-chartjs-2'
 import PlayStyleChart from '@/components/charts/Playstyle'
 import dayjs from 'dayjs'
 import relative from 'dayjs/plugin/relativeTime'
-import { getEloColor, getEloFromLP, getEloImage, getEmoticonFromdata } from '@/core/relations/resolver'
+import { getEmoticonFromdata, getRankFromLP } from '@/core/relations/resolver'
 import { ArrowClockwise, CaretDown, ChartLine, ChartPieSlice, ClockCountdown, Eye } from '@phosphor-icons/react'
 import RatingChart from '@/components/charts/Rating'
 import ChartLayout from '@/components/layout/Chart'
@@ -82,7 +82,7 @@ const PilotPage: React.FunctionComponent<IPilotPageProps> = ({ pilot }) => {
   })
   const [selectedCharacter, selectCharacter] = useState<string | undefined>()
 
-  const elo = getEloFromLP(pilot.rating)
+  const elo = getRankFromLP(pilot.rating)
   const roleRatio = pilot.roleRatio || {
     forwardPercentage: 50,
     goaliePercentage: 50
@@ -138,7 +138,7 @@ const PilotPage: React.FunctionComponent<IPilotPageProps> = ({ pilot }) => {
   <Head>
         <title>{`${pilot.username} - Strikr.gg`}</title>
         <meta name="description" content={`${pilot.username} Statistics, guides & playstyle @ strikr.gg`} key="desc" />
-        <meta property="og:title" content={`${pilot.username} - Main ${roleRatio.forwardPercentage > 60 ? roleRatio.goaliePercentage > 60 ? 'Goalie' : 'Forward'  : '✨ Flex' || 'Unknown'} ${getCharacterById(pilot.mostPlayedCharacterId)?.name} @ ${pilot.rating}LP (${elo.rank})`} />
+        <meta property="og:title" content={`${pilot.username} - Main ${roleRatio.forwardPercentage > 60 ? roleRatio.goaliePercentage > 60 ? 'Goalie' : 'Forward'  : '✨ Flex' || 'Unknown'} ${getCharacterById(pilot.mostPlayedCharacterId)?.name} @ ${pilot.rating}LP (${elo.rankObject.name})`} />
         <meta
           property="og:description"
           content="Strikr.gg Analyze your GamePlay, track your progress and improve your skills."
@@ -216,14 +216,14 @@ const PilotPage: React.FunctionComponent<IPilotPageProps> = ({ pilot }) => {
       <div className='flex flex-col w-full gap-4 xl:flex-row'>
         <aside className='flex flex-col w-full h-full gap-6 xl:w-1/3'>
           <RatingChart
-            color={getEloColor(elo.rank)}
+            color={elo.rankObject.color}
             losses={pilot.losses}
             rating={pilot.rating}
             region={pilot.region}
             wins={pilot.wins}
             rank={pilot.rank}
             games={pilot.games}
-            elo={elo.rank}
+            elo={elo.rankObject}
           />
            <ChartLayout
             title='Rating History'
@@ -233,7 +233,7 @@ const PilotPage: React.FunctionComponent<IPilotPageProps> = ({ pilot }) => {
               data={
                 pilot.ratingGraphData
               }
-              bottomLine={Number(elo.closestBottomLine)}
+              bottomLine={Number(elo.prevRankObject?.threshold || 800)}
             />
             <span className='absolute hidden text-xs -translate-x-1/2 -bottom-2 left-1/2 opacity-60 whitespace-nowrap md:flex'>Scroll to zoom | Hold Ctrl to pan | Hold Shift to select & zoom</span>
           </ChartLayout>
@@ -369,9 +369,6 @@ const getServerSideProps: GetServerSideProps = async (context) => {
       value: rating.rating,
       date: rating.createdAt
     } })
-    const ratingGraphLabels: string[] = orderedPilotRatings.map( rating => dayjs(rating.createdAt).format('MM/DD @ hh:MM A') )
-
-    console.log('Query Data', query.data.ensurePlayer.characterRatings)
 
     return {
       props: {
@@ -404,7 +401,6 @@ const getServerSideProps: GetServerSideProps = async (context) => {
       }
     }
   } catch (e) {
-    console.log(e)
     return {
       props: {
         pilot: {}

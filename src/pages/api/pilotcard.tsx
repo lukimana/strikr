@@ -25,7 +25,7 @@ export default function (req: NextRequest) {
   const role = searchParams.get('role')
   const character = searchParams.get('character')
   const characterImage = searchParams.get('characterImage')
-  console.log('Emojiname', `url('http://localhost:3000/${emote?.endsWith('.webp') ? emote.replace('-512x512.webp', '_thumbnail-512x512.png') : emote}')`)
+
   return new ImageResponse(
     (
       // Modified based on https://tailwindui.com/components/marketing/sections/cta-sections
