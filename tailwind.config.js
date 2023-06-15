@@ -15,7 +15,9 @@ module.exports = {
         tertiary: '#2F3331',
         win: '#00FF19',
         loss: '#FF0000',
-        subtle: '#7D8A88'
+        subtle: '#7D8A88',
+        forward: 'rgba(240, 84, 79)',
+        goalie: 'rgba(191, 182, 252)'
       },
       gridTemplateColumns: {
         '13': 'repeat(13, minmax(0, 1fr))',

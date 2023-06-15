@@ -145,22 +145,6 @@ export function calculateAverageRatingPerDay(player: STRIKR.API.PlayerObjectType
   return averageRatingPerDay
 }
 
-export function getOldestRating(player: STRIKR.API.PlayerObjectType): STRIKR.API.PlayerRatingObjectType | undefined {
-  let oldestRating: STRIKR.API.PlayerRatingObjectType | undefined = undefined
-  let oldestDate: Date | undefined = undefined
-
-  for (const rating of player.ratings) {
-    const ratingDate = dayjs(rating.createdAt).toDate()
-
-    if (!oldestDate || ratingDate < oldestDate) {
-      oldestRating = rating
-      oldestDate = ratingDate
-    }
-  }
-
-  return oldestRating
-}
-
 export function calculateGoalieForwardPercentage(player: STRIKR.API.PlayerObjectType, gamemode: string): { goaliePercentage: number; forwardPercentage: number } | null {
   const latestDate = player.characterRatings.reduce((latest, rating) => {
     const ratingDate = dayjs.utc(rating.createdAt).toDate()

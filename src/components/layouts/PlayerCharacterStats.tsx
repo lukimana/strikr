@@ -1,11 +1,11 @@
 import { getCharacterById } from '@/core/utils/parsing'
 import { ArrowElbowLeft, CaretLeft } from '@phosphor-icons/react'
 import clsx from 'clsx'
-import CharacterPortrait from './CharacterPortrait'
-import ChartLayout from '../layout/Chart'
-import RatingHistoryChart from '../charts/RatingHistory'
+import CharacterPortrait from '@/atoms/CharacterPortrait'
+import ChartLayout from '@/components/layouts/Chart'
+import RatingHistoryChart from '@/molecules/RatingHistoryChart'
 import dayjs from 'dayjs'
-import PlayStyleChart from '../charts/Playstyle'
+import PlayStyleChart from '@/molecules/PlaystyleChart'
 
 interface IPlayerCharacterStatsProps {
   mastery: STRIKR.API.PlayerCharacterMasteryItemObjectType

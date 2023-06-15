@@ -3,13 +3,14 @@ import { useRouter } from 'next/router'
 import { SubmitHandler, useForm } from 'react-hook-form'
 import { motion, useScroll } from 'framer-motion'
 import { useRef } from 'react'
+import PilotSearchInput from '../atoms/PilotSearchInput'
+import PilotSearchForm from './PilotSearchForm'
 
 type Inputs = {
   pilotname?: string
 }
 
 const HeroSection: React.FunctionComponent = () => {
-  const { register, handleSubmit, formState: { errors }, watch } = useForm()
   const router = useRouter()
   
   const { scrollYProgress } = useScroll({
@@ -43,28 +44,10 @@ const HeroSection: React.FunctionComponent = () => {
       }}
     >
       <h1 className='font-bold sm:text-3xl'>Search for pilot statistics & track progress</h1>
-      <form 
-        className='flex w-full gap-4'
-        onSubmit={handleSubmit(onSubmit)}
-      >
-        <input 
-          type='text' 
-          placeholder='ex: Sonii' 
-          {...register('pilotname', {required: true, maxLength: 80})}
-          className='w-full px-6 py-4 text-xl text-white rounded-lg bg-[#2F3331]/40 backdrop-blur-md focus:ring-0 focus:outline-none focus:bg-[#2F3331]/80 duration-200 focus:font-medium peer placeholder:text-subtle/60'  
-          
-        />
-
-        <button 
-          type='submit'
-          className='text-lg h-16 aspect-square items-center justify-center bg-[#2F3331]/40 backdrop-blur-md flex text-accent rounded-lg peer-focus:bg-[#2F3331]/80 duration-200'
-        >
-          <RocketLaunch 
-            size={24}
-            weight='duotone'
-          />
-        </button>
-      </form>
+      <PilotSearchForm
+        onSubmit={onSubmit}
+        inputSize='lg'
+      />
     </motion.div>
   </section>
 }

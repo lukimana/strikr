@@ -8,7 +8,7 @@ interface IFloatingAwakeningTipProps {
   id: string
 }
 
-const FloatingAwakeningTip: React.FunctionComponent<IFloatingAwakeningTipProps> = ({ children, id }) => {
+const AwakeningTooltip: React.FunctionComponent<IFloatingAwakeningTipProps> = ({ children, id }) => {
   return <Tooltip.Provider
   
   >
@@ -51,4 +51,4 @@ const FloatingAwakeningTip: React.FunctionComponent<IFloatingAwakeningTipProps> 
     </Tooltip.Provider>
 }
 
-export default FloatingAwakeningTip
+export default AwakeningTooltip

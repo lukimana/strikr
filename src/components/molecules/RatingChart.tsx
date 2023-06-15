@@ -1,4 +1,4 @@
-import { RankObject, getRegionLocale } from '@/core/relations/resolver'
+import { RankObject, getRankFromLP, getRegionLocale } from '@/core/relations/resolver'
 import { useRef } from 'react'
 
 interface IRatingChartProps {
@@ -7,12 +7,12 @@ interface IRatingChartProps {
   rating: number
   wins: number
   losses: number
-  elo: RankObject
   games: number
   region: string
 }
 
-const RatingChart: React.FunctionComponent<IRatingChartProps> = ({ color, elo, rank, games, rating, wins, losses, region}) => {
+const RatingChart: React.FunctionComponent<IRatingChartProps> = ({ color, rating, rank, games, wins, losses, region}) => {
+  const pilotRank = getRankFromLP(rating)
   const pilotWinrate = useRef( (wins / games * 100).toFixed(2) )
 
   return <div 
@@ -28,7 +28,7 @@ const RatingChart: React.FunctionComponent<IRatingChartProps> = ({ color, elo, r
     <div
       className='w-12 h-12 bg-center bg-no-repeat bg-contain md:w-16 md:h-16 aspect-square'
       style={{
-        backgroundImage: `url('${elo.image}')`
+        backgroundImage: `url('${pilotRank.rankObject.image}')`
       }}
     />
     <div className='flex flex-col'>
@@ -38,7 +38,7 @@ const RatingChart: React.FunctionComponent<IRatingChartProps> = ({ color, elo, r
           color: color
         }}
       >
-        {elo.name}
+        {pilotRank.rankObject.name}
       </h6>
       <span className='text-xs text-white/60'>{rating} LP {rank && `@ top ${(rank/10000 * 100).toFixed()}`}%</span>
       <p className='flex gap-1.5 text-xs uppercase text-white/60'>
@@ -48,8 +48,8 @@ const RatingChart: React.FunctionComponent<IRatingChartProps> = ({ color, elo, r
       </p>
     </div>
   </div>
-  <hr className='border border-subtle/40 h-2/6 z-[1] hidden 2xl:block' />
-  <div className='w-1/2 z-[1] flex md:hidden flex-col items-end justify-center text-end pr-4 2xl:flex'>
+  {/* <hr className='border border-subtle/40 h-2/6 z-[1] hidden 2xl:block' /> */}
+  <div className='w-1/2 z-[1] flex  flex-col items-end justify-center text-end pr-4 2xl:flex'>
         <span className='text-lg font-bold text-white'>#{rank}</span>
         <span className='text-sm text-white/60'>{getRegionLocale(region)?.en}</span>
   </div>

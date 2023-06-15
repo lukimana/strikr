@@ -1,6 +1,6 @@
-import GeneralLayout from '@/components/layout/General'
-import HeroSection from '@/components/section/Hero'
-import AwakeningsRotationSection from '@/components/section/AwakeningRotation'
+import GeneralLayout from '@/components/layouts/General'
+import HeroSection from '@/components/molecules/Hero'
+import AwakeningsRotationSection from '@/components/organisms/AwakeningRotation'
 import EsportsSection from '@/components/section/Esports'
 import Head from 'next/head'
 

@@ -1,9 +1,12 @@
 import awakenings from '@/core/relations/objects/awakeningRotation'
-import AwakeninBlock from '../awakening/Block'
+import AwakeninBlock from '../atoms/AwakeningBlock'
 import { useAtom } from 'jotai'
 import { preferenceShowAwakeningRotation } from '@/core/stores/userPreference'
 import { Eye, EyeClosed, EyeSlash } from '@phosphor-icons/react'
 import { motion, AnimatePresence } from 'framer-motion'
+import SectionHeader from '@/atoms/SectionHeader'
+import Button from '@/atoms/Button'
+import ContentLayout from '@/components/layouts/Content'
 
 interface IAwakeningsTotationProps {
 }
@@ -11,22 +14,23 @@ interface IAwakeningsTotationProps {
 const AwakeningsRotationSection: React.FunctionComponent<IAwakeningsTotationProps> = (props) => {
   const [showRotation, setShowRotation] = useAtom(preferenceShowAwakeningRotation)
 
-  return <section
-    className='flex flex-col gap-8 px-8 sm:px-20'
-  >
-    <h3 
-      className='flex items-center justify-between text-lg font-semibold'
+  return <ContentLayout>
+    <SectionHeader
+      title='Awakening Rotation'
     >
-      Awakenings Rotation
-      <button
-        className={`flex items-center gap-2 text-sm font-medium duration-300 text-subtle ${showRotation ? 'hover:text-loss': 'hover:text-win'}`}
+      
+      <Button
+        backgroundHoverColor='accent'
+        textHovercolor='primary'
+        size='xs'
+        className='flex gap-4'
         onClick={()=> {
           setShowRotation(!showRotation)
         }}
       >
         { showRotation ? 'Hide' : 'Show'} {showRotation ? <EyeSlash /> : <Eye />}
-      </button>
-    </h3>
+      </Button>
+    </SectionHeader>
     <AnimatePresence>
       {showRotation ? (
         <motion.div 
@@ -52,12 +56,12 @@ const AwakeningsRotationSection: React.FunctionComponent<IAwakeningsTotationProp
           })}
         </motion.div>
       ) : (
-        <div className='flex items-center justify-center px-8 py-4 rounded-lg'>
-          <span className='flex items-center gap-4 text-sm text-subtle/60'>Hidden <EyeSlash /></span>
+        <div className='flex items-center justify-center px-8 py-4 rounded-lg bg-secondary/30'>
+          <span className='flex items-center gap-4 text-sm text-subtle/60'>Press show to display <EyeSlash /></span>
         </div>
       )}
     </AnimatePresence>
-  </section>
+  </ContentLayout>
 }
 
 export default AwakeningsRotationSection

@@ -1,16 +1,17 @@
+import SectionHeader from '../atoms/SectionHeader'
+import ContentLayout from '../layouts/Content'
+
 interface IEsportsSectionProps {
 }
 
 const EsportsSection: React.FunctionComponent<IEsportsSectionProps> = (props) => {
-  return <section
-    className='flex flex-col gap-8 px-8 sm:px-20'
-  >
-    <h3 
-      className='text-lg font-semibold'
+  return <ContentLayout>
+    <SectionHeader
+      title='E-Sports'
     >
-      E-Sports
-    </h3>
-  </section>
+      
+    </SectionHeader>
+  </ContentLayout>
 }
 
 export default EsportsSection

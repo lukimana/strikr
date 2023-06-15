@@ -20,6 +20,7 @@ interface IRadarChartProps {
 const PlayStyleChart: React.FunctionComponent<IRadarChartProps> = ({ forward, goalie }) => {
   return <Radar 
   options={{
+    responsive: true,
     scales: {
       r: {
         angleLines: {

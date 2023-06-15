@@ -1,4 +1,4 @@
-export default [
+const rankRelation = [
   {
     threshold: 800,
     name: 'Rookie',
@@ -110,25 +110,25 @@ export default [
   {
     threshold: 2600,
     name: 'Challenger',
-    image: '/i/rank/T_UI_RankedEmblem_Champion_Low.png',
+    image: '/i/rank/T_UI_RankedEmblem_Master_Low.png',
     color: '#9952EE'
   },
   {
     threshold: 2700,
     name: 'Mid Challenger',
-    image: '/i/rank/T_UI_RankedEmblem_Champion_Mid.png',
+    image: '/i/rank/T_UI_RankedEmblem_Master_Mid.png',
     color: '#9952EE'
   },
   {
     threshold: 2800,
     name: 'High Challenger',
-    image: '/i/rank/T_UI_RankedEmblem_Champion_High.png',
+    image: '/i/rank/T_UI_RankedEmblem_Master_High.png',
     color: '#9952EE'
   },
   {
     threshold: 2900,
     name: 'Omega',
-    image: '/i/rank/T_UI_RankedEmblem_GrandChampion_Low.png',
+    image: '/i/rank/T_UI_RankedEmblem_Promethean.png',
     color: '#E1137A'
   },
   {
@@ -138,3 +138,5 @@ export default [
     color: '#FF6262'
   }
 ]
+
+export default rankRelation

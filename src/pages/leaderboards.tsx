@@ -1,4 +1,4 @@
-import GeneralLayout from '@/components/layout/General'
+import GeneralLayout from '@/components/layouts/General'
 import Head from 'next/head'
 
 export default function Guides() {

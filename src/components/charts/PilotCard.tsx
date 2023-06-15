@@ -23,8 +23,8 @@ const PilotCard: React.FunctionComponent<IPilotProps> = ({ emoticonId, tags, use
       {tags?.includes('verified') && <div className='w-8 h-8 bg-center bg-contain bg-no-repeat bg-[url(/i/misc/verified.png)]' /> }
     </h1>
     <ul className='flex gap-1.5 items-center mb-1.5'>
-      <li className='px-2 py-1 text-xs rounded-lg bg-secondary-darker text-white/60 '>{mainRole} Player</li>
-      <li className='px-2 py-1 text-xs rounded-lg bg-secondary-darker text-white/60'>{mainCharacter} Enjoyer</li>
+      <li className='px-2 py-1 text-xs rounded-lg bg-secondary-darker text-white/60  whitespace-nowrap'>{mainRole} Player</li>
+      <li className='px-2 py-1 text-xs rounded-lg bg-secondary-darker text-white/60 whitespace-nowrap'>{mainCharacter} Enjoyer</li>
     </ul>
     <h2 className='text-white/60'>{getTitleLocale(titleId || 'default')}</h2>
   </div>

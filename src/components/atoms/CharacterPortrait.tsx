@@ -5,15 +5,16 @@ interface ICharacterPortraitProps {
   size:  'xs' | 'sm' | 'md' | 'lg' | 'xl' | '2xl' | 'fluid'
   color: 'primary' | 'secondary' | 'tertiary' | 'secondary-darker' | 'accent'
   characterId: string
+  className?: string
   showName?: boolean
   onClick?: () => void
 }
 
-const CharacterPortrait: React.FunctionComponent<ICharacterPortraitProps> = ({ size, color, characterId, onClick, showName = true }) => {
+const CharacterPortrait: React.FunctionComponent<ICharacterPortraitProps> = ({ size, color, characterId, onClick, className, showName = true }) => {
 
   const character = getCharacterById(characterId)
 
-  const className = clsx({
+  const classes = clsx(className, {
     'rounded-lg overflow-hidden group duration-300': true,
     'bg-primary hover:bg-secondary': color === 'primary',
     'bg-secondary hover:bg-tertiary': color === 'secondary',
@@ -26,7 +27,7 @@ const CharacterPortrait: React.FunctionComponent<ICharacterPortraitProps> = ({ s
     onClick={onClick}
   >
     <div
-      className={className}
+      className={classes}
     >
       <div
         className={clsx({

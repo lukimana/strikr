@@ -293,7 +293,7 @@ const characters = [
     id: 'CD_NimbleBlaster',
     assetName: 'CD_NimbleBlaster',
     // eslint-disable-next-line quotes
-    name: "Drak'ar",
+    name: "Drekar",
     portrait: '/i/character/portrait/T_UI_Portrait_CloseUp_NimbleMaster.png',
     goalscore: '/i/character/goalscore/T_UI_Portrait_GoalScore_NimbleBlaster.png',
     bodyShot: '/i/character/body/T_UI_Portrait_Concept_NimbleBlaster.png',
