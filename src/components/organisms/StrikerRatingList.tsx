@@ -30,7 +30,7 @@ const StrikerRatingList: React.FC<StrikerRatingListProps> = ({
 
   return (
     <div className={clsx(
-        'w-1/2 rounded-lg flex flex-col pb-4', {
+        'w-full xl:w-1/2 rounded-lg flex flex-col pb-4', {
         'bg-forward/5': role === 'Forward',
         'bg-goalie/5': role === 'Goalie'
       })
@@ -45,7 +45,7 @@ const StrikerRatingList: React.FC<StrikerRatingListProps> = ({
           { role === 'Forward' ? '🦐 Forward' : '🥅 Goalie' }
         </span>
       </div>
-      <div className='w-full px-2 pt-2 grid grid-cols-2 gap-2'>
+      <div className='w-full px-2 pt-2 grid grid-cols-1 2xl:grid-cols-2 gap-2'>
         {roleCharacters.map((m) => {
           const [, rating] = m
           return <StrikerRatingCard 

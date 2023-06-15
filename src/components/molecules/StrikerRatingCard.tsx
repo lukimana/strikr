@@ -25,8 +25,8 @@ const ForwardCharacterCard: React.FC<CharacterCardProps> = ({
       <CharacterPortrait characterId={character} color="tertiary" size="xs" showName={false} />
       <div className="flex flex-col h-full justify-between">
         <span className="font-bold">{getCharacterById(character)?.name}</span>
-        <div className="flex w-full gap-1.5 text-sm items-center">
-          {games} Games <span className="opacity-40 text-xs">@</span> {~~(wins + 0 / games + 0 * 100) || 0}% WR
+        <div className="flex w-full gap-1.5 text-sm items-center flex-wrap">
+          {games} Games <span className="opacity-40 text-xs">@</span>{~~((wins + 0) / (games + 0) * 100) || 0}% WR
         </div>
         <span className='text-xs text-white/20'>{rating.wins}W {rating.losses}L</span>
       </div>

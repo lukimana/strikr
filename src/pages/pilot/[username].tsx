@@ -145,8 +145,8 @@ const PilotPage: React.FunctionComponent<IPilotPageProps> = ({ pilot }) => {
            averageRatingPerDay={pilot.averagePointsPerDay}
            lastUpdate={pilot.updatedAt}
         />
-        <div className='flex w-full gap-8'>
-          <div className='w-full gap-8 flex flex-col 2xl:w-5/12'>
+        <div className='flex flex-col 2xl:flex-row w-full gap-8'>
+          <div className='w-full gap-8 flex flex-col xl:4/12 2xl:w-5/12'>
             <RatingChart
               color={pilotRank.rankObject.color}
               games={pilot.games}
@@ -217,7 +217,7 @@ const PilotPage: React.FunctionComponent<IPilotPageProps> = ({ pilot }) => {
             {calculateStrikeDescriptivePlaystyle(dataCharacters?.getPlayer.characterRatings || [], gamemode)}
           </ChartLayout> */}
           </div>
-          <div className='w-full gap-8 flex flex-col wxl:w-7/12'>
+          <div className='w-full gap-8 flex flex-col xl:8/12 2xl:7/12'>
             <ChartLayout
               title='Character ratings'
               subtitle='Ordered by most played, based on current gamemode. (Click to see details)'
@@ -226,7 +226,7 @@ const PilotPage: React.FunctionComponent<IPilotPageProps> = ({ pilot }) => {
                 <img src='/i/emoticon/T_AimiSweat-512x512.webp' alt='aimiType' className='w-14 h-14'/>
                 <span className='text-white/60'>Ai.Mi is working on this</span>
               </div>}
-              <div className='w-full flex flex-col lg:flex-row gap-4'>
+              <div className='w-full flex flex-col xl:flex-row gap-4'>
                 {dataCharacters && !selectedCharacter && (<>
                   {/* /* FORWARD */}
                   <StrikerRatingList
