@@ -216,7 +216,7 @@ const awakenings = [
       en: 'Prime Time'
     },
     'description': {
-      en: '{skill:PRIMARY} gains {value:+1 charge} and {damage:hits} {value:10% harder (2% to Core)}.'
+      en: '{skill:PRIMARY} gains {value:+1 charge} and {damage:hits} {value:5% harder (2% to Core)}.'
     }
   },
   {
@@ -336,7 +336,7 @@ const awakenings = [
       en: 'Super Surge'
     },
     'description': {
-      en: '{skill_type:DASH} {buff:range}, {skill_type:BLINK} {buff:range}, and {buff:HASTE} {value:effects increased 75%}. These abilities {damage:hit} {value:20%} harder ({value:4%} to {core:Core}).'
+      en: '{skill_type:DASH} {buff:range}, {skill_type:BLINK} {buff:range}, and {buff:HASTE} {value:effects increased 75%}. These abilities {damage:hit} {value:25%} harder ({value:4%} to {core:Core}).'
     }
   },
   {
@@ -388,6 +388,36 @@ const awakenings = [
     },
     'description': {
       en: '{skill:SPECIAL} {damage:hits} {value:50% harder} ({value:10% to} {core:Core}) and {heal:heals} {value:50% more}.'
+    }
+  },
+  {
+    'id': 'T_Egoist',
+    'image': '/i/awakening/T_Egoist.png',
+    'name': {
+      en: 'Egoist'
+    },
+    'description': {
+      en: '{skill:Evades} refund {energy:5 Energy} ({value:15 from Energy Bursts}). Reaching max Energy grants {buff:75% Speed} for {time:8s}, reducing to {buff:5% speed} when you remain at max Energy. '
+    }
+  },
+  {
+    'id': 'T_FireUp',
+    'image': '/i/awakening/T_FireUp.png',
+    'name': {
+      en: 'Fire Up'
+    },
+    'description': {
+      en: 'Gain {energy:10 Energy} on round start. Casting {skill:Energy Burst} restores {energy:30% of max Energy} to other allies and {buff:Speeds up your whole team} by {value:40%} for {time:5s}. '
+    }
+  },
+  {
+    'id': 'T_Catalyst',
+    'image': '/i/awakening/T_Catalyst.png',
+    'name': {
+      en: 'Catalyst'
+    },
+    'description': {
+      en: 'Gain {energy:50% more Energy} from {damage:dealing hits}. Being hit generates {energy:3 Energy} ({value:1 for LIGHT hits}).'
     }
   }
 ]
