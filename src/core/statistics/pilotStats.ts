@@ -61,7 +61,6 @@ export function calculatePilotProperty(
 }
 
 export const calculatePilotAverageGamesPerDay = (pilot: STRIKR.API.PlayerObjectType): number =>  {
-  console.log('Calculating average games per day')
   // Sort the array based on createdAt
   pilot.characterRatings.sort((a, b) => dayjs(a.createdAt!).valueOf() - dayjs(b.createdAt!).valueOf())
 

@@ -288,7 +288,6 @@ const getServerSideProps: GetServerSideProps = async (context) => {
       value: rating.rating,
       date: rating.createdAt
     } })
-    console.log('Gamemode:', context.query?.gamemode )
     return {
       props: {
         pilot: {

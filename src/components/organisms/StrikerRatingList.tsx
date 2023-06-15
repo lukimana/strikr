@@ -20,11 +20,10 @@ const StrikerRatingList: React.FC<StrikerRatingListProps> = ({
   selectCharacter,
   role
 }) => {
-  console.log('Calculating striker list', dataCharacters?.getPlayer.characterRatings)
+
   const roleCharacters = Array.from(getLatestCharacterMasterySamples(dataCharacters?.getPlayer.characterRatings, gamemode))
     .filter((m) => {
       const [, rating] = m
-      console.log(rating.role)
       return rating.role === role
     })
     .sort((a, b) => b[1].games - a[1].games)
