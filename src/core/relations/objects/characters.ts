@@ -630,7 +630,7 @@ const characters = [
     id: 'CD_EDMOni',
     assetName: 'CD_EDMOni',
     name: 'Octavia',
-    portrait: '/i/character/portrait/T_UI_Portrait_CloseUp_AN_EDMoni.png',
+    portrait: '/i/character/portrait/T_UI_Portrait_CloseUp_AN_EDMOni.png',
     goalscore: '/i/character/goalscore/T_UI_Portrait_GoalScore_EDMOni.png',
     bodyShot: '/i/character/body/T_UI_Portrait_Concept_EDMOni.png',
     model: '',
