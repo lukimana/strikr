@@ -1,3 +1,4 @@
+import ContentLayout from '@/components/layouts/Content'
 import GeneralLayout from '@/components/layouts/General'
 import Head from 'next/head'
 
@@ -8,6 +9,9 @@ export default function Guides() {
       <meta name="description" content="OS Statistics & community hub." />
     </Head>
     <GeneralLayout>
+      <ContentLayout>
+        
+      </ContentLayout>
     </GeneralLayout>
   </>
 }
