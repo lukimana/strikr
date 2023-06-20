@@ -135,7 +135,7 @@ const rankRelation = [
     threshold: 3100,
     name: 'Pro League',
     image: '/i/rank/T_UI_RankedEmblem_ProLeague.png',
-    color: '#FF6262'
+    color: 'rgb(255,209,250)'
   }
 ]
 
