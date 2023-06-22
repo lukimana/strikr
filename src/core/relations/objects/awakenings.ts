@@ -36,7 +36,7 @@ const awakenings = [
       en: 'BuiltDifferent'
     },
     'description': {
-      en: '{value:Gain 40%} {buff:Size}. Your {skill_type:IMPACT} abilities {damage:hit} {value:15% harder (3% on Core)}.'
+      en: '{value:Gain 40%} {buff:Size}. Your {skill_type:IMPACT} abilities {damage:hit} {value:10% harder (2% on Core)}.'
     }
   },
   {
@@ -116,7 +116,7 @@ const awakenings = [
       en: 'Specialized Training'
     },
     'description': {
-      en: '{skill:SPECIAL} {damage:hits} {value:50% harder} ({value:10% to Core}) and {heal:heals} {value:50% more}.'
+      en: '{skill:SPECIAL} {damage:hits} {value:50% harder} ({value:10% to Core}) and {heal:heals} {value:55% more}.'
     }
   },
   {
@@ -407,7 +407,7 @@ const awakenings = [
       en: 'Fire Up'
     },
     'description': {
-      en: 'Gain {energy:10 Energy} on round start. Casting {skill:Energy Burst} restores {energy:30% of max Energy} to other allies and {buff:Speeds up your whole team} by {value:40%} for {time:5s}. '
+      en: 'Gain {energy:10 Energy} on round start. Casting {skill:Energy Burst} restores {energy:15% of max Energy} to other allies and {buff:Speeds up your whole team} by {value:40%} for {time:5s}. '
     }
   },
   {
