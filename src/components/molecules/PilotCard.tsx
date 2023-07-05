@@ -63,7 +63,7 @@ export default function PilotCard({ username, title, emoticon, badges, masteryLe
     <div className='flex flex-col w-full gap-4'>
       <div>
         <h3 className='font-semibold text-2xl flex items-center gap-2'>
-          {username}
+          {decodeURI(username)}
           { Boolean(tags?.staff) && <Image src='/i/misc/staff.png' className="w-6 h-6" alt='ody' width={32} height={32} /> }
           { Boolean(tags?.verified) &&  <Image src='/i/misc/verified.png' className="w-7 h-7" alt='creator' width={32} height={32} /> }
         </h3>

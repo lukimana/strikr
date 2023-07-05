@@ -1,5 +1,6 @@
 import { getEmoticonFromdata } from '@/core/relations/resolver'
 import clsx from 'clsx'
+import Image from 'next/image'
 
 export interface EmoticonProps {
   id: string
@@ -14,7 +15,7 @@ export default function Emoticon({ id, size = 'md', bg = 'secondary', className 
   return <div
     className={clsx(
       className,
-      'bg-contain bg-no-repeat bg-center rounded-lg relative',
+      'bg-contain bg-no-repeat bg-center rounded-lg relative overflow-hidden',
       {
         'w-8 h-8': size === 'sm',
         'w-12 h-12': size === 'md',
@@ -28,9 +29,7 @@ export default function Emoticon({ id, size = 'md', bg = 'secondary', className 
         'bg-transparent': bg === 'transparent',
       }
     )}
-    style={{
-      backgroundImage: `url('${emoticonObject?.image}')`,
-      backgroundSize: '80%'
-    }}
-  />
+  >
+    <Image src={emoticonObject?.image || ''} alt={emoticonObject?.id} width={128} height={128} className='w-full h-full' />
+  </div>
 }
