@@ -1,4 +1,3 @@
-import {useTranslations} from 'next-intl'
 import clsx from 'clsx'
 
 export interface BadgePillProps {
