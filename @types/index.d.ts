@@ -54,7 +54,7 @@ namespace STRIKR {
       rank: number
       wins: number
       losses: number
-      createdAt?: string
+      createdAt: string
     }
 
     interface PilotAutocompleteObjectType {

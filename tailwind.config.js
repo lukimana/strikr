@@ -8,16 +8,20 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        accent: '#30FAA2',
-        primary: '#101211',
-        secondary: '#1E1F1F',
-        'secondary-darker': '#1B1D1C',
-        tertiary: '#2F3331',
-        win: '#00FF19',
-        loss: '#FF0000',
-        subtle: '#7D8A88',
-        forward: 'rgba(240, 84, 79)',
-        goalie: 'rgba(191, 182, 252)'
+        tertiary: '#120C18',
+        secondary: '#0C0B0E',
+        'secondary-border': '#1D1D29',
+        'primary-500': '#06000C',
+        'primary-600': '#03000B',
+        'primary-border': '#E5E5E5',
+        accent: '#B592FF',
+        goalie: '#F66618',
+        forward: '#F69E18',
+        subtle: '#85828B',
+        win: '#A4FF95',
+        loss: '#FF7979',
+        support: '#17161B',
+        'support-border': '#27262B'
       },
       gridTemplateColumns: {
         '13': 'repeat(13, minmax(0, 1fr))',
@@ -30,8 +34,5 @@ module.exports = {
         '20': 'repeat(20, minmax(0, 1fr))',
       }
     },
-  },
-  plugins: [
-    require('tailwind-scrollbar')
-  ],
+  }
 }

@@ -1,24 +1,24 @@
+'use client'
 import clsx from 'clsx'
 import Link from 'next/link'
 
-interface NavbarLinkProps {
+export interface NavbarLinkProps {
+  name: string
   href: string
-  isActive: boolean
-  children?: React.ReactNode | React.ReactNode[]
-  className?: string
+  active?: boolean
 }
 
-const NavbarLink: React.FC<NavbarLinkProps> = ({ href, isActive, children, className }) => {
-  return <Link href={href}>
-    <span
-      className={clsx(className, {
-        'font-normal opacity-60 hover:opacity-100 duration-200 hover:text-accent text-sm': true,
-        '!font-bold !opacity-100': isActive,
-      })}
-    >
-      {children}
-    </span>
+export default function NavbarLink({ href, active, name}: NavbarLinkProps) {
+  return <Link 
+    href={href}
+    className={clsx(
+      'duration-200 hover:text-accent/60',
+      {
+        'text-accent font-semibold': active, 
+        'text-subtle': !active
+      }
+    )}
+  >
+    {name}
   </Link>
 }
-
-export default NavbarLink

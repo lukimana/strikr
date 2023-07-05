@@ -68,11 +68,8 @@ export function getEmoticonFromdata(emoticon_data: string) {
   return emoticons.find( emoticon => emoticon.id === emoticon_data) || { id: 'EmoticonData_DefaultThumbsUp', image: '/i/emoticon/EmoticonData_DefaultThumbsUp.png' }
 }
 
-export function getAwakeningLocale(id: string, locale = 'en') {
-  return awakenings.find(awakening => {
-    // const name = awakening.name[locale as 'en']
-    return awakening.id === id
-  })?.name[locale as 'en'] || id
+export function getAwakeningFromdata(awakening_data: string) {
+  return awakenings.find( awakening => awakening.id === awakening_data)
 }
 
 export function getRegionLocale(id: string) {

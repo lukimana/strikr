@@ -6,7 +6,7 @@ const awakenings = [
       en: 'Adrenaline Rush'
     },
     'description': {
-      en: 'Ability {buff:cooldowns} {value:reduced by} {time:1s}. Earning a Takedown {value:increases} {buff:Speed} {value:by 100% for} {time;8s} and {buff:reduces current cooldowns} by {time:5s}.'
+      en: 'Ability {buff:cooldowns} reduced by {time:1s}. Earning a Takedown increases {buff:Speed} by {value:100%} for {time:8s} and reduces current {buff:cooldowns} by {time:5s}.'
     }
   },
   {
@@ -16,7 +16,7 @@ const awakenings = [
       en: 'Aerials'
     },
     'description': {
-      en: '{skill_type:DASH} {buff:range}, {skill_type:BLINK} {buff:range}, and {skill_type:HASTE} effects {value:increased 75%}. {skill_type:PROJECTILES} {value:gain 35%} {buff:travel or cast range}.'
+      en: '{skill_type:DASH} {buff:range}, {skill_type:BLINK} {buff:range}, and {skill_type:HASTE} effects {value:increased 75%}. {skill_type:PROJECTILES} {value:gain 35%} {buff:travel} or {buff:cast range}.'
     }
   },
   {
@@ -26,7 +26,7 @@ const awakenings = [
       en: 'Big Fish'
     },
     'description': {
-      en: '{value:Gain 40% Size} and {value:300 max} {heal:Stagger}.'
+      en: 'Gain {value:40% Size} and {value:300 max} {heal:Stagger}.'
     }
   },
   {
@@ -36,7 +36,7 @@ const awakenings = [
       en: 'BuiltDifferent'
     },
     'description': {
-      en: '{value:Gain 40%} {buff:Size}. Your {skill_type:IMPACT} abilities {damage:hit} {value:10% harder (2% on Core)}.'
+      en: '{value:Gain 40%} {buff:Size}. Your {skill_type:IMPACT} abilities {damage:hit 10% harder} (2% on Core)}.'
     }
   },
   {
@@ -236,7 +236,7 @@ const awakenings = [
       en: 'Quick Strike'
     },
     'description': {
-      en: '{skill:Strike} {buff:cooldown} {value:reduced by 25%}. {skill:Strike} {damage:hits} {value:grant 100% additional energy}.'
+      en: '{skill:Strike} {buff:cooldown} {value:reduced by 25%}.\n{skill:Strike} {damage:hits} {value:grant 100% additional energy}.'
     }
   },
   {

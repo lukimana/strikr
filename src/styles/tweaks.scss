@@ -51,3 +51,7 @@ scrollbar-thumb:hover {
 scrollbar-thumb:active {
   background-color: rgba(0, 0, 0, 0.8); /* Color of the scrollbar handle when actively being dragged */
 }
+
+.CircularProgressbar .CircularProgressbar-trail {
+  stroke: transparent !important;
+}

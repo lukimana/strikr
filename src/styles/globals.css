@@ -4,53 +4,5 @@
 
 
 body {
-  @apply text-white bg-primary;
-}
-
-.strikr-markup-damage {
-  color: #ff1d4e;
-  font-weight: 600
-}
-
-.strikr-markup-heal {
-  color: #0cfa8b;
-  font-weight: 600
-}
-
-.strikr-markup-buff {
-  color: #d400ff;
-  font-weight: 600
-}
-
-.strikr-markup-debuff {
-  color: #9900ff;
-  font-weight: 600
-}
-
-.strikr-markup-value {
-  color: #03afff;
-  font-weight: 600
-}
-
-.strikr-markup-skill_type {
-  color: #ff9100;
-  font-weight: 600
-}
-
-.strikr-markup-skill {
-  color: #fff;
-  padding: 2px 5px;
-  border-radius: 0.2rem;
-  background-color: #5a5a5a;
-  font-size: x-small;
-}
-
-
-.strikr-markup-time {
-  color: #fffb00;
-  font-weight: 600
-}
-
-.strikr-markup-energy {
-  color: #8fdbff
+  @apply text-white bg-primary-500 bg-gradient-to-tl from-primary-500 to-primary-600 w-full h-full bg-no-repeat min-h-screen min-w-[100vw] bg-fixed;
 }

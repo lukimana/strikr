@@ -1,55 +1,44 @@
-import { RocketLaunch } from '@phosphor-icons/react'
-import { useRouter } from 'next/router'
-import { SubmitHandler, useForm } from 'react-hook-form'
-import { motion, useScroll } from 'framer-motion'
-import { useRef } from 'react'
-import PilotSearchInput from '../atoms/PilotSearchInput'
-import PilotSearchForm from './PilotSearchForm'
+'use client'
 
-type Inputs = {
-  pilotname?: string
+import SearchInput from '@/atoms/SearchInput'
+import { useForm } from 'react-hook-form'
+import { useRouter } from 'next/navigation'
+export interface HeroProps {
+  title: string
+  searchPlaceholder: string
 }
 
-const HeroSection: React.FunctionComponent = () => {
+interface FormInput {
+  pilotname: string
+}
+
+export default function Hero({ title, searchPlaceholder }: HeroProps) {
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<FormInput>()
   const router = useRouter()
-  
-  const { scrollYProgress } = useScroll({
-    offset: ['10%', 'start']
-  })
-  
-  const onSubmit: SubmitHandler<Inputs> = data => {
+
+  const onSubmit = (data: FormInput) => {
+    console.log('handle submit', data)
     router.push(`/pilot/${data.pilotname}`)
   }
 
-  return <section 
-    className='relative flex flex-col gap-8 px-6 pt-40 pb-10 sm:pb-20 lg:px-20'
+  return <div 
+    className='w-full p-4 -mt-20 h-[40vh] md:h-[50vh] lg:h-[60vh] bg-[url(/i/misc/ui_splash.png)] bg-cover bg-center bg-no-repeat relative flex flex-col py-20 justify-center gap-8'
   >
-    {/* BG Image */}
-    <div 
-      className='bg-center bg-cover bg-no-repeat bg-[url(/i/misc/ui_splash.png)] absolute inset-0 w-full h-full z-[0] opacity-20' 
-    />
-    {/* SHADE CURTAIN */}
-    <div
-      className='absolute inset-0 w-full h-full bg-gradient-to-t from-primary z-[2]'
-    />
-    {/* CONTENT */}
-    <motion.div 
-      className='w-full h-full flex flex-col z-[3] gap-8'
-      initial={{
-        opacity: 1,
-        pointerEvents: 'auto'
-      }}
-      style={{
-        opacity: scrollYProgress
-      }}
-    >
-      <h1 className='font-bold sm:text-3xl'>Search for pilot statistics & track progress</h1>
-      <PilotSearchForm
-        onSubmit={onSubmit}
-        inputSize='lg'
+    <h1 className='text-3xl  xl:text-4xl font-semibold'>{title}</h1>
+    <form onSubmit={handleSubmit(onSubmit)}>
+      <SearchInput
+        size='lg'
+        register={register}
+        registerOptions={{
+          required: 'This field is required',
+        }}
+        placeholder={searchPlaceholder}
+        className='bg-tertiary/60 backdrop-blur-sm border-secondary-border'
       />
-    </motion.div>
-  </section>
+    </form>
+  </div>
 }
-
-export default HeroSection

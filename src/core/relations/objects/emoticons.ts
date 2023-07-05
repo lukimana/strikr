@@ -35,7 +35,7 @@ const emoticons = [
   { id: 'EmoticonData_WhipFighterMasteryAnimated', image: '/i/emoticon/T_RasmusShocked-512x512.webp' },
   { id: 'EmoticonData_AimiCry', image: '/i/emoticon/T_AimiCry-png'},
   { id: 'EmoticonData_AimiNoted', image: '/i/emoticon/T_AimiNoted-512x512.webp'},
-  { id: 'EmoticonData_AimiSweat', image: '/i/emoticon/T_AimiSweat-512x512.png'},
+  { id: 'EmoticonData_AimiSweat', image: '/i/emoticon/T_AimiSweat-512x512.webp'},
   { id: 'EmoticonData_AsherPog', image: '/i/emoticon/T_AsherPog-512x512.png'},
   { id: 'EmoticonData_AtlasThink', image: '/i/emoticon/T_AtlasThink-512x512.png'},
   { id: 'EmoticonData_AtlasThumbsUp', image: '/i/emoticon/T_AtlasNice-512x512.png'},
