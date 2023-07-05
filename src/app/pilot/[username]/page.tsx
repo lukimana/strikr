@@ -264,7 +264,7 @@ export default async function Page({
                 🦐 Forward
               </div>
             </div>
-            <div className='grid grid-cols-4 md:grid-cols-2 2xl:grid-cols-4 gap-4 w-full'>
+            <div className='grid grid-cols-2 md:grid-cols-2 2xl:grid-cols-4 gap-4 w-full'>
               {Array.from(latestCharacterRatings.values()).sort( (a, b) => a.games < b.games ? 1 : -1).map((character) => {
                 if (character.role !== 'Forward') return null
 
@@ -283,7 +283,7 @@ export default async function Page({
               🥅 Goalie
               </div>
             </div>
-            <div className='grid grid-cols-4 md:grid-cols-2 2xl:grid-cols-4 gap-4 w-full'>
+            <div className='grid grid-cols-2 md:grid-cols-2 2xl:grid-cols-4 gap-4 w-full'>
               {Array.from(latestCharacterRatings.values()).sort( (a, b) => a.games < b.games ? 1 : -1).map((character) => {
                 if (character.role !== 'Goalie') return null
 
