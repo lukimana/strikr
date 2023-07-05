@@ -11,7 +11,7 @@ export interface CharacterCardProps {
 
 export default async function CharacterCard({ id, wins, losses, onClick }: CharacterCardProps) {
   const character = getcharacterFromDevName(id)
-  const winrate = (wins/(wins+(losses||1))*100)
+  const winrate = (wins/(wins+losses)*100)
 
   return <div className={clsx('w-full p-2 bg-support flex flex-col md:flex-row gap-2 md:gap-4 rounded-lg overflow-hidden', {
     'cursor-pointer hover:bg-support-border duration-200 select-none': !!onClick,
