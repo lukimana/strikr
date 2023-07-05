@@ -69,7 +69,7 @@ export default function PilotCard({ username, title, emoticon, badges, masteryLe
         </h3>
         <span className='text-subtle'>{title}</span>
       </div>
-      <div className='flex gap-2'>
+      <div className='flex gap-2 flex-wrap'>
         {badges && badges.map( badge => {
           return <BadgePill 
             key={`${username}-${badge.name}`}

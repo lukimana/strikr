@@ -8,11 +8,12 @@ import { gql } from '@apollo/client';
 import { ChartDonut, Graph, Person, Warning } from '@/atoms/PhosphorIcon';
 import { Content } from 'next/font/google';
 import RatioChart from '@/components/atoms/RatioChart';
-import { calculatePilotProperty, getLatestCharacterMasterySamples } from '@/core/mathUtils';
+import { calculatePilotProperty, getLatestCharacterMasterySamples, normalizePlaystyleAttributes } from '@/core/mathUtils';
 import PlaystyleChart from '@/components/atoms/PlaystyleChart';
 import CharacterCard from '@/components/molecules/CharacterCard';
 import PilotStatBar from '@/components/molecules/PilotStatBar';
-import { getcharacterFromDevName } from '@/core/relations/resolver';
+import { getRankFromLP, getcharacterFromDevName } from '@/core/relations/resolver';
+import dayjs from 'dayjs';
 
 export default async function Page({
   params: { username },
@@ -89,26 +90,70 @@ export default async function Page({
     fetchPolicy: 'no-cache'
   });
   const pilotData = data.ensurePlayer
-  const gamesAsForward = calculatePilotProperty(pilotData.characterRatings, gamemode, 'games', 'Forward' )
-  const gamesAsGoalie = calculatePilotProperty(pilotData.characterRatings, gamemode, 'games', 'Goalie' )
-  const forwardRatio = gamesAsForward/ (gamesAsForward + gamesAsGoalie) * 100
-  const latestCharacterRatings = getLatestCharacterMasterySamples(pilotData.characterRatings, gamemode)
-  const mainCharacter = Array.from(latestCharacterRatings.values()).filter( r => r.gamemode === gamemode).sort( (a, b) => b.games - a.games)[0].character
+  
+  // const pilotRatingsByNewest = [...pilotData.ratings].sort( (a, b) => dayjs(b.createdAt).isBefore(a.createdAt) ? -1 : 1 )
+  const characterRatingsByNewest = [...pilotData.characterRatings].sort( (a, b) => dayjs(b.createdAt).isBefore(a.createdAt) ? -1 : 1 )
+
+  const gamesAsForward = calculatePilotProperty(pilotData.characterRatings, gamemode, 'games', 'Forward')
+  const gamesAsGoalie = calculatePilotProperty(pilotData.characterRatings, gamemode, 'games', 'Goalie')
+
+  const mainCharacter = Array.from(characterRatingsByNewest.values()).filter( r => r.gamemode === gamemode).sort( (a, b) => b.games - a.games)[0].character
+  // const currentRank = getRankFromLP(pilotRatingsByNewest[0].rating)
+  const forwardRatio = gamesAsForward / (gamesAsForward + gamesAsGoalie) * 100
+  const gamemodeScores = calculatePilotProperty(characterRatingsByNewest, gamemode, 'scores')
+  // const gamemodeSaves = calculatePilotProperty(characterRatingsByNewest, gamemode, 'saves')
+  const gamemodeAssists = calculatePilotProperty(characterRatingsByNewest, gamemode, 'assists')
+  const gamemodeKnockouts = calculatePilotProperty(characterRatingsByNewest, gamemode, 'knockouts')
+  const gamemodeMvps = calculatePilotProperty(characterRatingsByNewest, gamemode, 'mvp')
+  // const gamemodeWins = calculatePilotProperty(characterRatingsByNewest, gamemode, 'wins')
+  // const gamemodeLosses = calculatePilotProperty(characterRatingsByNewest, gamemode, 'losses')
+  // const gamemodeGames = calculatePilotProperty(characterRatingsByNewest, gamemode, 'games')
+  const gamemodeNormalizedAttributes = normalizePlaystyleAttributes({ 
+    assists: gamemodeAssists, 
+    knockouts: gamemodeKnockouts, 
+    scores: gamemodeScores, 
+    mvp: gamemodeMvps
+  })
   const pilotBadges: {
     name: string
   }[] = []
-
+  const latestCharacterRatings = getLatestCharacterMasterySamples(pilotData.characterRatings, gamemode)
+  
+  pilotBadges.push({
+    name: `${getcharacterFromDevName(mainCharacter).name} Enjoyer`
+  })
   
   pilotBadges.push({
     name: forwardRatio > 59.9 ? '🦐 Forward' : forwardRatio < 40.1 ? '🥅 Goalie' : '💫 Flex'
   })
 
-  pilotBadges.push({
-    name: `${getcharacterFromDevName(mainCharacter).name} Enjoyer`
-  })
+
+  if (gamemodeNormalizedAttributes.scores >= 1.5) {
+    pilotBadges.push({
+      name: '🎯 Striker',
+    })
+  }
+
+  if (gamemodeNormalizedAttributes.knockouts >= 1.5) {
+    pilotBadges.push({
+      name: '🥊 Brawller',
+    })
+  }
+
+  if (gamemodeNormalizedAttributes.assists >= 1.5) {
+    pilotBadges.push({
+      name:  '🤝 Pass King',
+    })
+  }
 
 
   return <main className='flex flex-col xl:flex-row min-h-screen w-full h-full gap-8 p-4'>
+    <div 
+      className='absolute inset-0 h-[40vh] bg-no-repeat z-[-1] pointer-events-none'
+      style={{
+        background: `radial-gradient(at top center, ${getRankFromLP(pilotData.ratings[0].rating).rankObject.color + '33'} 0%, rgba(6, 0, 12, 0.0) 50%)`
+      }}
+    />
     <aside className='flex flex-col gap-4 w-full xl:w-1/3'>
       <PilotCard
         emoticon={pilotData.emoticonId || 'default'}
@@ -156,12 +201,12 @@ export default async function Page({
             {
               color: '#F66618',
               label: 'Forward',
-              percentile: (gamesAsForward / (gamesAsForward + gamesAsGoalie)) * 100
+              percentile: forwardRatio
             },
             {
               color: '#F69E18',
               label: 'Goalie',
-              percentile: (gamesAsGoalie / (gamesAsForward + gamesAsGoalie)) * 100
+              percentile: 100 - forwardRatio
             }
           ]}
         />
