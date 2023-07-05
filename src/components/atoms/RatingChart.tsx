@@ -40,6 +40,7 @@ export default function RatingChart({ data, bottomLine, topLine }: RatingChartPr
             display: false
           },
           datalabels: {
+            display: false,
             backgroundColor: data.map( r => getRankFromLP(r.rating).rankObject.color),
             borderRadius: 6,
             color: 'black',
@@ -101,6 +102,8 @@ export default function RatingChart({ data, bottomLine, topLine }: RatingChartPr
           label: 'Rating',
           cubicInterpolationMode: 'monotone',
           data: data.map(({ rating }) => rating),
+          pointRadius: 6,
+          pointBackgroundColor: '85828B',
           gradient: {
             backgroundColor: {
               axis: 'y',
