@@ -94,7 +94,7 @@ export default function Navbar() {
     </div>
     <div className='hidden px-4 lg:flex w-full xl:w-1/3 gap-8 items-center'>
       { pathname !== '/' && (
-        <form onSubmit={handleSubmit(onSubmit)}>
+        <form onSubmit={handleSubmit(onSubmit)} className='w-full'>
           <SearchInput
             placeholder='Search pilot by username'
             register={register}
