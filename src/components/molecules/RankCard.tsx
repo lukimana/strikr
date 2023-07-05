@@ -49,7 +49,7 @@ export default async function RankCard({ rating, rank, wins, losses, region }: R
           {rankData.rankObject.name}
         </h3>
         <span className='text-subtle text-xs'>
-          {rating} LP @ top {(rank / 1000 *  100).toFixed(1)}%
+          {rating} LP (top {(rank / 1000).toFixed(1)}%)
         </span>
         <span 
           className='text-subtle text-xs'
