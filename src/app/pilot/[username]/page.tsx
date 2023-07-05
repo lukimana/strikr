@@ -1,19 +1,22 @@
-import { RankIcon } from '@/components/atoms/Rank';
-import RatingChart from '@/components/atoms/RatingChart';
-import PilotCard from '@/components/molecules/PilotCard';
-import RankCard from '@/components/molecules/RankCard';
-import ContentBlock from '@/components/templates/ContentBlock';
-import { getClient } from '@/core/apolloclient';
-import { gql } from '@apollo/client';
-import { ChartDonut, Graph, Person, Warning } from '@/atoms/PhosphorIcon';
-import { Content } from 'next/font/google';
-import RatioChart from '@/components/atoms/RatioChart';
-import { calculatePilotProperty, getLatestCharacterMasterySamples, normalizePlaystyleAttributes } from '@/core/mathUtils';
-import PlaystyleChart from '@/components/atoms/PlaystyleChart';
-import CharacterCard from '@/components/molecules/CharacterCard';
-import PilotStatBar from '@/components/molecules/PilotStatBar';
-import { getRankFromLP, getcharacterFromDevName } from '@/core/relations/resolver';
-import dayjs from 'dayjs';
+import { RankIcon } from '@/components/atoms/Rank'
+import RatingChart from '@/components/atoms/RatingChart'
+import PilotCard from '@/components/molecules/PilotCard'
+import RankCard from '@/components/molecules/RankCard'
+import ContentBlock from '@/components/templates/ContentBlock'
+import { getClient } from '@/core/apolloclient'
+import { gql } from '@apollo/client'
+import { ChartDonut, Graph, Person, Warning } from '@/atoms/PhosphorIcon'
+import { Content } from 'next/font/google'
+import RatioChart from '@/components/atoms/RatioChart'
+import { calculatePilotProperty, getLatestCharacterMasterySamples, normalizePlaystyleAttributes } from '@/core/mathUtils'
+import PlaystyleChart from '@/components/atoms/PlaystyleChart'
+import CharacterCard from '@/components/molecules/CharacterCard'
+import PilotStatBar from '@/components/molecules/PilotStatBar'
+import { getRankFromLP, getcharacterFromDevName } from '@/core/relations/resolver'
+import dayjs from 'dayjs'
+
+export const dynamic = 'force-dynamic',
+  revalidate = 0
 
 export default async function Page({
   params: { username },
@@ -23,7 +26,7 @@ export default async function Page({
   searchParams: { gamemode: string }
 }) {
   const { data } = await getClient().query<{
-    ensurePlayer: STRIKR.API.PlayerObjectType;
+    ensurePlayer: STRIKR.API.PlayerObjectType
   }>({
     query: gql`
       query ($pilotname: String!, $refresh: Boolean) {
@@ -88,7 +91,7 @@ export default async function Page({
       refresh: true
     },
     fetchPolicy: 'no-cache'
-  });
+  })
   const pilotData = data.ensurePlayer
   
   const pilotRatingsByNewest = [...pilotData.ratings].sort( (a, b) => dayjs(b.createdAt).isBefore(a.createdAt) ? -1 : 1 )
@@ -297,5 +300,5 @@ export default async function Page({
         </div>
       </ContentBlock>
     </div>
-  </main>;
+  </main>
 }
