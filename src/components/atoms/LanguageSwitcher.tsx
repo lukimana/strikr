@@ -4,7 +4,6 @@ import { Translate } from '@phosphor-icons/react'
 
 import * as DropdownMenu from '@radix-ui/react-dropdown-menu'
 // import setLanguage from 'next-translate/setLanguage'
-import {useTranslations} from 'next-intl'
 
 
 const languageRelation = {
