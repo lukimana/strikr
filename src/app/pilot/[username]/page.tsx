@@ -91,7 +91,7 @@ export default async function Page({
   });
   const pilotData = data.ensurePlayer
   
-  // const pilotRatingsByNewest = [...pilotData.ratings].sort( (a, b) => dayjs(b.createdAt).isBefore(a.createdAt) ? -1 : 1 )
+  const pilotRatingsByNewest = [...pilotData.ratings].sort( (a, b) => dayjs(b.createdAt).isBefore(a.createdAt) ? -1 : 1 )
   const characterRatingsByNewest = [...pilotData.characterRatings].sort( (a, b) => dayjs(b.createdAt).isBefore(a.createdAt) ? -1 : 1 )
 
   const gamesAsForward = calculatePilotProperty(pilotData.characterRatings, gamemode, 'games', 'Forward')
@@ -105,15 +105,15 @@ export default async function Page({
   const gamemodeAssists = calculatePilotProperty(characterRatingsByNewest, gamemode, 'assists')
   const gamemodeKnockouts = calculatePilotProperty(characterRatingsByNewest, gamemode, 'knockouts')
   const gamemodeMvps = calculatePilotProperty(characterRatingsByNewest, gamemode, 'mvp')
-  // const gamemodeWins = calculatePilotProperty(characterRatingsByNewest, gamemode, 'wins')
-  // const gamemodeLosses = calculatePilotProperty(characterRatingsByNewest, gamemode, 'losses')
-  // const gamemodeGames = calculatePilotProperty(characterRatingsByNewest, gamemode, 'games')
-  const gamemodeNormalizedAttributes = normalizePlaystyleAttributes({ 
-    assists: gamemodeAssists, 
-    knockouts: gamemodeKnockouts, 
-    scores: gamemodeScores, 
-    mvp: gamemodeMvps
-  })
+  const rankedWins = calculatePilotProperty(characterRatingsByNewest, 'RankedInitial', 'wins')
+  const rankedLosses = calculatePilotProperty(characterRatingsByNewest, 'RankedInitial', 'losses')
+  const gamemodeGames = calculatePilotProperty(characterRatingsByNewest, gamemode, 'games')
+  // const gamemodeNormalizedAttributes = normalizePlaystyleAttributes({ 
+  //   assists: gamemodeAssists, 
+  //   knockouts: gamemodeKnockouts, 
+  //   scores: gamemodeScores, 
+  //   mvp: gamemodeMvps
+  // })
   const pilotBadges: {
     name: string
   }[] = []
@@ -122,25 +122,25 @@ export default async function Page({
   pilotBadges.push({
     name: `${getcharacterFromDevName(mainCharacter).name} Enjoyer`
   })
-  
+
   pilotBadges.push({
     name: forwardRatio > 59.9 ? '🦐 Forward' : forwardRatio < 40.1 ? '🥅 Goalie' : '💫 Flex'
   })
 
 
-  if (gamemodeNormalizedAttributes.scores >= 1.5) {
+  if (gamemodeScores / gamemodeGames >= 3) {
     pilotBadges.push({
-      name: '🎯 Striker',
+      name: '🎯 Scorer',
     })
   }
 
-  if (gamemodeNormalizedAttributes.knockouts >= 1.5) {
+  if (gamemodeKnockouts / gamemodeGames >= 4) {
     pilotBadges.push({
       name: '🥊 Brawller',
     })
   }
 
-  if (gamemodeNormalizedAttributes.assists >= 1.5) {
+  if (gamemodeAssists / gamemodeGames >= 3) {
     pilotBadges.push({
       name:  '🤝 Pass King',
     })
@@ -151,7 +151,7 @@ export default async function Page({
     <div 
       className='absolute inset-0 h-[40vh] bg-no-repeat z-[-1] pointer-events-none'
       style={{
-        background: `radial-gradient(at top center, ${getRankFromLP(pilotData.ratings[0].rating).rankObject.color + '33'} 0%, rgba(6, 0, 12, 0.0) 50%)`
+        background: `radial-gradient(at top center, ${getRankFromLP(pilotRatingsByNewest[0].rating).rankObject.color + '33'} 0%, rgba(6, 0, 12, 0.0) 50%)`
       }}
     />
     <aside className='flex flex-col gap-4 w-full xl:w-1/3'>
@@ -173,12 +173,12 @@ export default async function Page({
         <p>Due to how data is provided we are limited to showing ranked stats only for the top 10k players of each region.</p>
       </div>
       <RankCard
-        losses={pilotData.ratings[0].losses}
-        rank={pilotData.ratings[0].rank}
-        rating={pilotData.ratings[0].rating}
+        losses={rankedLosses}
+        rank={pilotRatingsByNewest[0].rank}
+        rating={pilotRatingsByNewest[0].rating}
         region={pilotData.region}
-        wins={pilotData.ratings[0].wins}
-        key={pilotData.ratings[0].id}
+        wins={rankedWins}
+        key={pilotRatingsByNewest[0].id}
       />
       <ContentBlock
         title='Rating History'
@@ -237,15 +237,15 @@ export default async function Page({
     </aside>
     <div className='w-full flex flex-col xl:w-2/3 gap-4'>
       <PilotStatBar
-        assists={calculatePilotProperty(pilotData.characterRatings, gamemode, 'assists')}
-        knockouts={calculatePilotProperty(pilotData.characterRatings, gamemode, 'knockouts')}
-        saves={calculatePilotProperty(pilotData.characterRatings, gamemode, 'saves')}
-        scores={calculatePilotProperty(pilotData.characterRatings, gamemode, 'scores')}
-        mvp={calculatePilotProperty(pilotData.characterRatings, gamemode, 'mvp')}
-        games={calculatePilotProperty(pilotData.characterRatings, gamemode, 'games')}
+        assists={calculatePilotProperty(characterRatingsByNewest, gamemode, 'assists')}
+        knockouts={calculatePilotProperty(characterRatingsByNewest, gamemode, 'knockouts')}
+        saves={calculatePilotProperty(characterRatingsByNewest, gamemode, 'saves')}
+        scores={calculatePilotProperty(characterRatingsByNewest, gamemode, 'scores')}
+        mvp={calculatePilotProperty(characterRatingsByNewest, gamemode, 'mvp')}
+        games={calculatePilotProperty(characterRatingsByNewest, gamemode, 'games')}
         gamemode={gamemode}
-        losses={calculatePilotProperty(pilotData.characterRatings, gamemode, 'losses')}
-        wins={calculatePilotProperty(pilotData.characterRatings, gamemode, 'wins')}
+        losses={calculatePilotProperty(characterRatingsByNewest, gamemode, 'losses')}
+        wins={calculatePilotProperty(characterRatingsByNewest, gamemode, 'wins')}
         averageLP={0}
       />
       <ContentBlock
