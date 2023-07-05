@@ -19,6 +19,7 @@ const characters = [
     id: 'CD_CleverSummoner',
     assetName: 'CD_CleverSummoner',
     name: 'Juno',
+    portrait: '/i/character/portrait/T_UI_Portrait_CloseUp_CleverSummoner.png',
     goalscore: '/i/character/goalscore/T_UI_Portrait_GoalScore_CleverSummoner.png',
     bodyShot: '/i/character/body/T_UI_Portrait_Concept_CleverSummoner.png',
   },
