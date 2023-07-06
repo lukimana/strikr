@@ -18,6 +18,8 @@ import dayjs from 'dayjs'
 export const dynamic = 'force-dynamic',
   revalidate = 0
 
+// const sleep = (ms: number) => new Promise(resolve => setTimeout(resolve, ms))
+
 export default async function Page({
   params: { username },
   searchParams: { gamemode = 'RankedInitial' },
@@ -25,6 +27,7 @@ export default async function Page({
   params: { username: string }
   searchParams: { gamemode: string }
 }) {
+  // await sleep(10000)
   const { data } = await getClient().query<{
     ensurePlayer: STRIKR.API.PlayerObjectType
   }>({

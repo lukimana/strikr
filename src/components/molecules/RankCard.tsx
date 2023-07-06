@@ -24,7 +24,7 @@ export default async function RankCard({ rating, rank, wins, losses, region }: R
     'JapaneseTextLanguage': 'Japan'
   }
 
-  return <div className='flex w-full rounded-lg border border-secondary-border overflow-hidden relative p-4'>
+  return <div className='flex w-full rounded-lg border bg-secondary border-secondary-border overflow-hidden relative p-4'>
     <div
       className='absolute inset-0 w-full h-full opacity-20 z-[0]'
       style={{

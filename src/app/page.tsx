@@ -4,9 +4,12 @@ import Hero from '@/components/molecules/Hero'
 import ContentBlock from '@/templates/ContentBlock'
 import Image from 'next/image'
 import { Trophy } from '@/components/atoms/PhosphorIcon'
+import Navbar from '@/components/molecules/Navbar'
+import Footer from '@/components/molecules/Footer'
 
 export default function Home() {
-  return (
+  return <>
+    <Navbar />
     <main className="flex min-h-screen flex-col">
       <Hero
         title='Search for pilot statistics & track your progress'
@@ -14,7 +17,7 @@ export default function Home() {
       />
       <div className='flex flex-col px-4 gap-4'>
         <div className='bg-secondary text-xs text-subtle p-4 rounded-lg'>
-          This is version of Strikr has been written from the ground up. Please have some patience while we are rolling the previous & future features one by one.<br />
+          This version of Strikr has been written from the ground up. Please have some patience while we are rolling the previous & future features one by one.<br />
           I hope to make this a better experience for everyone & allow creators to better utilize our API&apos;s.<br /><br />
           💖 Thx for you support.
         </div>
@@ -44,5 +47,6 @@ export default function Home() {
         </ContentBlock>
       </div>
     </main>
-  )
+    <Footer />
+  </>
 }
