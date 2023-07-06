@@ -292,7 +292,7 @@ export default async function Page({
                   losses={character.losses}
                   wins={character.wins}
                   key={character.character+character.role}
-                  // onClick={() => {}}
+                  onClick={() => {alert('Character specific information is disabled for now, we will be pushing the updated character sheet soon™️. I have enabled character cards so you could at least look at the most important data!')}}
                 />
               })}
             </div>

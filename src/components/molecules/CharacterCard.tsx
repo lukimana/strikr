@@ -24,28 +24,28 @@ export default async function CharacterCard({ id, wins, losses, onClick }: Chara
     />
     <div className='flex-col gap-0.5 hidden md:flex'>
       <h6 className='font-semibold text-xl'>{character.name}</h6>
-      <p className='text-sm md:text-xs gap-1 flex'>
-        <span className='whitespace-nowrap'>{wins + losses} Games</span>
-      </p>
-      <p className='text-xs text-subtle flex gap-1'>
+      <p className='text-xs flex gap-1 font-semibold'>
         <span>{wins}W</span>
         <span>{losses}L</span>
         <span className={clsx('whitespace-nowrap',{
           'text-win': winrate > 50,
           'text-loss': winrate < 50,
-          'text-subtle': winrate === 50,
+          'text-yellow-200': winrate === 50,
         })}>({winrate.toFixed(1)}%)</span>
+      </p>
+      <p className='text-sm md:text-xs gap-1 flex'>
+        <span className='whitespace-nowrap text-subtle'>Total: {wins + losses} Games</span>
       </p>
     </div>
     <div className='flex-wrap gap-0.5 flex-row md:hidden'>
       <p className='text-xs flex-col flex white whitespace-nowrap'>
           <span className='text-base font-semibold'>{character.name}</span>
-          <span className='text-subtle'>{wins + losses} Games</span>
+          <span className='text-white/80'>{wins + losses} Games</span>
           <span className={clsx({
             'text-win': winrate > 50,
             'text-loss': winrate < 50,
-            'text-subtle': winrate === 50,
-          })}>{winrate.toFixed()}% WR</span>
+            'text-yellow-200': winrate === 50,
+          })}>{isNaN(winrate) ? '0' : winrate.toFixed()}% WR</span>
         </p>
     </div>
   </div>
