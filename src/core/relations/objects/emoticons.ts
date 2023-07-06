@@ -148,6 +148,7 @@ const emoticons = [
   { id: 'EmoticonData_BlobTrans', image: '/i/emoticon/T_BlobTrans-512x512.png'},
   { id: 'EmoticonData_BlobNonbinary', image: '/i/emoticon/T_BlobNonbinary-512x512.png'},
   { id: 'EmoticonData_BlobPride', image: '/i/emoticon/T_BlobPride-512x512.png'},
+  { id: 'EmoticonData_AtlasDefend', image: '/i/emoticon/T_AtlasDefend-512x512.webp'}
 ]
 
 export default emoticons
