@@ -152,7 +152,7 @@ export default async function Page({
         />
       )}
       {showCredit !== 'false' && (
-        <span className='text-subtle text-xs ml-auto'>Powered by <b className='font-semibold'>strikr.gg</b> (/pilot/overlay/{decodeURI(username)})</span>
+        <span className='text-subtle text-sm ml-auto drop-shadow-lg shadow-black'>Powered by <b className='font-semibold'>strikr.gg</b> (/pilot/overlay/{decodeURI(username)})</span>
       )}
       <RankCard
         losses={rankedLosses}
