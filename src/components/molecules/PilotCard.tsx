@@ -5,6 +5,7 @@ import BadgePill from '@/atoms/BadgePill'
 import { CircularProgressbar, buildStyles  } from 'react-circular-progressbar'
 import 'react-circular-progressbar/dist/styles.css'
 import Image from 'next/image'
+import { TitleLookup } from '@/core/relations/objects/titles'
 
 export interface PilotCardProps {
   username: string,
@@ -67,7 +68,7 @@ export default function PilotCard({ username, title, emoticon, badges, masteryLe
           { Boolean(tags?.staff) && <Image src='/i/misc/staff.png' className="w-6 h-6" alt='ody' width={32} height={32} /> }
           { Boolean(tags?.verified) &&  <Image src='/i/misc/verified.png' className="w-7 h-7" alt='creator' width={32} height={32} /> }
         </h3>
-        <span className='text-subtle'>{title}</span>
+        <span className='text-subtle'>{TitleLookup[title as keyof typeof TitleLookup]?.en || 'No title'}</span>
       </div>
       <div className='flex gap-2 flex-wrap'>
         {badges && badges.map( badge => {
