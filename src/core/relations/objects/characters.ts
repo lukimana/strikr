@@ -135,6 +135,14 @@ const characters = [
     goalscore: '/i/character/goalscore/T_UI_Portrait_GoalScore_WhipFighter.png',
     bodyShot: '/i/character/body/T_UI_Portrait_Concept_WhipFighter.png',
   },
+  {
+    id: 'CD_GravityMage',
+    assetName: 'CD_GravityMage',
+    name: 'Finii',
+    portrait: '/i/character/portrait/T_UI_Portrait_CloseUp_GravityMage.png',
+    goalscore: '/i/character/goalscore/T_UI_Portrait_GoalScore_GravityMage.png',
+    bodyShot: '/i/character/body/T_UI_Portrait_Concept_GravityMage.png',
+  }
 ]
 
 export default characters
