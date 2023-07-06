@@ -13,10 +13,10 @@ export const dynamic = 'force-dynamic',
 
 export default async function Page({
   params: { username },
-  searchParams: { showProfile = 'false' },
+  searchParams: { showProfile = 'false', showCredit = 'true' },
 }: {
   params: { username: string }
-  searchParams: { showProfile: 'false' | 'true' }
+  searchParams: { showProfile: 'false' | 'true', showCredit: 'false' | 'true' }
 }) {
   // await sleep(10000)
   const { data } = await getClient().query<{
@@ -150,6 +150,9 @@ export default async function Page({
             staff: pilotData.tags.includes('STAFF'),
           }}
         />
+      )}
+      {showCredit !== 'false' && (
+        <span className='text-subtle text-xs ml-auto'>Powered by <b className='font-semibold'>strikr.gg</b> (/pilot/overlay/{decodeURI(username)})</span>
       )}
       <RankCard
         losses={rankedLosses}
