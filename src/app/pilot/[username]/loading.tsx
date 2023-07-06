@@ -14,50 +14,54 @@ export default function Loading() {
     console.log('params', params)
     if (!params.username) { return }
     ;(async ()=>{
-      const data = await axios({
-        method: 'POST',
-        url: process.env.NEXT_PUBLIC_API_URL,
-        data: {
-          query: gql`
-          query($pilotname: String!) {
-            getPlayerByName(name: $pilotname) {
-              username
-              ratings {
-                games
-                losses
-                rank
-                rating
+      try {
+        const data = await axios({
+          method: 'POST',
+          url: process.env.NEXT_PUBLIC_API_URL,
+          data: {
+            query: gql`
+            query($pilotname: String!) {
+              getPlayerByName(name: $pilotname) {
+                username
+                ratings {
+                  games
+                  losses
+                  rank
+                  rating
+                }
+                characterRatings {
+                  createdAt
+                  character
+                  gamemode
+                  knockouts
+                  losses
+                  wins
+                  games
+                  role
+                  saves
+                  scores
+                  mvp
+                }
+                mastery {
+                  currentLevel
+                  currentLevelXp
+                  xpToNextLevel
+                }
+                
               }
-              characterRatings {
-                createdAt
-                character
-                gamemode
-                knockouts
-                losses
-                wins
-                games
-                role
-                saves
-                scores
-                mvp
-              }
-              mastery {
-                currentLevel
-                currentLevelXp
-                xpToNextLevel
-              }
-              
-            }
-          }          
-          `,
-          variables: { pilotname: params.username }
-        },
-        headers: {
-          "content-type": "application/json",
-        }
-      })
-
-      console.log('data', data)
+            }          
+            `,
+            variables: { pilotname: params.username }
+          },
+          headers: {
+            "content-type": "application/json",
+          }
+        })
+  
+        console.log('data', data)
+      } catch (e) { 
+        console.error(e)
+      }
     })()
   }, [params])
 
