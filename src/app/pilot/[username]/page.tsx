@@ -262,7 +262,7 @@ export default async function Page({
         {null}
         <div className='flex flex-col w-full bg-secondar bordery border-secondary-border rounded-lg gap-6'>
           <div className='flex w-full gap-4'>
-            <div className='flex rounded-lg px-4 py-2 font-semibold text-primary-500 bg-forward w-14 whitespace-nowrap items-center justify-center'>
+            <div className='flex rounded-lg px-4 py-2 font-semibold text-primary-500 bg-forward w-10 md:w-14 whitespace-nowrap items-center justify-center'>
               <div className='-rotate-90'>
                 🦐 Forward
               </div>
@@ -281,7 +281,7 @@ export default async function Page({
             </div>
           </div>
           <div className='flex w-full gap-4'>
-            <div className='flex rounded-lg font-semibold text-primary-500 bg-goalie w-14 whitespace-nowrap items-center justify-center'>
+            <div className='flex rounded-lg font-semibold text-primary-500 bg-goalie w-10 md:w-14 whitespace-nowrap items-center justify-center'>
               <div className='-rotate-90'>
               🥅 Goalie
               </div>
