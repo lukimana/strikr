@@ -4,15 +4,7 @@ import awakenings from '@/core/relations/objects/awakenings'
 import ranks from '@/core/relations/objects/ranks'
 
 export function getcharacterFromDevName(cd_characterId: string) {
-  return characters.find( character => character.id === cd_characterId) || {
-    assetName: 'default',
-    portrait: '/i/character/default.png',
-    id: 'default',
-    model: '/i/model/default/default.fbx',
-    name: 'Unknown',
-    skills: [],
-    skins: []
-  }
+  return characters.find( character => character.id === cd_characterId)
 }
 
 export type Rank = 
