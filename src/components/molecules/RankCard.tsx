@@ -41,7 +41,7 @@ export default async function RankCard({ rating, rank, wins, losses, region }: R
       />
       <div className='flex flex-col text-semibold'>
         <h3 
-          className='font-bold text-2xl mb-2'
+          className='font-bold text-2xl mb-2 whitespace-nowrap'
           style={{
             color: rankData.rankObject.color
           }}
