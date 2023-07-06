@@ -126,7 +126,7 @@ export default async function Page({
   const latestCharacterRatings = getLatestCharacterMasterySamples(pilotData.characterRatings, gamemode)
   
   pilotBadges.push({
-    name: `${getcharacterFromDevName(mainCharacter).name} Enjoyer`
+    name: `${getcharacterFromDevName(mainCharacter)?.name || 'Omega Strikers'} Enjoyer`
   })
 
   pilotBadges.push({

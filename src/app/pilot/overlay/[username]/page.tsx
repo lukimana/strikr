@@ -107,7 +107,7 @@ export default async function Page({
   }[] = []
   
   pilotBadges.push({
-    name: `${getcharacterFromDevName(mainCharacter).name} Enjoyer`
+    name: `${getcharacterFromDevName(mainCharacter)?.name || 'Omega Strikers'} Enjoyer`
   })
 
   pilotBadges.push({
