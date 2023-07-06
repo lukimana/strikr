@@ -33,7 +33,7 @@ export default async function RankCard({ rating, rank, wins, losses, region }: R
     />
 
     <div 
-      className='flex w-1/2 items-center gap-2 z-[1]'
+      className='flex w-1/2 items-center gap-1 z-[1]'
     >
       <Rank
         rating={rating}
@@ -41,18 +41,18 @@ export default async function RankCard({ rating, rank, wins, losses, region }: R
       />
       <div className='flex flex-col'>
         <h3 
-          className='font-bold text-xl mb-2'
+          className='font-bold text-2xl mb-2'
           style={{
             color: rankData.rankObject.color
           }}
         >
           {rankData.rankObject.name}
         </h3>
-        <span className='text-subtle text-xs'>
+        <span className='text-subtle text-sm'>
           {rating} LP (top {(rank / 1000).toFixed(1)}%)
         </span>
         <span 
-          className='text-subtle text-xs'
+          className='text-subtle text-sm'
           dangerouslySetInnerHTML={{
             __html: parseStrikrMarkup(`${wins}W ${losses}L ${parseFloat(winrate) > 49.9 ? `{win:(${parseFloat(winrate).toFixed(2)})}` : `{loss:${parseFloat(winrate).toFixed(2)}}`}`)
           }}
