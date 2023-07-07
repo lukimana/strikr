@@ -103,7 +103,7 @@ export default async function Page({
   const gamesAsForward = calculatePilotProperty(pilotData.characterRatings, gamemode, 'games', 'Forward')
   const gamesAsGoalie = calculatePilotProperty(pilotData.characterRatings, gamemode, 'games', 'Goalie')
 
-  const mainCharacter = Array.from(characterRatingsByNewest.values()).filter( r => r.gamemode === gamemode).sort( (a, b) => b.games - a.games)[0].character
+  const mainCharacter = Array.from(characterRatingsByNewest.values()).filter( r => r.gamemode === gamemode).sort( (a, b) => b.games - a.games)?.[0]?.character
   // const currentRank = getRankFromLP(pilotRatingsByNewest[0].rating)
   const forwardRatio = gamesAsForward / (gamesAsForward + gamesAsGoalie) * 100
   const gamemodeScores = calculatePilotProperty(characterRatingsByNewest, gamemode, 'scores')
