@@ -114,8 +114,9 @@ export default function Awakening({
                   <Image
                     src={awakeningObject?.image || 'default'}
                     alt={awakeningObject?.name.en || 'Awakening'}
-                    width={64}
-                    height={64}
+                    width={256}
+                    height={256}
+                    className='w-16 h-16'
                   />
                 </picture>
                 <div className='flex flex-col max-w-[300px] justify-center'>

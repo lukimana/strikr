@@ -1,7 +1,7 @@
 const awakenings = [
   {
     'id': 'T_AdrenalineRush',
-    'image': '/i/awakening/T_AdrenalineRush.png',
+    'image': 'https://static.strikr.gg/file/Strikr/awakening/T_AdrenalineRush.png',
     'name': {
       en: 'Adrenaline Rush'
     },
@@ -11,7 +11,7 @@ const awakenings = [
   },
   {
     'id': 'T_Aerials',
-    'image': '/i/awakening/T_Aerials.png',
+    'image': 'https://static.strikr.gg/file/Strikr/awakening/T_Aerials.png',
     'name': {
       en: 'Aerials'
     },
@@ -21,7 +21,7 @@ const awakenings = [
   },
   {
     'id': 'T_BigFish',
-    'image': '/i/awakening/T_BigFish.png',
+    'image': 'https://static.strikr.gg/file/Strikr/awakening/T_BigFish.png',
     'name': {
       en: 'Big Fish'
     },
@@ -31,7 +31,7 @@ const awakenings = [
   },
   {
     'id': 'T_BuiltDifferent',
-    'image': '/i/awakening/T_BuiltDifferent.png',
+    'image': 'https://static.strikr.gg/file/Strikr/awakening/T_BuiltDifferent.png',
     'name': {
       en: 'BuiltDifferent'
     },
@@ -41,7 +41,7 @@ const awakenings = [
   },
   {
     'id': 'T_BulkUp',
-    'image': '/i/awakening/T_BulkUp.png',
+    'image': 'https://static.strikr.gg/file/Strikr/awakening/T_BulkUp.png',
     'name': {
       en: 'Bulk Up'
     },
@@ -51,7 +51,7 @@ const awakenings = [
   },
   {
     'id': 'T_CastToLast',
-    'image': '/i/awakening/T_CastToLast.png',
+    'image': 'https://static.strikr.gg/file/Strikr/awakening/T_CastToLast.png',
     'name': {
       en: 'Cast To Last'
     },
@@ -61,7 +61,7 @@ const awakenings = [
   },
   {
     'id': 'T_Chronoboost',
-    'image': '/i/awakening/T_Chronoboost.png',
+    'image': 'https://static.strikr.gg/file/Strikr/awakening/T_Chronoboost.png',
     'name': {
       en: 'Chronoboost'
     },
@@ -71,7 +71,7 @@ const awakenings = [
   },
   {
     'id': 'T_DeadEye',
-    'image': '/i/awakening/T_DeadEye.png',
+    'image': 'https://static.strikr.gg/file/Strikr/awakening/T_DeadEye.png',
     'name': {
       en: 'Deadeye'
     },
@@ -81,7 +81,7 @@ const awakenings = [
   },
   {
     'id': 'T_ExtraSpecial',
-    'image': '/i/awakening/T_ExtraSpecial.png',
+    'image': 'https://static.strikr.gg/file/Strikr/awakening/T_ExtraSpecial.png',
     'name': {
       en: 'Extra Special'
     },
@@ -91,7 +91,7 @@ const awakenings = [
   },
   {
     'id': 'T_GlassCannon',
-    'image': '/i/awakening/T_GlassCannon.png',
+    'image': 'https://static.strikr.gg/file/Strikr/awakening/T_GlassCannon.png',
     'name': {
       en: 'Glass Cannon'
     },
@@ -101,7 +101,7 @@ const awakenings = [
   },
   {
     'id': 'T_HotShot',
-    'image': '/i/awakening/T_HotShot.png',
+    'image': 'https://static.strikr.gg/file/Strikr/awakening/T_HotShot.png',
     'name': {
       en: 'Hotshot'
     },
@@ -111,7 +111,7 @@ const awakenings = [
   },
   {
     'id': 'T_ImpactSpecialist',
-    'image': '/i/awakening/T_ImpactSpecialist.png',
+    'image': 'https://static.strikr.gg/file/Strikr/awakening/T_ImpactSpecialist.png',
     'name': {
       en: 'Specialized Training'
     },
@@ -121,7 +121,7 @@ const awakenings = [
   },
   {
     'id': 'T_MissilePropulsion',
-    'image': '/i/awakening/T_MissilePropulsion.png',
+    'image': 'https://static.strikr.gg/file/Strikr/awakening/T_MissilePropulsion.png',
     'name': {
       en: 'Missile Propulsion'
     },
@@ -131,7 +131,7 @@ const awakenings = [
   },
   {
     'id': 'T_MomentumBoots',
-    'image': '/i/awakening/T_MomentumBoots.png',
+    'image': 'https://static.strikr.gg/file/Strikr/awakening/T_MomentumBoots.png',
     'name': {
       en: 'Boots of Momentum'
     },
@@ -141,7 +141,7 @@ const awakenings = [
   },
   {
     'id': 'T_Monumentalist',
-    'image': '/i/awakening/T_Monumentalist.png',
+    'image': 'https://static.strikr.gg/file/Strikr/awakening/T_Monumentalist.png',
     'name': {
       en: 'Monumentalist'
     },
@@ -151,7 +151,7 @@ const awakenings = [
   },
   {
     'id': 'T_OneTwoPunch',
-    'image': '/i/awakening/T_OneTwoPunch.png',
+    'image': 'https://static.strikr.gg/file/Strikr/awakening/T_OneTwoPunch.png',
     'name': {
       en: 'One-Two Punch'
     },
@@ -161,7 +161,7 @@ const awakenings = [
   },
   {
     'id': 'T_OrbDancer',
-    'image': '/i/awakening/T_OrbDancer.png',
+    'image': 'https://static.strikr.gg/file/Strikr/awakening/T_OrbDancer.png',
     'name': {
       en: 'Orb Dancer'
     },
@@ -171,7 +171,7 @@ const awakenings = [
   },
   {
     'id': 'T_OrbPonderer',
-    'image': '/i/awakening/T_OrbPonderer.png',
+    'image': 'https://static.strikr.gg/file/Strikr/awakening/T_OrbPonderer.png',
     'name': {
       en: 'Orb Ponderer'
     },
@@ -181,7 +181,7 @@ const awakenings = [
   },
   {
     'id': 'T_OrbSharer',
-    'image': '/i/awakening/T_OrbSharer.png',
+    'image': 'https://static.strikr.gg/file/Strikr/awakening/T_OrbSharer.png',
     'name': {
       en: 'Orb Sharer'
     },
@@ -191,7 +191,7 @@ const awakenings = [
   },
   {
     'id': 'T_PeakPerformance',
-    'image': '/i/awakening/T_PeakPerformance.png',
+    'image': 'https://static.strikr.gg/file/Strikr/awakening/T_PeakPerformance.png',
     'name': {
       en: 'Peak Performance'
     },
@@ -201,7 +201,7 @@ const awakenings = [
   },
   {
     'id': 'T_PerfectForm',
-    'image': '/i/awakening/T_PerfectForm.png',
+    'image': 'https://static.strikr.gg/file/Strikr/awakening/T_PerfectForm.png',
     'name': {
       en: 'Perfect Form'
     },
@@ -211,7 +211,7 @@ const awakenings = [
   },
   {
     'id': 'T_PrimeTime',
-    'image': '/i/awakening/T_PrimeTime.png',
+    'image': 'https://static.strikr.gg/file/Strikr/awakening/T_PrimeTime.png',
     'name': {
       en: 'Prime Time'
     },
@@ -221,7 +221,7 @@ const awakenings = [
   },
   {
     'id': 'T_PrizeFighter',
-    'image': '/i/awakening/T_PrizeFighter.png',
+    'image': 'https://static.strikr.gg/file/Strikr/awakening/T_PrizeFighter.png',
     'name': {
       en: 'Prize Fighter'
     },
@@ -231,7 +231,7 @@ const awakenings = [
   },
   {
     'id': 'T_QuickStrike',
-    'image': '/i/awakening/T_QuickStrike.png',
+    'image': 'https://static.strikr.gg/file/Strikr/awakening/T_QuickStrike.png',
     'name': {
       en: 'Quick Strike'
     },
@@ -241,7 +241,7 @@ const awakenings = [
   },
   {
     'id': 'T_RapidFire',
-    'image': '/i/awakening/T_RapidFire.png',
+    'image': 'https://static.strikr.gg/file/Strikr/awakening/T_RapidFire.png',
     'name': {
       en: 'Rapid Fire'
     },
@@ -251,7 +251,7 @@ const awakenings = [
   },
   {
     'id': 'T_ShockAndAwe',
-    'image': '/i/awakening/T_ShockAndAwe.png',
+    'image': 'https://static.strikr.gg/file/Strikr/awakening/T_ShockAndAwe.png',
     'name': {
       en: 'Heavy Impact'
     },
@@ -261,7 +261,7 @@ const awakenings = [
   },
   {
     'id': 'T_SparkofAgility',
-    'image': '/i/awakening/T_SparkofAgility.png',
+    'image': 'https://static.strikr.gg/file/Strikr/awakening/T_SparkofAgility.png',
     'name': {
       en: 'Spark of Agility'
     },
@@ -271,7 +271,7 @@ const awakenings = [
   },
   {
     'id': 'T_SparkofFocus',
-    'image': '/i/awakening/T_SparkofFocus.png',
+    'image': 'https://static.strikr.gg/file/Strikr/awakening/T_SparkofFocus.png',
     'name': {
       en: 'Spark of Focus'
     },
@@ -281,7 +281,7 @@ const awakenings = [
   },
   {
     'id': 'T_SparkofResilience',
-    'image': '/i/awakening/T_SparkofResilience.png',
+    'image': 'https://static.strikr.gg/file/Strikr/awakening/T_SparkofResilience.png',
     'name': {
       en: 'Spark of Resilience'
     },
@@ -291,7 +291,7 @@ const awakenings = [
   },
   {
     'id': 'T_SparkofStrength',
-    'image': '/i/awakening/T_SparkofStrength.png',
+    'image': 'https://static.strikr.gg/file/Strikr/awakening/T_SparkofStrength.png',
     'name': {
       en: 'Spark of Strength'
     },
@@ -301,7 +301,7 @@ const awakenings = [
   },
   {
     'id': 'T_StacksOnStacks',
-    'image': '/i/awakening/T_StacksOnStacks.png',
+    'image': 'https://static.strikr.gg/file/Strikr/awakening/T_StacksOnStacks.png',
     'name': {
       en: 'Stacks on Stacks'
     },
@@ -311,7 +311,7 @@ const awakenings = [
   },
   {
     'id': 'T_StaggerSwagger',
-    'image': '/i/awakening/T_StaggerSwagger.png',
+    'image': 'https://static.strikr.gg/file/Strikr/awakening/T_StaggerSwagger.png',
     'name': {
       en: 'Stagger Swagger'
     },
@@ -321,7 +321,7 @@ const awakenings = [
   },
   {
     'id': 'T_Stinger',
-    'image': '/i/awakening/T_Stinger.png',
+    'image': 'https://static.strikr.gg/file/Strikr/awakening/T_Stinger.png',
     'name': {
       en: 'Stinger'
     },
@@ -331,7 +331,7 @@ const awakenings = [
   },
   {
     'id': 'T_SuperSurge',
-    'image': '/i/awakening/T_SuperSurge.png',
+    'image': 'https://static.strikr.gg/file/Strikr/awakening/T_SuperSurge.png',
     'name': {
       en: 'Super Surge'
     },
@@ -341,7 +341,7 @@ const awakenings = [
   },
   {
     'id': 'T_TempoSwings',
-    'image': '/i/awakening/T_TempoSwings.png',
+    'image': 'https://static.strikr.gg/file/Strikr/awakening/T_TempoSwings.png',
     'name': {
       en: 'Tempo Swings'
     },
@@ -351,7 +351,7 @@ const awakenings = [
   },
   {
     'id': 'T_TimelessCreator',
-    'image': '/i/awakening/T_TimelessCreator.png',
+    'image': 'https://static.strikr.gg/file/Strikr/awakening/T_TimelessCreator.png',
     'name': {
       en: 'Timeless Creator'
     },
@@ -361,7 +361,7 @@ const awakenings = [
   },
   {
     'id': 'T_TwinDrive',
-    'image': '/i/awakening/T_TwinDrive.png',
+    'image': 'https://static.strikr.gg/file/Strikr/awakening/T_TwinDrive.png',
     'name': {
       en: 'Twin Drive'
     },
@@ -372,7 +372,7 @@ const awakenings = [
   ,
   {
     'id': 'T_Unstoppable',
-    'image': '/i/awakening/T_Unstoppable.png',
+    'image': 'https://static.strikr.gg/file/Strikr/awakening/T_Unstoppable.png',
     'name': {
       en: 'Unstoppable'
     },
@@ -382,7 +382,7 @@ const awakenings = [
   }
   ,{
     'id': 'T_SpecializedTraining',
-    'image': '/i/awakening/T_SpecializedTraining.png',
+    'image': 'https://static.strikr.gg/file/Strikr/awakening/T_SpecializedTraining.png',
     'name': {
       en: 'Specialized Training'
     },
@@ -392,7 +392,7 @@ const awakenings = [
   },
   {
     'id': 'T_Egoist',
-    'image': '/i/awakening/T_Egoist.png',
+    'image': 'https://static.strikr.gg/file/Strikr/awakening/T_Egoist.png',
     'name': {
       en: 'Egoist'
     },
@@ -402,7 +402,7 @@ const awakenings = [
   },
   {
     'id': 'T_FireUp',
-    'image': '/i/awakening/T_FireUp.png',
+    'image': 'https://static.strikr.gg/file/Strikr/awakening/T_FireUp.png',
     'name': {
       en: 'Fire Up'
     },
@@ -412,7 +412,7 @@ const awakenings = [
   },
   {
     'id': 'T_Catalyst',
-    'image': '/i/awakening/T_Catalyst.png',
+    'image': 'https://static.strikr.gg/file/Strikr/awakening/T_Catalyst.png',
     'name': {
       en: 'Catalyst'
     },
