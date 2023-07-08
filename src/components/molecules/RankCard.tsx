@@ -33,7 +33,7 @@ export default async function RankCard({ rating, rank, wins, losses, region }: R
     />
 
     <div 
-      className='flex w-1/2 items-center gap-1 z-[1]'
+      className='flex w-1/2 items-center gap-4 z-[1]'
     >
       <Rank
         rating={rating}
