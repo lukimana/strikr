@@ -26,6 +26,9 @@ export interface LeaderboardPageProps {
   }
 }
 
+export const dynamic = 'force-dynamic',
+  revalidate = 0
+
 export default async function LeaderboardPage({
   searchParams,
 }: LeaderboardPageProps) {
