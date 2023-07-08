@@ -16,20 +16,20 @@ export const NavbarLinkList = [
     shouldBeActive: (pathname: string) => pathname === '/'
   },
   {
-    name: 'Leaderboard',
+    name: 'Leaderboards',
     href: '/leaderboard',
     shouldBeActive: (pathname: string) => pathname.includes('/leaderboard')
   },
-  {
-    name: 'Guides',
-    href: '/guides',
-    shouldBeActive: (pathname: string) => pathname.includes('/guide')
-  },
-  {
-    name: 'Strikers',
-    href: '/strikers',
-    shouldBeActive: (pathname: string) => pathname.includes('/striker')
-  },
+  // {
+  //   name: 'Guides',
+  //   href: '/guides',
+  //   shouldBeActive: (pathname: string) => pathname.includes('/guide')
+  // },
+  // {
+  //   name: 'Strikers',
+  //   href: '/strikers',
+  //   shouldBeActive: (pathname: string) => pathname.includes('/striker')
+  // },
 ]
 
 interface FormInput {

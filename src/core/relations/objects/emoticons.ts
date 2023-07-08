@@ -84,7 +84,7 @@ const emoticons = [
   { id: 'EmoticonData_EstelleFacepalm', image: 'https://static.strikr.gg/file/Strikr/emoticon/T_EstelleFacepalm-512x512.png'},
   { id: 'EmoticonData_EstelleGloat', image: 'https://static.strikr.gg/file/Strikr/emoticon/T_EstelleOho-512x512.png'},
   { id: 'EmoticonData_EternalFlameDubu', image: 'https://static.strikr.gg/file/Strikr/emoticon/T_Emoticon_EternalFlameDubu-512x512.png'},
-  { id: 'EmoticonData_Founder', image: 'OdysseyProfileLogo_128.OdysseyProfileLogo_128'},
+  { id: 'EmoticonData_Founder', image: 'https://static.strikr.gg/file/Strikr/emoticon/OdysseyProfileLogo_128.png'},
   { id: 'EmoticonData_Gold', image: 'https://static.strikr.gg/file/Strikr/emoticon/T_UI_RankedEmblem_Gold_Low.T_UI_RankedEmblem_Gold_Low'},
   { id: 'EmoticonData_Halloween_Duboo', image: 'https://static.strikr.gg/file/Strikr/emoticon/T_Duboo-512x512.png'},
   { id: 'EmoticonData_Halloween_Era_Coffin', image: 'https://static.strikr.gg/file/Strikr/emoticon/T_EraDeadge-512x512.png'},

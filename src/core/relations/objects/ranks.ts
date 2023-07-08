@@ -132,7 +132,7 @@ const rankRelation = [
     color: '#E1137A'
   },
   {
-    threshold: 3000,
+    threshold: 3001,
     name: 'Pro League',
     image: 'https://static.strikr.gg/file/Strikr/rank/T_UI_RankedEmblem_ProLeague.png',
     color: '#ffd1fa'
