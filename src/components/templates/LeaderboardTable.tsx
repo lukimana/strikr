@@ -142,11 +142,11 @@ export default function LeaderboardTable({
                 </div>
               </th>
               {/* REGION */}
-              {/* <th scope='col' className='px-6 py-6'>
+              <th scope='col' className='px-6 py-6'>
                 <div className='flex gap-2 items-center'>
                   <GlobeHemisphereEast size={16} weight='duotone' /> Region
                 </div>
-              </th> */}
+              </th>
               {/* PROFILE */}
               <th scope='col' className='px-6 py-6 w-min'>
                 <div className='flex gap-2 items-center'>
@@ -272,7 +272,7 @@ export default function LeaderboardTable({
               >
                 {player.rank}
               </th>
-              {/* <td className='px-6 py-4'>{player.region}</td> */}
+              <td className='px-6 py-4'>{player.region}</td>
               <td 
                 className='px-6 py-4 hover:bg-support duration-200 rounded-lg cursor-pointer'
                 onClick={()=>{ router.push(`/pilot/${player.username}`)}}
