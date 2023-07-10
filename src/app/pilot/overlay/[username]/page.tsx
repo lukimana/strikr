@@ -151,9 +151,6 @@ export default async function Page({
           }}
         />
       )}
-      {showCredit !== 'false' && (
-        <span className='text-subtle text-sm ml-auto drop-shadow-lg shadow-black'>Powered by <b className='font-semibold'>strikr.gg</b> (/pilot/overlay/{decodeURI(username)})</span>
-      )}
       <RankCard
         losses={rankedLosses}
         rank={pilotRatingsByNewest[0].rank}
@@ -162,6 +159,9 @@ export default async function Page({
         wins={rankedWins}
         key={pilotRatingsByNewest[0].id}
       />
+      {showCredit !== 'false' && (
+        <span className='text-subtle text-sm ml-auto drop-shadow-lg shadow-black'>Powered by <b className='font-semibold'>strikr.gg</b> (/pilot/overlay/{decodeURI(username)})</span>
+      )}
     </div>
   </main>
 }
