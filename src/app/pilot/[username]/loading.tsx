@@ -1,5 +1,3 @@
-'use client'
-
 import FetchingIndicator from "@/components/atoms/FetchingIndicator";
 // import { useParams } from "next/navigation";
 // import { useEffect, useState } from "react";
