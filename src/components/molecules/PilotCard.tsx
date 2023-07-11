@@ -6,6 +6,7 @@ import { CircularProgressbar, buildStyles  } from 'react-circular-progressbar'
 import 'react-circular-progressbar/dist/styles.css'
 import Image from 'next/image'
 import { TitleLookup } from '@/core/relations/objects/titles'
+import OverlayMenu from '../atoms/OverlayMenu'
 
 export interface PilotCardProps {
   username: string,
@@ -26,7 +27,7 @@ export interface PilotCardProps {
 
 export default function PilotCard({ username, title, emoticon, badges, masteryLevel, currentMasteryXp, nextMasteryXp, tags }: PilotCardProps) {
   return <div 
-    className='w-full p-4 rounded-lg bg-secondary border border-secondary-border flex gap-6'
+    className='w-full p-4 rounded-lg bg-secondary border border-secondary-border flex gap-6 relative'
   >
     <div className='relative w-min h-min'>
       <div className='absolute w-[6.2rem] h-[6.2rem] top-1/2 -translate-y-1/2 left-1/2 -translate-x-1/2'>
@@ -79,6 +80,9 @@ export default function PilotCard({ username, title, emoticon, badges, masteryLe
           />
         })}
       </div>
+    </div>
+    <div className='absolute right-2 top-2 hidden xl:flex w-10 h-10'>
+      <OverlayMenu name={username} />
     </div>
   </div>
 }
