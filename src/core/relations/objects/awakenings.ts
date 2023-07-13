@@ -46,7 +46,7 @@ const awakenings = [
       en: 'Bulk Up'
     },
     'description': {
-      en: '{value:Gain 250 max} {heal:Stagger} and {value:1.5} {buf:Power} {value:per 100 max Stagger}.'
+      en: '{value:Gain 300 max} {heal:Stagger} and {value:1.5} {buf:Power} {value:per 100 max Stagger}.'
     }
   },
   {
@@ -76,7 +76,7 @@ const awakenings = [
       en: 'Deadeye'
     },
     'description': {
-      en: '{damage:Hit} {value:35% harder (7% to Core)} against targets at {value:600+ range}.'
+      en: '{damage:Hit} {value:30% harder (7% to Core)} against targets at {value:600+ range}.'
     }
   },
   {
@@ -96,7 +96,7 @@ const awakenings = [
       en: 'Glass Cannon'
     },
     'description': {
-      en: 'Gain {value:10} {damage:Power} and {value:5%} {buff:Speed} {time:every 2.5s} ({value:up to 40} {buff:Power} and {value:20%} {buff:Speed}).\nGetting hit resets the timer.'
+      en: 'Gain {value:8} {damage:Power} and {value:4%} {buff:Speed} {time:every 2.5s} ({value:up to 40} {buff:Power} and {value:20%} {buff:Speed}).\nGetting hit resets the timer.'
     }
   },
   {
@@ -176,7 +176,7 @@ const awakenings = [
       en: 'Orb Ponderer'
     },
     'description': {
-      en: ''
+      en: 'Active {buff:Cooldown Reduction}: {value:25%"} ({value:45% when fully stacked})'
     }
   },
   {
@@ -196,7 +196,7 @@ const awakenings = [
       en: 'Peak Performance'
     },
     'description': {
-      en: 'Gain {value:250 max} {heal:Stagger} and {value:0.007%} {buff:Speed} {value:per 100 max} {heal:Stagger}.'
+      en: 'Gain {value:300 max} {heal:Stagger} and {value:5%} {buff:Speed} {value:per 100 max} {heal:Stagger}.'
     }
   },
   {
@@ -236,7 +236,7 @@ const awakenings = [
       en: 'Quick Strike'
     },
     'description': {
-      en: '{skill:Strike} {buff:cooldown} {value:reduced by 25%}.\n{skill:Strike} {damage:hits} {value:grant 100% additional energy}.'
+      en: '{skill:Strike} {buff:cooldown} {value:reduced by 25%}.\n{skill:Strike} {damage:hits} {value:grant 2 additional energy}.'
     }
   },
   {
@@ -256,7 +256,7 @@ const awakenings = [
       en: 'Heavy Impact'
     },
     'description': {
-      en: '{skill_type:IMPACT} abilities {damage:hit} {value:15% harder (3% on {core:Core})}. Whenever you {damage:hit} {valueL2 or more targets with a single ability}, its {buff:cooldown} is {value:reduced by 25% (up to 10s)}.'
+      en: '{skill_type:IMPACT} abilities {damage:hit} {value:15% harder} (3% on {core:Core})}. Whenever you {damage:hit} {value:2} or more targets with a single ability}, its {buff:cooldown} is {value:reduced by 25% (up to 10s)}.'
     }
   },
   {
@@ -316,7 +316,7 @@ const awakenings = [
       en: 'Stagger Swagger'
     },
     'description': {
-      en: '{buff:Gain 4% Speed}. While {value:below 50% Stagger}, this effect {value:increases to 40%} and you {heal:heal 100 Stagger per second}, including while in the Staggered state.'
+      en: '{buff:Gain 8% Speed}. While {value:below 50% Stagger}, this effect {value:increases to 20%} and you {heal:heal 150 Stagger per second}, including while in the Staggered state.'
     }
   },
   {
@@ -418,6 +418,16 @@ const awakenings = [
     },
     'description': {
       en: 'Gain {energy:50% more Energy} from {damage:dealing hits}. Being hit generates {energy:3 Energy} ({value:1 for LIGHT hits}).'
+    }
+  },
+  {
+    'id': 'T_Reverberation',
+    'image': 'https://static.strikr.gg/file/Strikr/awakening/T_Reverberation.png',
+    'name': {
+      en: 'Reverberation'
+    },
+    'description': {
+      en: 'Gain {value:300} {heal:max Stagger} and [value:.8} {buff:Cooldown Rate} per {value:100 max Stagger}.'
     }
   }
 ]
