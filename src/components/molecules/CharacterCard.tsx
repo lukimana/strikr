@@ -9,13 +9,13 @@ export interface CharacterCardProps {
   onClick?: () => void
 }
 
-export default async function CharacterCard({ id, wins, losses, onClick }: CharacterCardProps) {
+export default function CharacterCard({ id, wins, losses }: CharacterCardProps) {
   const character = getcharacterFromDevName(id)
   const winrate = (wins/(wins+losses)*100)
   if (!character) { return <> </>}
-  return <div className={clsx('w-full p-2 bg-support flex flex-col md:flex-row gap-2 md:gap-4 rounded-lg overflow-hidden', {
-    'cursor-pointer hover:bg-support-border duration-200 select-none': !!onClick,
-    'pointer-events-none': !onClick,
+  return <div className={clsx('w-full p-2 bg-support flex flex-col md:flex-row gap-2 md:gap-4 rounded-lg overflow-hidden cursor-pointer hover:bg-support-border duration-200 select-none', {
+    // 'cursor-pointer hover:bg-support-border duration-200 select-none': !!onClick,
+    // 'pointer-events-none': !onClick,
   })}>
     <Character
       background='accent'

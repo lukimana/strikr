@@ -87,3 +87,37 @@ export function getLatestCharacterMasterySamples(samples: STRIKR.API.PlayerChara
  
   return calcuatedCharacters
 }
+
+
+export function calculatePresence(
+  role: 'Goalie' | 'Forward',
+  knockouts: number,
+  assists: number,
+  scores: number,
+  saves: number,
+  wins: number,
+  losses: number
+): number  {
+  let totalMatches = wins + losses;
+
+  // Calculate the total score
+  let totalScore = knockouts + assists + scores + saves;
+
+  // Calculate the weighted score based on role
+  let weightedScore: number;
+  if (role === 'Goalie') {
+    weightedScore = (assists + saves) / totalScore;
+  } else if (role === 'Forward') {
+    weightedScore = (scores + knockouts) / totalScore;
+  } else {
+    return 0
+  }
+  
+  // Calculate the winning chance percentage
+  let winningChance = (wins / totalMatches) * weightedScore * 100;
+
+  // Cap the winning chance at 100%
+  let cappedWinningChance = Math.min(winningChance, 100);
+
+  return cappedWinningChance;
+}

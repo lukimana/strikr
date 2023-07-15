@@ -4,14 +4,14 @@ import { normalizePlaystyleAttributes } from '@/core/mathUtils'
 import { Radar } from 'react-chartjs-2'
 
 export interface PlaystyleChartProps {
-  forward: {
+  forward?: {
     assists: number
     knockouts: number
     scores: number
     saves: number
     mvp: number
   }
-  goalie :{
+  goalie?:{
     assists: number
     knockouts: number
     scores: number
@@ -21,8 +21,8 @@ export interface PlaystyleChartProps {
 }
 
 export default function PlaystyleChart({ forward, goalie }: PlaystyleChartProps) {
-  const normalizedForwardValues = normalizePlaystyleAttributes({ assists: forward.assists, knockouts: forward.knockouts, scores: forward.scores, mvp: forward.mvp })
-  const normalizedGoalieValues = normalizePlaystyleAttributes({ assists: goalie.assists, knockouts: goalie.knockouts, scores: goalie.scores, mvp: goalie.mvp })
+  const normalizedForwardValues = forward && normalizePlaystyleAttributes({ assists: forward.assists, knockouts: forward.knockouts, scores: forward.scores, mvp: forward.mvp })
+  const normalizedGoalieValues = goalie && normalizePlaystyleAttributes({ assists: goalie.assists, knockouts: goalie.knockouts, scores: goalie.scores, mvp: goalie.mvp })
 
   return <Radar
     options={{
@@ -78,9 +78,9 @@ export default function PlaystyleChart({ forward, goalie }: PlaystyleChartProps)
             borderColor: '#F69E18',
             label: 'Forward',
             data: [
-              normalizedForwardValues.scores,
-              normalizedForwardValues.knockouts,
-              normalizedForwardValues.assists,
+              normalizedForwardValues!.scores,
+              normalizedForwardValues!.knockouts,
+              normalizedForwardValues!.assists,
               // normalizedForwardValues.mvp
               // normalizedForwardValues.saves
             ],
@@ -92,9 +92,9 @@ export default function PlaystyleChart({ forward, goalie }: PlaystyleChartProps)
             borderColor: '#F66618',
             label: 'Goalie',
             data: [
-              normalizedGoalieValues.scores,
-              normalizedGoalieValues.knockouts,
-              normalizedGoalieValues.assists,
+              normalizedGoalieValues!.scores,
+              normalizedGoalieValues!.knockouts,
+              normalizedGoalieValues!.assists,
               // normalizedForwardValues.mvp
               // normalizedGoalieValues.saves
             ]

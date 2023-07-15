@@ -14,6 +14,7 @@ import CharacterCard from '@/components/molecules/CharacterCard'
 import PilotStatBar from '@/components/molecules/PilotStatBar'
 import { getRankFromLP, getcharacterFromDevName } from '@/core/relations/resolver'
 import dayjs from 'dayjs'
+import CharacterBoard from '@/components/molecules/CharacterBoard'
 
 export const dynamic = 'force-dynamic',
   revalidate = 0
@@ -62,26 +63,20 @@ export default async function Page({
             games
             createdAt
           }
+          characterMastery {
+            characterMasteries {
+              characterAssetName
+              currentTier
+              currentTierXp
+              totalXp
+              xpToNextTier
+            }
+          }
           mastery {
             currentLevel
             currentLevelXp
             totalXp
             xpToNextLevel
-          }
-          characterRatings {
-            assists
-            character
-            createdAt
-            gamemode
-            games
-            knockouts
-            losses
-            id
-            mvp
-            role
-            saves
-            scores
-            wins
           }
           region
           createdAt
@@ -252,7 +247,6 @@ export default async function Page({
         gamemode={gamemode}
         losses={calculatePilotProperty(characterRatingsByNewest, gamemode, 'losses')}
         wins={calculatePilotProperty(characterRatingsByNewest, gamemode, 'wins')}
-        averageLP={0}
       />
       <ContentBlock
         title='Character Stats'
@@ -260,47 +254,10 @@ export default async function Page({
         Icon={<Person weight='fill' size={24} className='text-subtle' />}
       >
         {null}
-        <div className='flex flex-col w-full bg-secondar bordery border-secondary-border rounded-lg gap-6'>
-          <div className='flex w-full gap-4'>
-            <div className='flex rounded-lg px-4 py-2 font-semibold text-primary-500 bg-forward w-10 md:w-14 whitespace-nowrap items-center justify-center'>
-              <div className='-rotate-90'>
-                🦐 Forward
-              </div>
-            </div>
-            <div className='grid grid-cols-2 md:grid-cols-2 2xl:grid-cols-4 gap-4 w-full'>
-              {Array.from(latestCharacterRatings.values()).sort( (a, b) => a.games < b.games ? 1 : -1).map((character) => {
-                if (character.role !== 'Forward') return null
-
-                return <CharacterCard
-                  id={character.character}
-                  losses={character.losses}
-                  wins={character.wins}
-                  key={character.character+character.role}
-                />
-              })}
-            </div>
-          </div>
-          <div className='flex w-full gap-4'>
-            <div className='flex rounded-lg font-semibold text-primary-500 bg-goalie w-10 md:w-14 whitespace-nowrap items-center justify-center'>
-              <div className='-rotate-90'>
-              🥅 Goalie
-              </div>
-            </div>
-            <div className='grid grid-cols-2 md:grid-cols-2 2xl:grid-cols-4 gap-4 w-full'>
-              {Array.from(latestCharacterRatings.values()).sort( (a, b) => a.games < b.games ? 1 : -1).map((character) => {
-                if (character.role !== 'Goalie') return null
-
-                return <CharacterCard
-                  id={character.character}
-                  losses={character.losses}
-                  wins={character.wins}
-                  key={character.character+character.role}
-                  onClick={() => {alert('Character specific information is disabled for now, we will be pushing the updated character sheet soon™️. I have enabled character cards so you could at least look at the most important data!')}}
-                />
-              })}
-            </div>
-          </div>
-        </div>
+        <CharacterBoard
+          latestCharacterRatings={latestCharacterRatings}
+          characterMasteries={pilotData.characterMastery.characterMasteries}
+        />
       </ContentBlock>
     </div>
   </main>
