@@ -1,6 +1,6 @@
 import { useState } from "react"
 import CharacterCard from "./CharacterCard"
-import { CharacterModal } from "./CharacterModal"
+import { CharacterModal } from "../organisms/CharacterModal"
 
 export interface CharacterBoardProps {
   latestCharacterRatings: Map<string, STRIKR.API.PlayerCharacterRatingObjectType>
