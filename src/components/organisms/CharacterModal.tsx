@@ -97,15 +97,15 @@ export function CharacterModal({ children, characterData, characterMastery }: Ch
                   <span className='text-lg font-semibold'>{(characterStats.knockouts / characterData.games).toFixed(1)}<small className='text-sm text-white/60'>/match</small></span>
                 </div>
                 <div className='flex items-center justify-between w-full'>
-                  <span className='text-white/60'>Score&apos;s Per Match</span>
+                  <span className='text-white/60'>Scores Per Match</span>
                   <span className='text-lg font-semibold'>{(characterStats.scores / characterData.games).toFixed(1)}<small className='text-sm text-white/60'>/match</small></span>
                 </div>
                 <div className='flex items-center justify-between w-full'>
-                  <span className='text-white/60'>Assists&apos;s Per Match</span>
+                  <span className='text-white/60'>Assists Per Match</span>
                   <span className='text-lg font-semibold'>{(characterStats.assists / characterData.games).toFixed(1)}<small className='text-sm text-white/60'>/match</small></span>
                 </div>
                 <div className='flex items-center justify-between w-full'>
-                  <span className='text-white/60'>Saves&apos;s Per Match</span>
+                  <span className='text-white/60'>Saves Per Match</span>
                   <span className='text-lg font-semibold'>{(characterStats.saves / characterData.games).toFixed(1)}<small className='text-sm text-white/60'>/match</small></span>
                 </div>
                 <div className='flex items-center justify-between w-full'>
@@ -115,7 +115,7 @@ export function CharacterModal({ children, characterData, characterMastery }: Ch
                 <div className='flex items-center justify-between w-full'>
                   <span className='text-white/60 flex flex-col'>
                     <i>Presence Significance</i>
-                    <small className='text-xs font-subtle'>Player presnce impact to match win</small>
+                    <small className='text-xs font-subtle'>Player presence impact to match win</small>
                   </span>
                   <span className='text-lg font-semibold'>{calculatePresence(
                     characterData.role,
