@@ -43,56 +43,61 @@ export default function OverlayMenu({ name }: { name: string }) {
     <Popover.Portal>
       <Popover.Content 
         align='center'
-        className='p-2 min-h-100 bg-support border border-support-border rounded-lg shadow-2xl outline-none ring-0 focus:ring-0 focus:outline-none flex flex-col max-w-[400px] gap-6 z-[99]'
+        className='p-2 min-h-100 bg-support border border-support-border rounded-lg shadow-2xl outline-none ring-0 focus:ring-0 focus:outline-none flex flex-col max-w-[400px] gap-4 z-[99]'
       >
-        <div className='flex flex-col'>
+        <div className='flex flex-col pb-4'>
           <span className='text-subtle'>Stream Overlay Generator</span>
           <span className='text-xs text-subtle'>Use the generated URL on browser source [OBS].<br />Adjust the source width to your liking, the overlay is responsive.</span>
         </div>
-        <form className='flex flex-col gap-6' onSubmit={(e) => { e.preventDefault() } }>
-          <div className="flex items-center w-full justify-between" style={{ display: 'flex', alignItems: 'center' }}>
-            <label className="text-white text-[15px] leading-none pr-[15px]" htmlFor="airplane-mode">
-              Show Profile Card
-            </label>
-            <Switch.Root
-              className="w-[42px] h-[25px] bg-tertiary rounded-full relative data-[state=checked]:bg-accent outline-none cursor-default"
-              id="airplane-mode"
-              onCheckedChange={(checked) => handleCheckedChange(checked, 'showProfileCard')}
-            >
-              <Switch.Thumb className="block w-[21px] h-[21px] bg-subtle data-[state=checked]:bg-primary-500 rounded-full transition-transform duration-100 translate-x-0.5 will-change-transform data-[state=checked]:translate-x-[19px]" />
-            </Switch.Root>
-          </div>
-          <div className="flex items-center w-full justify-between" style={{ display: 'flex', alignItems: 'center' }}>
-            <label className="text-white text-[15px] leading-none pr-[15px]" htmlFor="airplane-mode">
-              Show &quot;powered by strikr.gg&quot;
-            </label>
-            <Switch.Root
-              className="w-[42px] h-[25px] bg-tertiary rounded-full relative data-[state=checked]:bg-accent outline-none cursor-default"
-              id="airplane-mode"
-              onCheckedChange={(checked) => handleCheckedChange(checked, 'showCredit')}
-            >
-              <Switch.Thumb className="block w-[21px] h-[21px] bg-subtle data-[state=checked]:bg-primary-500 rounded-full transition-transform duration-100 translate-x-0.5 will-change-transform data-[state=checked]:translate-x-[19px]" />
-            </Switch.Root>
-          </div>
-        </form>
-        <div 
-          className='flex gap-2 relative h-10'
-        >
-          <input
-            disabled
-            className={clsx(
-              'bg-tertiary rounded-lg px-3 flex border border-secondary-border text-subtle text-xs w-full duration-200',
-              copied && 'border-win text-win'
-            )}
-            value={copied ? 'Copied!' : encodeURI(url)}
-          />
-          <button 
-            className='w-12 aspect-square rounded-lg bg-accent hover:bg-secondary hover:text-white duration-200 flex items-center justify-center text-secondary'
-            onClick={() => { navigator.clipboard.writeText(encodeURI(url)); setCopied(true)} }
+        <div className='flex flex-col gap-4 p-2 border border-dashed border-subtle/10 rounded-lg'>
+          <form className='flex flex-col gap-2' onSubmit={(e) => { e.preventDefault() } }>
+            <div className="flex items-center w-full justify-between" style={{ display: 'flex', alignItems: 'center' }}>
+              <label className="text-white text-[15px] leading-none pr-[15px]" htmlFor="airplane-mode">
+                Show Profile Card
+              </label>
+              <Switch.Root
+                className="w-[42px] h-[25px] bg-tertiary rounded-full relative data-[state=checked]:bg-accent outline-none cursor-default"
+                id="airplane-mode"
+                onCheckedChange={(checked) => handleCheckedChange(checked, 'showProfileCard')}
+              >
+                <Switch.Thumb className="block w-[21px] h-[21px] bg-subtle data-[state=checked]:bg-primary-500 rounded-full transition-transform duration-100 translate-x-0.5 will-change-transform data-[state=checked]:translate-x-[19px]" />
+              </Switch.Root>
+            </div>
+            <div className="flex items-center w-full justify-between" style={{ display: 'flex', alignItems: 'center' }}>
+              <label className="text-white text-[15px] leading-none pr-[15px]" htmlFor="airplane-mode">
+                Show &quot;powered by strikr.gg&quot;
+              </label>
+              <Switch.Root
+                className="w-[42px] h-[25px] bg-tertiary rounded-full relative data-[state=checked]:bg-accent outline-none cursor-default"
+                id="airplane-mode"
+                onCheckedChange={(checked) => handleCheckedChange(checked, 'showCredit')}
+              >
+                <Switch.Thumb className="block w-[21px] h-[21px] bg-subtle data-[state=checked]:bg-primary-500 rounded-full transition-transform duration-100 translate-x-0.5 will-change-transform data-[state=checked]:translate-x-[19px]" />
+              </Switch.Root>
+            </div>
+          </form>
+          <div 
+            className='flex gap-2 relative h-10'
           >
-            <Copy size={16} weight='duotone' />
-          </button>
+            <input
+              disabled
+              className={clsx(
+                'bg-tertiary rounded-lg px-3 flex border border-secondary-border text-subtle text-xs w-full duration-200',
+                copied && 'border-win text-win'
+              )}
+              value={copied ? 'Copied!' : encodeURI(url)}
+            />
+            <button 
+              className='w-12 aspect-square rounded-lg bg-accent hover:bg-secondary hover:text-white duration-200 flex items-center justify-center text-secondary'
+              onClick={() => { navigator.clipboard.writeText(encodeURI(url)); setCopied(true)} }
+            >
+              <Copy size={16} weight='duotone' />
+            </button>
+          </div>
         </div>
+        <p className='text-xs text-subtle pt-4 whitespace-pre-line'>
+              From the community!<br />Try the alternative <a href='https://juzlus.github.io/omega-strikers-overlay/' target='_blank' className='text-accent hover:text-win duration-200'>Overlay Generator</a> created by <a href='https://github.com/Juzlus/' target='_blank' className='text-accent hover:text-win duration-200'>@JuzLuz&apos;s</a>
+        </p>
         <Popover.Arrow className='fill-support-border' />
       </Popover.Content>
     </Popover.Portal>
