@@ -20,12 +20,18 @@ export default function CharacterBoard({ latestCharacterRatings, characterMaster
           const character = char[1]
           if (character.role !== 'Forward') return null
 
-          return <CharacterCard
-            id={character.character}
+          return <CharacterModal
+          key={character.character+character.role}
+          characterData={character}
+          characterMastery={characterMasteries}
+        >
+          <CharacterCard
+            key={'card'+character.character+character.role}
+            id = {character.character}
             losses={character.losses}
             wins={character.wins}
-            key={character.character+character.role}
           />
+        </CharacterModal>
         })}
       </div>
     </div>
