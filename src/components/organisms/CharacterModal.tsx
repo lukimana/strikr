@@ -93,23 +93,23 @@ export function CharacterModal({ children, characterData, characterMastery }: Ch
             <div className='flex flex-col xl:flex-row gap-4'>
               <div className='flex gap-1.5 flex-col w-full rounded-b-lg bg-secondary-darker py-4'>
                 <div className='flex items-center justify-between w-full'>
-                  <span className='text-white/60'>K.O&apos;s Per Match</span>
+                  <span className='text-white/60'>K.O&apos;s</span>
                   <span className='text-lg font-semibold'>{(characterStats.knockouts / characterData.games).toFixed(1)}<small className='text-sm text-white/60'>/match</small></span>
                 </div>
                 <div className='flex items-center justify-between w-full'>
-                  <span className='text-white/60'>Scores Per Match</span>
+                  <span className='text-white/60'>Scores</span>
                   <span className='text-lg font-semibold'>{(characterStats.scores / characterData.games).toFixed(1)}<small className='text-sm text-white/60'>/match</small></span>
                 </div>
                 <div className='flex items-center justify-between w-full'>
-                  <span className='text-white/60'>Assists Per Match</span>
+                  <span className='text-white/60'>Assists</span>
                   <span className='text-lg font-semibold'>{(characterStats.assists / characterData.games).toFixed(1)}<small className='text-sm text-white/60'>/match</small></span>
                 </div>
                 <div className='flex items-center justify-between w-full'>
-                  <span className='text-white/60'>Saves Per Match</span>
+                  <span className='text-white/60'>Saves</span>
                   <span className='text-lg font-semibold'>{(characterStats.saves / characterData.games).toFixed(1)}<small className='text-sm text-white/60'>/match</small></span>
                 </div>
                 <div className='flex items-center justify-between w-full'>
-                  <span className='text-white/60'>MVP&apos;s Per Match</span>
+                  <span className='text-white/60'>MVP&apos;s</span>
                   <span className='text-lg font-semibold'>{(characterStats.mvp / characterData.games).toFixed(1)}<small className='text-sm text-white/60'>/match</small></span>
                 </div>
                 <div className='flex items-center justify-between w-full'>
