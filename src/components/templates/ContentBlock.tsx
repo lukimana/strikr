@@ -1,15 +1,18 @@
 'use client'
 
+import clsx from "clsx"
+
 export interface ContentBlockProps {
   children?: React.ReactNode[]
   title: string
   subtitle?: string
   Icon?: React.ReactNode
+  className?: string
 }
 
-export default function ContentBlock({ children, title, subtitle, Icon } : ContentBlockProps) {
+export default function ContentBlock({ children, title, subtitle, Icon, className } : ContentBlockProps) {
   return <section
-    className='flex flex-col items-center w-full rounded-lg'
+    className={clsx('flex flex-col items-center w-full rounded-lg', className)}
   >
     <div className='w-full p-4 rounded-t-lg bg-secondary border-t border-secondary-border flex items-center gap-2 border-x select-none'>
       {/* @ts-ignore-error | This is being misinterpreted by typescript server */}
