@@ -115,7 +115,7 @@ export function CharacterModal({ children, characterData, characterMastery }: Ch
                 <div className='flex items-center justify-between w-full'>
                   <span className='text-white/60 flex flex-col'>
                     <i>Presence Significance</i>
-                    <small className='text-xs font-subtle'>Player presence impact to match win</small>
+                    <small className='text-xs font-subtle'>Presence impact over match result (win)</small>
                   </span>
                   <span className='text-lg font-semibold'>{calculatePresence(
                     characterData.role,
@@ -125,7 +125,7 @@ export function CharacterModal({ children, characterData, characterMastery }: Ch
                     characterData.saves,
                     characterData.wins,
                     characterData.losses
-                  ).toFixed(1)}%</span>
+                  ).toFixed(2)}%</span>
                 </div>
               </div>
             </div>
