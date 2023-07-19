@@ -58,7 +58,7 @@ export default function OverlayMenu({ name }: { name: string }) {
               <Switch.Root
                 className="w-[42px] h-[25px] bg-tertiary rounded-full relative data-[state=checked]:bg-accent outline-none cursor-default"
                 id="airplane-mode"
-                onCheckedChange={(checked) => handleCheckedChange(checked, 'showProfileCard')}
+                onCheckedChange={(checked) => handleCheckedChange(checked, 'showProfile')}
               >
                 <Switch.Thumb className="block w-[21px] h-[21px] bg-subtle data-[state=checked]:bg-primary-500 rounded-full transition-transform duration-100 translate-x-0.5 will-change-transform data-[state=checked]:translate-x-[19px]" />
               </Switch.Root>
