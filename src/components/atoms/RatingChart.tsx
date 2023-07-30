@@ -22,15 +22,16 @@ export interface RatingChartProps {
 }
 
 export default function RatingChart({ data, bottomLine, topLine }: RatingChartProps) {
-
+  data.sort( (a, b) => a.rating - b.rating )
   const yLineGradientStops: { [key: number]: string } = {}
 
   Array.from( Array(data.length), (_, index) => index + 1 ).forEach( point => {
     const relativeRankData = getRankFromLP(data[point - 1].rating)
     yLineGradientStops[point-1] = relativeRankData.rankObject.color
   })
-  const smallestSample = data.reduce( (acc, curr) => curr.rating < acc ? curr.rating : acc, data[0].rating)
+  // const smallestSample = data.reduce( (acc, curr) => curr.rating < acc ? curr.rating : acc, data[0].rating)
   const largestSample = data.reduce( (acc, curr) => curr.rating > acc ? curr.rating : acc, data[0].rating)
+
 
   return <>
     <Line
