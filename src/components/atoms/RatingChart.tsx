@@ -22,7 +22,7 @@ export interface RatingChartProps {
 }
 
 export default function RatingChart({ data, bottomLine, topLine }: RatingChartProps) {
-  data.sort( (a, b) => dayjs(a.date).isBefore(b.rating) ? 1 : -1 )
+  data.sort( (a, b) => dayjs(a.date).isBefore(b.date) ? -1 : 1 )
   const yLineGradientStops: { [key: number]: string } = {}
 
   Array.from( Array(data.length), (_, index) => index + 1 ).forEach( point => {
