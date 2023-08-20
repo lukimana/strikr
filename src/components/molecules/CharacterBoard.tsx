@@ -3,7 +3,21 @@ import CharacterCard from "./CharacterCard"
 import { CharacterModal } from "../organisms/CharacterModal"
 
 export interface CharacterBoardProps {
-  latestCharacterRatings: Map<string, STRIKR.API.PlayerCharacterRatingObjectType>
+  latestCharacterRatings: {
+      character: string;
+      games: number;
+      wins: number;
+      losses: number;
+      winrate: number;
+      scores: number;
+      assists: number;
+      saves: number;
+      knockouts: number;
+      mvp: number;
+      createdAt: string;
+      role: "forward" | "goalie";
+      gamemode: string;
+  }[]
   characterMasteries: STRIKR.API.PlayerCharacterMasteryItemObjectType[]
 }
 
@@ -16,20 +30,18 @@ export default function CharacterBoard({ latestCharacterRatings, characterMaster
         </div>
       </div>
       <div className='grid grid-cols-2 md:grid-cols-2 2xl:grid-cols-4 gap-4 w-full'>
-        {Array.from(latestCharacterRatings).sort( (a, b) => a[1].games > b[1].games ? -1 : 1).map((char) => {
-          const character = char[1]
-          if (character.role !== 'Forward') return null
-
+        {latestCharacterRatings.sort( (a, b) => a.games > b.games ? -1 : 1).map((char) => {
+          if (char.role !== 'forward') return null
           return <CharacterModal
-          key={character.character+character.role}
-          characterData={character}
+          key={char.character+char.role}
+          characterData={char}
           characterMastery={characterMasteries}
         >
           <CharacterCard
-            key={'card'+character.character+character.role}
-            id = {character.character}
-            losses={character.losses}
-            wins={character.wins}
+            key={'card'+char.character+char.role}
+            id = {char.character}
+            losses={char.losses}
+            wins={char.wins}
           />
         </CharacterModal>
         })}
@@ -42,20 +54,18 @@ export default function CharacterBoard({ latestCharacterRatings, characterMaster
         </div>
       </div>
       <div className='grid grid-cols-2 md:grid-cols-2 2xl:grid-cols-4 gap-4 w-full'>
-        {Array.from(latestCharacterRatings).sort( (a, b) => a[1].games > b[1].games ? -1 : 1).map((char) => {
-          const character = char[1]
-          if (character.role !== 'Goalie') return null
-
+        {latestCharacterRatings.sort( (a, b) => a.games > b.games ? -1 : 1).map((char) => {
+          if (char.role !== 'goalie') return null
           return <CharacterModal
-            key={character.character+character.role}
-            characterData={character}
+            key={char.character+char.role}
+            characterData={char}
             characterMastery={characterMasteries}
           >
             <CharacterCard
-              key={'card'+character.character+character.role}
-              id = {character.character}
-              losses={character.losses}
-              wins={character.wins}
+              key={'card'+char.character+char.role}
+              id = {char.character}
+              losses={char.losses}
+              wins={char.wins}
             />
           </CharacterModal>
         })}
