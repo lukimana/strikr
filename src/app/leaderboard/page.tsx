@@ -32,12 +32,6 @@ export const dynamic = 'force-dynamic',
 export default async function LeaderboardPage({
   searchParams,
 }: LeaderboardPageProps) {
-  console.log({
-    region: searchParams.region || 'Global',
-    page: searchParams.page || 0,
-    filterBy: searchParams.filter || 'rank',
-    order: 'asc',
-  })
   const { data } = await getClient().query<{
     getLeaderboard: PlayerItem[]
   }>({

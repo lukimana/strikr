@@ -21,7 +21,6 @@ export default function Hero({ title, searchPlaceholder }: HeroProps) {
   const router = useRouter()
 
   const onSubmit = (data: FormInput) => {
-    console.log('handle submit', data)
     router.push(`/pilot/${data.pilotname}`)
   }
 

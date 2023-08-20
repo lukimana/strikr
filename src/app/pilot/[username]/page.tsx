@@ -6,11 +6,8 @@ import ContentBlock from '@/components/templates/ContentBlock'
 import { getClient } from '@/core/apolloclient'
 import { gql } from '@apollo/client'
 import { ChartDonut, Graph, Person, Warning } from '@/atoms/PhosphorIcon'
-import { Content } from 'next/font/google'
 import RatioChart from '@/components/atoms/RatioChart'
-import { calculatePilotProperty, getLatestCharacterMasterySamples, normalizePlaystyleAttributes } from '@/core/mathUtils'
 import PlaystyleChart from '@/components/atoms/PlaystyleChart'
-import CharacterCard from '@/components/molecules/CharacterCard'
 import PilotStatBar from '@/components/molecules/PilotStatBar'
 import { getRankFromLP, getcharacterFromDevName } from '@/core/relations/resolver'
 import dayjs from 'dayjs'
@@ -18,6 +15,67 @@ import CharacterBoard from '@/components/molecules/CharacterBoard'
 
 export const dynamic = 'force-dynamic',
   revalidate = 0
+
+export interface StrikrParsedPilotData {
+  playerId: string
+  tags: string[]
+  title?: string
+  emoticonId?: string
+  level?: number
+  currentXp?: number
+  nextXp?: number
+  ratings: {
+    rating: number
+    date: string
+    ratingName: string
+    ratingColor: string
+    ratingImage: string
+    rank: number
+    wins: number
+    losses: number
+  }[]
+  characterRatings: {
+    character: string
+    games: number
+    wins: number
+    losses: number
+    winrate: number
+    scores: number
+    assists: number
+    saves: number
+    knockouts: number
+    mvp: number
+    createdAt: string
+    role: 'forward' | 'goalie'
+    gamemode: string
+  }[]
+  gamemodeRatings: {
+    forward: {
+      games: number
+      wins: number
+      losses: number
+      winrate: number
+      scores: number
+      assists: number
+      saves: number
+      knockouts: number
+      mvp: number
+    }
+    goalie: {
+      games: number
+      wins: number
+      losses: number
+      winrate: number
+      scores: number
+      assists: number
+      saves: number
+      knockouts: number
+      mvp: number
+    }
+    gamemode: string
+    mainCharacter: string
+  }
+}
 
 // const sleep = (ms: number) => new Promise(resolve => setTimeout(resolve, ms))
 
@@ -90,61 +148,158 @@ export default async function Page({
     },
     fetchPolicy: 'no-cache'
   })
+
+
   const pilotData = data.ensurePlayer
+  pilotData.ratings.sort( (a, b) => dayjs(b.createdAt).isBefore(a.createdAt) ? -1 : 1 )
+  pilotData.characterRatings.sort( (a, b) => dayjs(b.createdAt).isBefore(a.createdAt) ? -1 : 1 )
+
+  const parsedPilotInformation: StrikrParsedPilotData = {
+    playerId: pilotData?.id || '???????',
+    tags: pilotData?.tags || [],
+    title: pilotData.titleId || 'default',
+    emoticonId: pilotData.emoticonId || 'default',
+    level: pilotData.mastery.currentLevel,
+    currentXp: pilotData.mastery.currentLevelXp,
+    nextXp: pilotData.mastery.xpToNextLevel,
+    ratings: pilotData.ratings.map( rating => {
+      const rank = getRankFromLP(rating.rating)
   
-  const pilotRatingsByNewest = [...pilotData.ratings].sort( (a, b) => dayjs(b.createdAt).isBefore(a.createdAt) ? -1 : 1 )
-  const characterRatingsByNewest = [...pilotData.characterRatings].sort( (a, b) => dayjs(b.createdAt).isBefore(a.createdAt) ? -1 : 1 )
+      return {
+        rating: rating.rating,
+        date: rating.createdAt,
+        wins: rating.wins,
+        losses: rating.losses,
+        ratingName: rank.rankObject.name,
+        ratingColor: rank.rankObject.color,
+        ratingImage: rank.rankObject.image,
+        rank: rating.rank
+      }
+    }),
+    characterRatings: [
+      { 
+        assists: 0,
+        character: 'TD_DefaultStriker',
+        createdAt: new Date().toISOString(),
+        gamemode: gamemode,
+        games: 0,
+        knockouts: 0,
+        losses: 0,
+        mvp: 0,
+        role: 'forward',
+        saves: 0,
+        scores: 0,
+        winrate: 0,
+        wins: 0
+      }
+    ],
+    gamemodeRatings: {
+      forward: {
+        assists: 0,
+        knockouts: 0,
+        saves: 0,
+        scores: 0,
+        mvp: 0,
+        games: 0,
+        wins: 0,
+        losses: 0,
+        winrate: 0, 
+      },
+      goalie: {
+        assists: 0,
+        knockouts: 0,
+        saves: 0,
+        scores: 0,
+        mvp: 0,
+        games: 0,
+        wins: 0,
+        losses: 0,
+        winrate: 0,
+      },
+      gamemode: gamemode,
+      mainCharacter: 'TD_DefaultStriker'
+    }
+  }
 
-  const gamesAsForward = calculatePilotProperty(pilotData.characterRatings, gamemode, 'games', 'Forward')
-  const gamesAsGoalie = calculatePilotProperty(pilotData.characterRatings, gamemode, 'games', 'Goalie')
 
-  const mainCharacter = Array.from(characterRatingsByNewest.values()).filter( r => r.gamemode === gamemode).sort( (a, b) => b.games - a.games)?.[0]?.character
-  // const currentRank = getRankFromLP(pilotRatingsByNewest[0].rating)
+    pilotData.characterRatings.forEach( rating => {
+      if (parsedPilotInformation.characterRatings.find( cr => cr.character === rating.character && cr.role === rating.role.toLowerCase())) { return }
+      
+      parsedPilotInformation.gamemodeRatings[rating.role === 'Forward' ? 'forward' : 'goalie'].games += rating.games
+      parsedPilotInformation.gamemodeRatings[rating.role === 'Forward' ? 'forward' : 'goalie'].wins += rating.wins
+      parsedPilotInformation.gamemodeRatings[rating.role === 'Forward' ? 'forward' : 'goalie'].losses += rating.losses
+      parsedPilotInformation.gamemodeRatings[rating.role === 'Forward' ? 'forward' : 'goalie'].scores += rating.scores
+      parsedPilotInformation.gamemodeRatings[rating.role === 'Forward' ? 'forward' : 'goalie'].assists += rating.assists
+      parsedPilotInformation.gamemodeRatings[rating.role === 'Forward' ? 'forward' : 'goalie'].saves += rating.saves
+      parsedPilotInformation.gamemodeRatings[rating.role === 'Forward' ? 'forward' : 'goalie'].knockouts += rating.knockouts
+      parsedPilotInformation.gamemodeRatings[rating.role === 'Forward' ? 'forward' : 'goalie'].mvp += rating.mvp
+
+      const mostPlayerCharacterData = parsedPilotInformation.characterRatings.find( cr => cr.character === parsedPilotInformation.gamemodeRatings.mainCharacter)
+
+      if (!mostPlayerCharacterData || mostPlayerCharacterData.games < rating.games) {
+        parsedPilotInformation.gamemodeRatings.mainCharacter = rating.character
+      }
+
+      parsedPilotInformation.characterRatings.push({
+        character: rating.character,
+        assists: rating.assists,
+        knockouts: rating.knockouts,
+        wins: rating.wins,
+        losses: rating.losses,
+        mvp: rating.mvp,
+        saves: rating.saves,
+        scores: rating.scores,
+        games: rating.games,
+        winrate: rating.wins / rating.games * 100,
+        createdAt: rating.createdAt,
+        role: rating.role === 'Forward' ? 'forward' : 'goalie',
+        gamemode: rating.gamemode
+      })
+    })
+
+  const gamesAsForward = parsedPilotInformation.gamemodeRatings.forward.games || 0
+  const gamesAsGoalie = parsedPilotInformation.gamemodeRatings.goalie.games || 0
   const forwardRatio = gamesAsForward / (gamesAsForward + gamesAsGoalie) * 100
-  const gamemodeScores = calculatePilotProperty(characterRatingsByNewest, gamemode, 'scores')
-  // const gamemodeSaves = calculatePilotProperty(characterRatingsByNewest, gamemode, 'saves')
-  const gamemodeAssists = calculatePilotProperty(characterRatingsByNewest, gamemode, 'assists')
-  const gamemodeKnockouts = calculatePilotProperty(characterRatingsByNewest, gamemode, 'knockouts')
-  const gamemodeMvps = calculatePilotProperty(characterRatingsByNewest, gamemode, 'mvp')
-  const rankedWins = calculatePilotProperty(characterRatingsByNewest, 'RankedInitial', 'wins')
-  const rankedLosses = calculatePilotProperty(characterRatingsByNewest, 'RankedInitial', 'losses')
-  const gamemodeGames = calculatePilotProperty(characterRatingsByNewest, gamemode, 'games')
-  // const gamemodeNormalizedAttributes = normalizePlaystyleAttributes({ 
-  //   assists: gamemodeAssists, 
-  //   knockouts: gamemodeKnockouts, 
-  //   scores: gamemodeScores, 
-  //   mvp: gamemodeMvps
-  // })
+
+  // CUSTOM PILOT BADGES PARSING / ADDING
   const pilotBadges: {
     name: string
   }[] = []
-  const latestCharacterRatings = getLatestCharacterMasterySamples(pilotData.characterRatings, gamemode)
   
   pilotBadges.push({
-    name: `${getcharacterFromDevName(mainCharacter)?.name || 'Omega Strikers'} Enjoyer`
+    name: `${getcharacterFromDevName(parsedPilotInformation.gamemodeRatings.mainCharacter)?.name || 'Omega Strikers'} Enjoyer`
   })
 
   pilotBadges.push({
     name: forwardRatio > 59.9 ? '🦐 Forward' : forwardRatio < 40.1 ? '🥅 Goalie' : '💫 Flex'
   })
 
-
-  if (gamemodeScores / gamemodeGames >= 3) {
-    pilotBadges.push({
-      name: '🎯 Scorer',
-    })
+  // FORWARD ROLES
+  if (parsedPilotInformation.gamemodeRatings.forward.games > 100) {
+    if (parsedPilotInformation.gamemodeRatings.forward.scores / parsedPilotInformation.gamemodeRatings.forward.games >= 3) {
+      pilotBadges.push({
+        name: '🎯 Scorer',
+      })
+    }
+    if (parsedPilotInformation.gamemodeRatings.forward.knockouts / parsedPilotInformation.gamemodeRatings.forward.games >= 4) {
+      pilotBadges.push({
+        name: '🥊 Brawller',
+      })
+    }
+    if (parsedPilotInformation.gamemodeRatings.forward.assists / parsedPilotInformation.gamemodeRatings.forward.games >= 3) {
+      pilotBadges.push({
+        name:  '🤝 Pass King',
+      })
+    }
   }
-
-  if (gamemodeKnockouts / gamemodeGames >= 4) {
-    pilotBadges.push({
-      name: '🥊 Brawller',
-    })
-  }
-
-  if (gamemodeAssists / gamemodeGames >= 3) {
-    pilotBadges.push({
-      name:  '🤝 Pass King',
-    })
+  
+  // GOALIE ROLES
+  if (parsedPilotInformation.gamemodeRatings.goalie.games > 100) {
+    if (parsedPilotInformation.gamemodeRatings.goalie.saves / parsedPilotInformation.gamemodeRatings.goalie.games >= 45) {
+      pilotBadges.push({
+        name: '🧤 Keeper',
+      })
+    }
   }
 
 
@@ -152,18 +307,18 @@ export default async function Page({
     <div 
       className='absolute inset-0 h-[40vh] bg-no-repeat z-[-1] pointer-events-none'
       style={{
-        background: `radial-gradient(at top center, ${getRankFromLP(pilotRatingsByNewest[0].rating).rankObject.color + '33'} 0%, rgba(6, 0, 12, 0.0) 50%)`
+        background: `radial-gradient(at top center, ${parsedPilotInformation.ratings[0].ratingColor + '33'} 0%, rgba(6, 0, 12, 0.0) 50%)`
       }}
     />
     <aside className='flex flex-col gap-4 w-full xl:w-1/3'>
       <PilotCard
-        emoticon={pilotData.emoticonId || 'default'}
-        title={pilotData.titleId || 'default'}
+        emoticon={parsedPilotInformation.emoticonId || 'default'}
+        title={parsedPilotInformation.title || 'default'}
         username={username}
         badges={pilotBadges}
-        currentMasteryXp={pilotData.mastery.currentLevelXp}
-        masteryLevel={pilotData.mastery.currentLevel}
-        nextMasteryXp={pilotData.mastery.xpToNextLevel}
+        currentMasteryXp={parsedPilotInformation.currentXp}
+        masteryLevel={parsedPilotInformation.level}
+        nextMasteryXp={parsedPilotInformation.nextXp}
         tags={{
           verified: pilotData.tags.includes('verified'),
           staff: pilotData.tags.includes('STAFF'),
@@ -174,12 +329,12 @@ export default async function Page({
         <p>Due to how data is provided we are limited to showing ranked stats only for the top 10k players of each region.</p>
       </div>
       <RankCard
-        losses={rankedLosses}
-        rank={pilotRatingsByNewest[0].rank}
-        rating={pilotRatingsByNewest[0].rating}
+        losses={parsedPilotInformation.ratings[0].losses || 0}
+        rank={parsedPilotInformation.ratings[0].rank}
+        rating={parsedPilotInformation.ratings[0].rating}
         region={pilotData.region}
-        wins={rankedWins}
-        key={pilotRatingsByNewest[0].id}
+        wins={parsedPilotInformation.ratings[0].wins}
+        key={parsedPilotInformation.playerId}
       />
       <ContentBlock
         title='Rating History'
@@ -202,12 +357,12 @@ export default async function Page({
             {
               color: '#F66618',
               label: 'Forward',
-              percentile: forwardRatio
+              percentile: forwardRatio || 0
             },
             {
               color: '#F69E18',
               label: 'Goalie',
-              percentile: 100 - forwardRatio
+              percentile: 100 - forwardRatio || 0
             }
           ]}
         />
@@ -220,33 +375,33 @@ export default async function Page({
         {null}
         <PlaystyleChart
           forward={{
-            assists: calculatePilotProperty(pilotData.characterRatings, gamemode, 'assists', 'Forward'),
-            knockouts: calculatePilotProperty(pilotData.characterRatings, gamemode, 'knockouts', 'Forward'),
-            saves: calculatePilotProperty(pilotData.characterRatings, gamemode, 'saves', 'Forward'),
-            scores: calculatePilotProperty(pilotData.characterRatings, gamemode, 'scores', 'Forward'),
-            mvp: calculatePilotProperty(pilotData.characterRatings, gamemode, 'mvp', 'Forward'),
+            assists: parsedPilotInformation.gamemodeRatings.forward.assists,
+            knockouts: parsedPilotInformation.gamemodeRatings.forward.knockouts,
+            saves: parsedPilotInformation.gamemodeRatings.forward.saves,
+            scores: parsedPilotInformation.gamemodeRatings.forward.scores,
+            mvp: parsedPilotInformation.gamemodeRatings.forward.mvp,
           }}
           goalie={{
-            assists: calculatePilotProperty(pilotData.characterRatings, gamemode, 'assists', 'Goalie'),
-            knockouts: calculatePilotProperty(pilotData.characterRatings, gamemode, 'knockouts', 'Goalie'),
-            saves: calculatePilotProperty(pilotData.characterRatings, gamemode, 'saves', 'Goalie'),
-            scores: calculatePilotProperty(pilotData.characterRatings, gamemode, 'scores', 'Goalie'),
-            mvp: calculatePilotProperty(pilotData.characterRatings, gamemode, 'mvp', 'Goalie'),
+            assists: parsedPilotInformation.gamemodeRatings.goalie.assists,
+            knockouts: parsedPilotInformation.gamemodeRatings.goalie.knockouts,
+            saves: parsedPilotInformation.gamemodeRatings.goalie.saves,
+            scores: parsedPilotInformation.gamemodeRatings.goalie.scores,
+            mvp: parsedPilotInformation.gamemodeRatings.goalie.mvp,
           }}
         />
       </ContentBlock>
     </aside>
     <div className='w-full flex flex-col xl:w-2/3 gap-4'>
       <PilotStatBar
-        assists={calculatePilotProperty(characterRatingsByNewest, gamemode, 'assists')}
-        knockouts={calculatePilotProperty(characterRatingsByNewest, gamemode, 'knockouts')}
-        saves={calculatePilotProperty(characterRatingsByNewest, gamemode, 'saves')}
-        scores={calculatePilotProperty(characterRatingsByNewest, gamemode, 'scores')}
-        mvp={calculatePilotProperty(characterRatingsByNewest, gamemode, 'mvp')}
-        games={calculatePilotProperty(characterRatingsByNewest, gamemode, 'games')}
+        assists={parsedPilotInformation.gamemodeRatings.forward.assists + parsedPilotInformation.gamemodeRatings.goalie.assists}
+        knockouts={parsedPilotInformation.gamemodeRatings.forward.knockouts + parsedPilotInformation.gamemodeRatings.goalie.knockouts}
+        saves={parsedPilotInformation.gamemodeRatings.forward.saves + parsedPilotInformation.gamemodeRatings.goalie.saves}
+        scores={parsedPilotInformation.gamemodeRatings.forward.scores + parsedPilotInformation.gamemodeRatings.goalie.scores}
+        mvp={parsedPilotInformation.gamemodeRatings.forward.mvp + parsedPilotInformation.gamemodeRatings.goalie.mvp}
+        games={parsedPilotInformation.gamemodeRatings.forward.games + parsedPilotInformation.gamemodeRatings.goalie.games}
         gamemode={gamemode}
-        losses={calculatePilotProperty(characterRatingsByNewest, gamemode, 'losses')}
-        wins={calculatePilotProperty(characterRatingsByNewest, gamemode, 'wins')}
+        losses={parsedPilotInformation.gamemodeRatings.forward.losses + parsedPilotInformation.gamemodeRatings.goalie.losses}
+        wins={parsedPilotInformation.gamemodeRatings.forward.wins + parsedPilotInformation.gamemodeRatings.goalie.wins}
       />
       <ContentBlock
         title='Character Stats'
@@ -255,7 +410,7 @@ export default async function Page({
       >
         {null}
         <CharacterBoard
-          latestCharacterRatings={latestCharacterRatings}
+          latestCharacterRatings={parsedPilotInformation.characterRatings}
           characterMasteries={pilotData.characterMastery.characterMasteries}
         />
       </ContentBlock>
