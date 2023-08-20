@@ -7,10 +7,8 @@ export const { getClient } = registerApolloClient(() => {
     link: new HttpLink({
       uri: process.env.NEXT_PUBLIC_API_URL
     }),
-    ssrMode: typeof window === 'undefined',
     defaultOptions: {
       query: {
-        errorPolicy: 'ignore',
         fetchPolicy: 'no-cache'
       }
     }

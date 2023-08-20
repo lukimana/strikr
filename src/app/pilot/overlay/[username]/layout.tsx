@@ -9,6 +9,7 @@ export default function Layout({children}: { children: React.ReactElement }) {
   useEffect(()=>{
     document.body.setAttribute('style', 'background: transparent !important;');
     setInterval(() => {
+      console.log('Refreshing')
       router.refresh()
     }, 1000 * 60 * 3)
   }, [router])

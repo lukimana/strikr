@@ -116,7 +116,7 @@ export default function LeaderboardTable({
                     const urlParams = new URLSearchParams(
                       window.location.search
                     )
-
+                      console.log(urlParams.get('filter'), searchParams.get('sort'))
                     if (urlParams.get('filter') === 'rank') {
                       urlParams.set(
                         'sort',

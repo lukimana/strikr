@@ -17,9 +17,9 @@ export default function Home() {
       />
       <div className='flex flex-col px-4 gap-4'>
         <div className='bg-secondary text-xs text-subtle p-4 rounded-lg'>
-          Updates:<br />
-          Pilot Page should be easier on low-end hardware now.<br />
-          Any endpoint using Strikr Smart Cache is now available to everyone without limits. [ For proxy endpoints (those will query the game directly) you must have a valid JWT token.]
+          This version of Strikr has been written from the ground up. Please have some patience while we are rolling the previous & future features one by one.<br />
+          I hope to make this a better experience for everyone & allow creators to better utilize our API&apos;s.<br /><br />
+          💖 Thx for you support.
         </div>
         <ContentBlock
           title='Awakening Rotation'

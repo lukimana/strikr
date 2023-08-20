@@ -90,7 +90,7 @@ export function getLatestCharacterMasterySamples(samples: STRIKR.API.PlayerChara
 
 
 export function calculatePresence(
-  role: 'goalie' | 'forward',
+  role: 'Goalie' | 'Forward',
   knockouts: number,
   assists: number,
   scores: number,
@@ -105,9 +105,9 @@ export function calculatePresence(
 
   // Calculate the weighted score based on role
   let weightedScore: number;
-  if (role === 'goalie') {
+  if (role === 'Goalie') {
     weightedScore = (assists + saves) / totalScore;
-  } else if (role === 'forward') {
+  } else if (role === 'Forward') {
     weightedScore = (scores + knockouts) / totalScore;
   } else {
     return 0
@@ -120,17 +120,4 @@ export function calculatePresence(
   let cappedWinningChance = Math.min(winningChance, 100);
 
   return cappedWinningChance;
-}
-
-export function calculateTopPercentile(rank: number, totalEmployees: number, percentile: number): number {
-  // Calculate the desired index based on the percentile
-  const desiredIndex = Math.ceil(totalEmployees * (1 - (percentile / 100)));
-  
-  // Calculate the top rank at the desired index
-  const topRank = rank - (totalEmployees - desiredIndex);
-  
-  // Calculate the top percentile
-  const topPercentile = (topRank / totalEmployees) * 100;
-  
-  return topPercentile;
 }

@@ -11,21 +11,7 @@ import { calculatePresence } from '@/core/mathUtils'
 
 export interface CharacterModalProps {
   children: React.ReactNode
-  characterData: {
-    character: string;
-    games: number;
-    wins: number;
-    losses: number;
-    winrate: number;
-    scores: number;
-    assists: number;
-    saves: number;
-    knockouts: number;
-    mvp: number;
-    createdAt: string;
-    role: "forward" | "goalie";
-    gamemode: string;
-}
+  characterData: STRIKR.API.PlayerCharacterRatingObjectType
   characterMastery: STRIKR.API.PlayerCharacterMasteryItemObjectType[]
 }
 
@@ -55,7 +41,7 @@ export function CharacterModal({ children, characterData, characterMastery }: Ch
               <span className='font-semibold text-4xl'>
                 {charRelation?.name}
               </span>
-              <span className='text-subtle text-xs'>{characterData.role === 'forward' ? '🦐': '🥅'} {characterData.role}</span>
+              <span className='text-subtle text-xs'>{characterData.role === 'Forward' ? '🦐': '🥅'} {characterData.role}</span>
             </div>
           </Dialog.Title>
           <PilotStatBar
@@ -94,8 +80,8 @@ export function CharacterModal({ children, characterData, characterMastery }: Ch
           >
             {null}
             <PlaystyleChart
-              forward={characterData.role === 'forward' ? characterStats : undefined}
-              goalie={characterData.role === 'goalie' ? characterStats : undefined}
+              forward={characterData.role === 'Forward' ? characterStats : undefined}
+              goalie={characterData.role === 'Goalie' ? characterStats : undefined}
             />
           </ContentBlock>
           <ContentBlock
