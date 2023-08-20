@@ -49,6 +49,10 @@ export interface StrikrParsedPilotData {
     role: 'forward' | 'goalie'
     gamemode: string
   }[]
+  rankedData: {
+    wins: number
+    losses: number
+  }
   gamemodeRatings: {
     forward: {
       games: number
@@ -73,8 +77,12 @@ export interface StrikrParsedPilotData {
       mvp: number
     }
     gamemode: string
-    mainCharacter: string
   }
+  mostPlayedCharacters: {
+    character: string
+    wins: number
+    losses: number
+  }[] 
 }
 
 // const sleep = (ms: number) => new Promise(resolve => setTimeout(resolve, ms))
@@ -193,6 +201,10 @@ export default async function Page({
         wins: 0
       }
     ],
+    rankedData: {
+      wins: 0,
+      losses: 0
+    },
     gamemodeRatings: {
       forward: {
         assists: 0,
@@ -217,13 +229,30 @@ export default async function Page({
         winrate: 0,
       },
       gamemode: gamemode,
-      mainCharacter: 'TD_DefaultStriker'
-    }
+    },
+    mostPlayedCharacters: [],
   }
 
 
     pilotData.characterRatings.forEach( rating => {
-      if (parsedPilotInformation.characterRatings.find( cr => cr.character === rating.character && cr.role === rating.role.toLowerCase())) { return }
+
+      // If we already processed this character rating on this gamemode & role, skip it
+      if (
+        parsedPilotInformation.characterRatings.find( 
+          cr => cr.character === rating.character && cr.role === rating.role.toLowerCase()
+        )
+      ) { 
+        return 
+      }
+      
+      // Gamemode is ranked, save wins and losses for later
+      if (rating.gamemode === 'RankedInitial') {
+        parsedPilotInformation.rankedData.wins += rating.wins
+        parsedPilotInformation.rankedData.losses += rating.losses
+      }
+
+      // If the rating is not from the selected gamemode, skip it. We already have ranked information
+      if (rating.gamemode !== gamemode) { return }
       
       parsedPilotInformation.gamemodeRatings[rating.role === 'Forward' ? 'forward' : 'goalie'].games += rating.games
       parsedPilotInformation.gamemodeRatings[rating.role === 'Forward' ? 'forward' : 'goalie'].wins += rating.wins
@@ -234,11 +263,6 @@ export default async function Page({
       parsedPilotInformation.gamemodeRatings[rating.role === 'Forward' ? 'forward' : 'goalie'].knockouts += rating.knockouts
       parsedPilotInformation.gamemodeRatings[rating.role === 'Forward' ? 'forward' : 'goalie'].mvp += rating.mvp
 
-      const mostPlayerCharacterData = parsedPilotInformation.characterRatings.find( cr => cr.character === parsedPilotInformation.gamemodeRatings.mainCharacter)
-
-      if (!mostPlayerCharacterData || mostPlayerCharacterData.games < rating.games) {
-        parsedPilotInformation.gamemodeRatings.mainCharacter = rating.character
-      }
 
       parsedPilotInformation.characterRatings.push({
         character: rating.character,
@@ -255,8 +279,22 @@ export default async function Page({
         role: rating.role === 'Forward' ? 'forward' : 'goalie',
         gamemode: rating.gamemode
       })
+
+      const characterLine = parsedPilotInformation.mostPlayedCharacters.find( mpc => mpc.character === rating.character )
+      if (characterLine) {
+        characterLine.wins += rating.wins
+        characterLine.losses += rating.losses
+      } else {
+        parsedPilotInformation.mostPlayedCharacters.push({
+          character: rating.character,
+          wins: rating.wins,
+          losses: rating.losses
+        })
+      }
     })
 
+
+  parsedPilotInformation.mostPlayedCharacters.sort( (a, b) => a.wins + a.losses > b.wins + b.losses ? -1 : 1 )
   const gamesAsForward = parsedPilotInformation.gamemodeRatings.forward.games || 0
   const gamesAsGoalie = parsedPilotInformation.gamemodeRatings.goalie.games || 0
   const forwardRatio = gamesAsForward / (gamesAsForward + gamesAsGoalie) * 100
@@ -267,7 +305,7 @@ export default async function Page({
   }[] = []
   
   pilotBadges.push({
-    name: `${getcharacterFromDevName(parsedPilotInformation.gamemodeRatings.mainCharacter)?.name || 'Omega Strikers'} Enjoyer`
+    name: `${getcharacterFromDevName(parsedPilotInformation.mostPlayedCharacters?.[0]?.character)?.name || 'Omega Strikers'} Enjoyer`
   })
 
   pilotBadges.push({
@@ -323,18 +361,19 @@ export default async function Page({
           verified: pilotData.tags.includes('verified'),
           staff: pilotData.tags.includes('STAFF'),
         }}
+        key={`profile.card.${parsedPilotInformation.playerId}`}
       />
       <div className='bg-secondary rounded-lg p-2 text-subtle text-xs flex items-center gap-2'>
         <Warning className='w-4 h-4' weight='duotone' /> 
         <p>Due to how data is provided we are limited to showing ranked stats only for the top 10k players of each region.</p>
       </div>
       <RankCard
-        losses={parsedPilotInformation.ratings[0].losses || 0}
-        rank={parsedPilotInformation.ratings[0].rank}
         rating={parsedPilotInformation.ratings[0].rating}
+        rank={parsedPilotInformation.ratings[0].rank}
         region={pilotData.region}
-        wins={parsedPilotInformation.ratings[0].wins}
-        key={parsedPilotInformation.playerId}
+        wins={parsedPilotInformation.rankedData.wins}
+        losses={parsedPilotInformation.rankedData.losses}
+        key={`profile.rankcard.${parsedPilotInformation.playerId}`}
       />
       <ContentBlock
         title='Rating History'
