@@ -17,9 +17,9 @@ export default function Home() {
       />
       <div className='flex flex-col px-4 gap-4'>
         <div className='bg-secondary text-xs text-subtle p-4 rounded-lg'>
-          Few updates:<br />
-          Pilot Page should be easier on low-end hardware now.
-          Any endpoint using Strikr Smart Cache is now available to everyone without limits. [ For proxy endpoints (those will query the game directly) you must have a valid JWT token.<br /> ]
+          Updates:<br />
+          Pilot Page should be easier on low-end hardware now.<br />
+          Any endpoint using Strikr Smart Cache is now available to everyone without limits. [ For proxy endpoints (those will query the game directly) you must have a valid JWT token.]
         </div>
         <ContentBlock
           title='Awakening Rotation'
