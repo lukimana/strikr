@@ -49,6 +49,7 @@ export default function Navbar() {
     register,
     handleSubmit,
     formState: { errors },
+    control
   } = useForm<FormInput>()
   useEffect(() => {
     const handleScroll = () => {
@@ -101,6 +102,7 @@ export default function Navbar() {
             registerOptions={{
               required: true
             }}
+            control={control}
           />
         </form>
       )}

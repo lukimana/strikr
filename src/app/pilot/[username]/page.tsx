@@ -12,6 +12,8 @@ import PilotStatBar from '@/components/molecules/PilotStatBar'
 import { getRankFromLP, getcharacterFromDevName } from '@/core/relations/resolver'
 import dayjs from 'dayjs'
 import CharacterBoard from '@/components/molecules/CharacterBoard'
+import { Suspense } from 'react'
+import FetchingIndicator from '@/components/atoms/FetchingIndicator'
 
 export const dynamic = 'force-dynamic',
   revalidate = 0
@@ -89,18 +91,18 @@ export interface StrikrParsedPilotData {
 
 export default async function Page({
   params: { username },
-  searchParams: { gamemode = 'RankedInitial' },
+  searchParams: { gamemode = 'RankedInitial', region = undefined },
 }: {
   params: { username: string }
-  searchParams: { gamemode: string }
+  searchParams: { gamemode: string, region?: string }
 }) {
   // await sleep(10000)
   const { data } = await getClient().query<{
     ensurePlayer: STRIKR.API.PlayerObjectType
   }>({
     query: gql`
-      query ($pilotname: String!, $refresh: Boolean) {
-        ensurePlayer(name: $pilotname, refresh: $refresh) {
+      query ($pilotname: String!, $refresh: Boolean, $region: String) {
+        ensurePlayer(name: $pilotname, refresh: $refresh, region: $region) {
           id
           username
           emoticonId
@@ -152,7 +154,8 @@ export default async function Page({
     `,
     variables: {
       pilotname: username,
-      refresh: true
+      refresh: true,
+      region: region ? region : undefined
     },
     fetchPolicy: 'no-cache'
   })
@@ -160,7 +163,7 @@ export default async function Page({
 
   const pilotData = data.ensurePlayer
   pilotData.ratings.sort( (a, b) => dayjs(b.createdAt).isBefore(a.createdAt) ? -1 : 1 )
-  pilotData.characterRatings.sort( (a, b) => dayjs(b.createdAt).isBefore(a.createdAt) ? -1 : 1 )
+  pilotData.characterRatings.sort( (a, b) => dayjs(a.createdAt).isBefore(b.createdAt) ? -1 : 1 )
 
   const parsedPilotInformation: StrikrParsedPilotData = {
     playerId: pilotData?.id || '???????',
@@ -335,124 +338,136 @@ export default async function Page({
   if (parsedPilotInformation.gamemodeRatings.goalie.games > 100) {
     if (parsedPilotInformation.gamemodeRatings.goalie.saves / parsedPilotInformation.gamemodeRatings.goalie.games >= 45) {
       pilotBadges.push({
-        name: '🧤 Keeper',
+        name: '🧱 Wall',
       })
     }
+    
+    if (parsedPilotInformation.gamemodeRatings.goalie.knockouts / parsedPilotInformation.gamemodeRatings.goalie.games >= 4) {
+      pilotBadges.push({
+        name: '🧤 Keeper & Killer',
+      })
+    }
+    
   }
-
+    
 
   return <main className='flex flex-col xl:flex-row min-h-screen w-full h-full gap-8 p-4'>
-    <div 
-      className='absolute inset-0 h-[40vh] bg-no-repeat z-[-1] pointer-events-none'
-      style={{
-        background: `radial-gradient(at top center, ${parsedPilotInformation.ratings[0].ratingColor + '33'} 0%, rgba(6, 0, 12, 0.0) 50%)`
-      }}
-    />
-    <aside className='flex flex-col gap-4 w-full xl:w-1/3'>
-      <PilotCard
-        emoticon={parsedPilotInformation.emoticonId || 'default'}
-        title={parsedPilotInformation.title || 'default'}
-        username={username}
-        badges={pilotBadges}
-        currentMasteryXp={parsedPilotInformation.currentXp}
-        masteryLevel={parsedPilotInformation.level}
-        nextMasteryXp={parsedPilotInformation.nextXp}
-        tags={{
-          verified: pilotData.tags.includes('verified'),
-          staff: pilotData.tags.includes('STAFF'),
+    <Suspense fallback={<FetchingIndicator
+      textContent="Ai.Mi is searching for this information!"
+      subTextContent="Please be patient, she's trying her best"
+    />}>
+      <div 
+        className='absolute inset-0 h-[40vh] bg-no-repeat z-[-1] pointer-events-none'
+        style={{
+          background: `radial-gradient(at top center, ${parsedPilotInformation.ratings[0].ratingColor + '33'} 0%, rgba(6, 0, 12, 0.0) 50%)`
         }}
-        key={`profile.card.${parsedPilotInformation.playerId}`}
       />
-      <div className='bg-secondary rounded-lg p-2 text-subtle text-xs flex items-center gap-2'>
-        <Warning className='w-4 h-4' weight='duotone' /> 
-        <p>Due to how data is provided we are limited to showing ranked stats only for the top 10k players of each region.</p>
-      </div>
-      <RankCard
-        rating={parsedPilotInformation.ratings[0].rating}
-        rank={parsedPilotInformation.ratings[0].rank}
-        region={pilotData.region}
-        wins={parsedPilotInformation.rankedData.wins}
-        losses={parsedPilotInformation.rankedData.losses}
-        key={`profile.rankcard.${parsedPilotInformation.playerId}`}
-      />
-      <ContentBlock
-        title='Rating History'
-        subtitle='Based in Ranked games'
-        Icon={<RankIcon className='!w-6 !h-6' />}
-      >
-        {null}
-        <RatingChart
-          data={pilotData.ratings.map((rating) => ({ date: rating.createdAt, rating: rating.rating }))}
-        />
-      </ContentBlock>
-      <ContentBlock
-        title='Role Ratio'
-        subtitle='Based on currently selected gamemode'
-        Icon={<ChartDonut className='text-subtle' size={24} weight='fill' />}
-      >
-        {null}
-        <RatioChart
-          data={[
-            {
-              color: '#F66618',
-              label: 'Forward',
-              percentile: forwardRatio || 0
-            },
-            {
-              color: '#F69E18',
-              label: 'Goalie',
-              percentile: 100 - forwardRatio || 0
-            }
-          ]}
-        />
-      </ContentBlock>
-      <ContentBlock
-        title='Playstyle'
-        subtitle='Geometric average for current gamemoede'
-        Icon={<Graph size={24} className='text-subtle' weight='fill' />}
-      >
-        {null}
-        <PlaystyleChart
-          forward={{
-            assists: parsedPilotInformation.gamemodeRatings.forward.assists,
-            knockouts: parsedPilotInformation.gamemodeRatings.forward.knockouts,
-            saves: parsedPilotInformation.gamemodeRatings.forward.saves,
-            scores: parsedPilotInformation.gamemodeRatings.forward.scores,
-            mvp: parsedPilotInformation.gamemodeRatings.forward.mvp,
+      <aside className='flex flex-col gap-4 w-full xl:w-1/3'>
+        <PilotCard
+          emoticon={parsedPilotInformation.emoticonId || 'default'}
+          title={parsedPilotInformation.title || 'default'}
+          username={username}
+          badges={pilotBadges}
+          currentMasteryXp={parsedPilotInformation.currentXp}
+          masteryLevel={parsedPilotInformation.level}
+          nextMasteryXp={parsedPilotInformation.nextXp}
+          tags={{
+            verified: pilotData.tags.includes('verified'),
+            staff: pilotData.tags.includes('STAFF'),
           }}
-          goalie={{
-            assists: parsedPilotInformation.gamemodeRatings.goalie.assists,
-            knockouts: parsedPilotInformation.gamemodeRatings.goalie.knockouts,
-            saves: parsedPilotInformation.gamemodeRatings.goalie.saves,
-            scores: parsedPilotInformation.gamemodeRatings.goalie.scores,
-            mvp: parsedPilotInformation.gamemodeRatings.goalie.mvp,
-          }}
+          key={`profile.card.${parsedPilotInformation.playerId}`}
         />
-      </ContentBlock>
-    </aside>
-    <div className='w-full flex flex-col xl:w-2/3 gap-4'>
-      <PilotStatBar
-        assists={parsedPilotInformation.gamemodeRatings.forward.assists + parsedPilotInformation.gamemodeRatings.goalie.assists}
-        knockouts={parsedPilotInformation.gamemodeRatings.forward.knockouts + parsedPilotInformation.gamemodeRatings.goalie.knockouts}
-        saves={parsedPilotInformation.gamemodeRatings.forward.saves + parsedPilotInformation.gamemodeRatings.goalie.saves}
-        scores={parsedPilotInformation.gamemodeRatings.forward.scores + parsedPilotInformation.gamemodeRatings.goalie.scores}
-        mvp={parsedPilotInformation.gamemodeRatings.forward.mvp + parsedPilotInformation.gamemodeRatings.goalie.mvp}
-        games={parsedPilotInformation.gamemodeRatings.forward.games + parsedPilotInformation.gamemodeRatings.goalie.games}
-        gamemode={gamemode}
-        losses={parsedPilotInformation.gamemodeRatings.forward.losses + parsedPilotInformation.gamemodeRatings.goalie.losses}
-        wins={parsedPilotInformation.gamemodeRatings.forward.wins + parsedPilotInformation.gamemodeRatings.goalie.wins}
-      />
-      <ContentBlock
-        title='Character Stats'
-        subtitle='Based on currently selected gamemode, ordered by most played for each role [CLICK FOR DETAILS]'
-        Icon={<Person weight='fill' size={24} className='text-subtle' />}
-      >
-        {null}
-        <CharacterBoard
-          latestCharacterRatings={parsedPilotInformation.characterRatings}
-          characterMasteries={pilotData.characterMastery.characterMasteries}
+        <div className='bg-secondary rounded-lg p-2 text-subtle text-xs flex items-center gap-2'>
+          <Warning className='w-4 h-4' weight='duotone' /> 
+          <p>Due to how data is provided we are limited to showing ranked stats only for the top 10k players of each region.</p>
+        </div>
+        <RankCard
+          rating={parsedPilotInformation.ratings[0].rating}
+          rank={parsedPilotInformation.ratings[0].rank}
+          region={pilotData.region}
+          wins={parsedPilotInformation.rankedData.wins}
+          losses={parsedPilotInformation.rankedData.losses}
+          key={`profile.rankcard.${parsedPilotInformation.playerId}`}
         />
-      </ContentBlock>
-    </div>
+        <ContentBlock
+          title='Rating History'
+          subtitle='Based in Ranked games'
+          Icon={<RankIcon className='!w-6 !h-6' />}
+        >
+          {null}
+          <RatingChart
+            data={pilotData.ratings.map((rating) => ({ date: rating.createdAt, rating: rating.rating }))}
+          />
+        </ContentBlock>
+        <ContentBlock
+          title='Role Ratio'
+          subtitle='Based on currently selected gamemode'
+          Icon={<ChartDonut className='text-subtle' size={24} weight='fill' />}
+        >
+          {null}
+          <RatioChart
+            data={[
+              {
+                color: '#F66618',
+                label: 'Forward',
+                percentile: forwardRatio || 0
+              },
+              {
+                color: '#F69E18',
+                label: 'Goalie',
+                percentile: 100 - forwardRatio || 0
+              }
+            ]}
+          />
+        </ContentBlock>
+        <ContentBlock
+          title='Playstyle'
+          subtitle='Geometric average for current gamemoede'
+          Icon={<Graph size={24} className='text-subtle' weight='fill' />}
+        >
+          {null}
+          <PlaystyleChart
+            forward={{
+              assists: parsedPilotInformation.gamemodeRatings.forward.assists,
+              knockouts: parsedPilotInformation.gamemodeRatings.forward.knockouts,
+              saves: parsedPilotInformation.gamemodeRatings.forward.saves,
+              scores: parsedPilotInformation.gamemodeRatings.forward.scores,
+              mvp: parsedPilotInformation.gamemodeRatings.forward.mvp,
+            }}
+            goalie={{
+              assists: parsedPilotInformation.gamemodeRatings.goalie.assists,
+              knockouts: parsedPilotInformation.gamemodeRatings.goalie.knockouts,
+              saves: parsedPilotInformation.gamemodeRatings.goalie.saves,
+              scores: parsedPilotInformation.gamemodeRatings.goalie.scores,
+              mvp: parsedPilotInformation.gamemodeRatings.goalie.mvp,
+            }}
+          />
+        </ContentBlock>
+      </aside>
+      <div className='w-full flex flex-col xl:w-2/3 gap-4'>
+        <PilotStatBar
+          assists={parsedPilotInformation.gamemodeRatings.forward.assists + parsedPilotInformation.gamemodeRatings.goalie.assists}
+          knockouts={parsedPilotInformation.gamemodeRatings.forward.knockouts + parsedPilotInformation.gamemodeRatings.goalie.knockouts}
+          saves={parsedPilotInformation.gamemodeRatings.forward.saves + parsedPilotInformation.gamemodeRatings.goalie.saves}
+          scores={parsedPilotInformation.gamemodeRatings.forward.scores + parsedPilotInformation.gamemodeRatings.goalie.scores}
+          mvp={parsedPilotInformation.gamemodeRatings.forward.mvp + parsedPilotInformation.gamemodeRatings.goalie.mvp}
+          games={parsedPilotInformation.gamemodeRatings.forward.games + parsedPilotInformation.gamemodeRatings.goalie.games}
+          gamemode={gamemode}
+          losses={parsedPilotInformation.gamemodeRatings.forward.losses + parsedPilotInformation.gamemodeRatings.goalie.losses}
+          wins={parsedPilotInformation.gamemodeRatings.forward.wins + parsedPilotInformation.gamemodeRatings.goalie.wins}
+        />
+        <ContentBlock
+          title='Character Stats'
+          subtitle='Based on currently selected gamemode, ordered by most played for each role [CLICK FOR DETAILS]'
+          Icon={<Person weight='fill' size={24} className='text-subtle' />}
+        >
+          {null}
+          <CharacterBoard
+            latestCharacterRatings={parsedPilotInformation.characterRatings}
+            characterMasteries={pilotData.characterMastery.characterMasteries}
+          />
+        </ContentBlock>
+      </div>      
+    </Suspense>
   </main>
 }

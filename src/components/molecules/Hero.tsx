@@ -10,6 +10,7 @@ export interface HeroProps {
 
 interface FormInput {
   pilotname: string
+  region: string
 }
 
 export default function Hero({ title, searchPlaceholder }: HeroProps) {
@@ -17,11 +18,12 @@ export default function Hero({ title, searchPlaceholder }: HeroProps) {
     register,
     handleSubmit,
     formState: { errors },
+    control
   } = useForm<FormInput>()
   const router = useRouter()
 
   const onSubmit = (data: FormInput) => {
-    router.push(`/pilot/${data.pilotname}`)
+    router.push(`/pilot/${data.pilotname}?region=${data.region}`)
   }
 
   return <div 
@@ -37,6 +39,7 @@ export default function Hero({ title, searchPlaceholder }: HeroProps) {
         }}
         placeholder={searchPlaceholder}
         className='bg-tertiary/60 backdrop-blur-sm border-secondary-border'
+        control={control}
       />
     </form>
   </div>

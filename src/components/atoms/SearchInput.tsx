@@ -1,8 +1,10 @@
 'use client'
 
 import clsx from 'clsx'
-import { MagnifyingGlass } from '@phosphor-icons/react'
-import { RegisterOptions, UseFormRegister } from 'react-hook-form'
+import { CaretDown, MagnifyingGlass } from '@phosphor-icons/react'
+import { Control, Controller, RegisterOptions, UseFormRegister } from 'react-hook-form'
+import { SelectInput, SelectItem } from './SelectInput'
+
 
 
 export interface ISearchInputProps {
@@ -13,9 +15,13 @@ export interface ISearchInputProps {
   size?: 'sm' | 'md' | 'lg' | 'xl'
   register: UseFormRegister<any>
   registerOptions?: RegisterOptions
+  control:  Control<any, any>
 }
 
-export default function SearchInput({ className, placeholder, value, onFocus, size = 'sm', register, registerOptions }: ISearchInputProps) {
+export default function SearchInput({ className, placeholder, value, onFocus, size = 'sm', register, registerOptions, control }: ISearchInputProps) {
+  // const [region, setRegion] = useState('Auto', 'SouthAmerica', 'NorthAmerica', 'Europe', 'Asia', 'Oceania')
+  const { onChange } = register('region')
+
   return <div className='relative w-full'>
     <input 
       className={clsx(
@@ -45,5 +51,26 @@ export default function SearchInput({ className, placeholder, value, onFocus, si
       }
     )
     }/>
+    <div
+      className='absolute top-1/2 -translate-y-1/2 right-6 z-[1]'
+    >
+      <Controller
+          control={control}
+          name='region'
+          render={({ field }) => {
+            return (
+              <SelectInput {...field} placeholder='Auto Detect' size={size}>
+                <SelectItem value='auto'>Auto Detect</SelectItem>
+                <SelectItem value='NorthAmerica'>North America</SelectItem>
+                <SelectItem value='SouthAmerica'>South America</SelectItem>
+                <SelectItem value='Europe'>Europe</SelectItem>
+                <SelectItem value='Asia'>Asia</SelectItem>
+                <SelectItem value='JapaneseLanguageText'>Japan</SelectItem>
+                <SelectItem value='Oceania'>Oceania</SelectItem>
+              </SelectInput>
+            )
+          }}
+        />
+    </div>
   </div>
 }
