@@ -142,6 +142,14 @@ const characters = [
     portrait: 'https://static.strikr.gg/file/Strikr/character/portrait/T_UI_Portrait_CloseUp_GravityMage.png',
     goalscore: 'https://static.strikr.gg/file/Strikr/character/goalscore/T_UI_Portrait_GoalScore_GravityMage.png',
     bodyShot: 'https://static.strikr.gg/file/Strikr/character/body/T_UI_Portrait_Concept_GravityMage.png',
+  },
+  {
+    id: 'CD_UmbrellaUser',
+    assetName: 'CD_UmbrellaUser',
+    name: 'Kazan',
+    portrait: 'https://static.strikr.gg/file/Strikr/character/portrait/T_UI_Portrait_CloseUp_UmbrellaUser_Default.png',
+    goalscore: 'https://static.strikr.gg/file/Strikr/character/goalscore/T_UI_Portrait_GoalScore_UmbrellaUser.png',
+    bodyShot: 'https://static.strikr.gg/file/Strikr/character/body/T_UI_Portrait_Concept_UmbrellaUser.png',
   }
 ]
 
