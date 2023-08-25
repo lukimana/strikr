@@ -34,6 +34,7 @@ export const NavbarLinkList = [
 
 interface FormInput {
   pilotname: string
+  region: string
 }
 
 export default function Navbar() {
@@ -42,7 +43,7 @@ export default function Navbar() {
   const router = useRouter()
 
   const onSubmit = (data: FormInput) => {
-    router.push(`/pilot/${data.pilotname}`)
+    router.push(`/pilot/${data.pilotname}?region=${data.region}`)
   }
   
   const {
