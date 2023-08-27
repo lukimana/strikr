@@ -57,6 +57,7 @@ export default function SearchInput({ className, placeholder, value, onFocus, si
       <Controller
           control={control}
           name='region'
+          defaultValue={'auto'}
           render={({ field }) => {
             return (
               <SelectInput {...field} placeholder='Auto Detect' size={size}>

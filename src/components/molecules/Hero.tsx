@@ -23,7 +23,7 @@ export default function Hero({ title, searchPlaceholder }: HeroProps) {
   const router = useRouter()
 
   const onSubmit = (data: FormInput) => {
-    router.push(`/pilot/${data.pilotname}?region=${data.region}`)
+    router.push(`/pilot/${data.pilotname}?region=${data.region || 'auto'}`)
   }
 
   return <div 

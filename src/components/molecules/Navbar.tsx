@@ -43,7 +43,7 @@ export default function Navbar() {
   const router = useRouter()
 
   const onSubmit = (data: FormInput) => {
-    router.push(`/pilot/${data.pilotname}?region=${data.region}`)
+    router.push(`/pilot/${data.pilotname}?region=${data.region || 'auto'}`)
   }
   
   const {

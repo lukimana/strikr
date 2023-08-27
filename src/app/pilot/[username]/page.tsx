@@ -155,7 +155,7 @@ export default async function Page({
     variables: {
       pilotname: username,
       refresh: true,
-      region: region ? region : undefined
+      region: region === 'auto' ? undefined : region
     },
     fetchPolicy: 'no-cache'
   })
