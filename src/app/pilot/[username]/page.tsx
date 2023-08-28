@@ -155,7 +155,7 @@ export default async function Page({
     variables: {
       pilotname: username,
       refresh: true,
-      region: region === 'auto' ? undefined : region
+      region: region
     },
     fetchPolicy: 'no-cache'
   })
@@ -163,7 +163,7 @@ export default async function Page({
 
   const pilotData = data.ensurePlayer
   pilotData.ratings.sort( (a, b) => dayjs(b.createdAt).isBefore(a.createdAt) ? -1 : 1 )
-  pilotData.characterRatings.sort( (a, b) => dayjs(a.createdAt).isBefore(b.createdAt) ? -1 : 1 )
+  pilotData.characterRatings.sort( (a, b) => dayjs(b.createdAt).isBefore(a.createdAt) ? -1 : 1 )
 
   const parsedPilotInformation: StrikrParsedPilotData = {
     playerId: pilotData?.id || '???????',
