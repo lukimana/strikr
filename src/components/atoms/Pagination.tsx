@@ -6,9 +6,11 @@ interface PaginationProps {
   totalItems: number
   itemsPerPage: number
   currentPage: number
+  startValue?: number
+  endValue?: number
 }
 
-export const Pagination: React.FC<PaginationProps> = ({ totalItems, itemsPerPage, currentPage }) => {
+export const Pagination: React.FC<PaginationProps> = ({ totalItems, itemsPerPage, currentPage, startValue, endValue }) => {
 
   const totalPages = Math.ceil(totalItems / itemsPerPage)
   const prevPage =  Math.max(currentPage - 1, 0)
@@ -69,10 +71,10 @@ export const Pagination: React.FC<PaginationProps> = ({ totalItems, itemsPerPage
       <span className="text-sm font-normal text-subtle">
         Showing{' '}
         <span className="font-semibold">
-          {currentPage * itemsPerPage + 1}-{Math.min((currentPage + 1) * itemsPerPage, totalItems)}
+          {startValue || currentPage * itemsPerPage + 1}-{ endValue || Math.min((currentPage + 1) * itemsPerPage, totalItems)}
         </span>{' '}
         of{' '}
-        <span className="font-semibold">{totalItems}</span>
+        <span className="font-semibold">10.000</span>
       </span>
       <ul className="inline-flex -space-x-px text-sm h-8">
         <li>

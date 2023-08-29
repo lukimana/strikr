@@ -5,7 +5,7 @@ import clsx from 'clsx'
 
 export interface RankProps {
   rating: number
-  size?: 'sm' | 'md' | 'lg' | 'xl' | '2xl' | '3xl'
+  size?: 'xs' | 'sm' | 'md' | 'lg' | 'xl' | '2xl' | '3xl'
 }
 
 export function RankIcon({ className }: { className?: string }) {
@@ -26,6 +26,7 @@ export default function Rank({ rating, size = 'md' }: RankProps) {
     className={ clsx(
       'flex items-center bg-contain bg-center bg-no-repeat',
       {
+        'w-6 h-6': size === 'xs',
         'w-8 h-8': size === 'sm',
         'w-12 h-12': size === 'md',
         'w-16 h-16': size === 'lg',

@@ -23,6 +23,7 @@ export interface LeaderboardPageProps {
     region: string
     filter: string
     sort: 'asc' | 'desc'
+    startrank: number
   }
 }
 
@@ -33,22 +34,28 @@ export default async function LeaderboardPage({
   searchParams,
 }: LeaderboardPageProps) {
   const { data } = await getClient().query<{
-    getLeaderboard: PlayerItem[]
+    getLeaderboard: {
+      players: PlayerItem[],
+      total: number
+    }
   }>({
     query: gql`
-    query($page: Int!, $region: String!, $filterBy: leaderboardFilters, $order: String!) {
-      getLeaderboard(page: $page, limit: 50, region: $region, filterBy: $filterBy, order: $order) {
-        createdAt
-        emoticonId
-        losses
-        wins
-        username
-        rank
-        rating
-        region
-        socialUrl
-        playerId
-        tags
+    query($page: Int!, $region: String!, $filterBy: leaderboardFilters, $order: String!, $startrank: Int) {
+      getLeaderboard(page: $page, limit: 50, region: $region, filterBy: $filterBy, order: $order, startrank: $startrank) {
+        players {
+          createdAt
+          emoticonId
+          losses
+          wins
+          username
+          rank
+          rating
+          region
+          socialUrl
+          playerId
+          tags
+        }
+        total
       }
     }
     `,
@@ -57,13 +64,15 @@ export default async function LeaderboardPage({
       page: Number(searchParams.page || 0),
       filterBy: searchParams.filter || 'rank',
       order: searchParams.sort || 'asc',
+      startrank: Number(searchParams.startrank)
     },
   })
   
   return (
     <main className='px-4 flex flex-col relative min-h-screen py-20'>
       <LeaderboardTable
-        players={data.getLeaderboard}
+        players={data.getLeaderboard.players}
+        total={data.getLeaderboard.total}
       />
 
     </main>
