@@ -34,6 +34,15 @@ import * as Select from '@radix-ui/react-select'
 dayjs.extend(relativeTime)
 dayjs.extend(localizedFormat)
 
+const regionEquivalence = {
+  'NorthAmerica': 'North America',
+  'SouthAmerica': 'South America',
+  'Europe': 'Europe',
+  'Asia': 'Asia',
+  'Oceania': 'Oceania',
+  'JapaneseLanguageText': 'Japan'
+}
+
 export default function LeaderboardTable({
   players,
   total
@@ -83,7 +92,8 @@ export default function LeaderboardTable({
                     <GlobeHemisphereEast weight='duotone' size={16}/>
                   )
                 }
-                <span>{ region || 'Global' }</span>
+                {/* @ts-ignore */}
+                <span>{ regionEquivalence?.[region] || region || 'Global' }</span>
                 <Select.Icon className='text-subtle'>
                   <CaretDown size={16} />
                 </Select.Icon>
