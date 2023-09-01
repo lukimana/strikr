@@ -7,10 +7,13 @@ import localizedFormat from 'dayjs/plugin/localizedFormat'
 import { getRankFromLP } from '@/core/relations/resolver'
 import gradient from 'chartjs-plugin-gradient'
 import datalabel from 'chartjs-plugin-datalabels'
+import zoom from 'chartjs-plugin-zoom'
+import { useEffect } from 'react'
 
 dayjs.extend(localizedFormat)
 ChartJS.register(gradient)
 ChartJS.register(datalabel)
+ChartJS.register(zoom)
 
 export interface RatingChartProps {
   data: {
@@ -32,11 +35,26 @@ export default function RatingChart({ data, bottomLine, topLine }: RatingChartPr
   // const smallestSample = data.reduce( (acc, curr) => curr.rating < acc ? curr.rating : acc, data[0].rating)
   const largestSample = data.reduce( (acc, curr) => curr.rating > acc ? curr.rating : acc, data[0].rating)
 
-
   return <>
     <Line
       options={{
         plugins: {
+          zoom: {
+            zoom: {
+              wheel: {
+                enabled: true,
+              },
+              pinch: {
+                enabled: true
+              },
+              drag: {
+                enabled: true,
+                backgroundColor: '#B592FF66'
+              },
+              mode: 'x',
+              scaleMode: 'x'
+            }
+          },
           legend: {
             display: false
           },

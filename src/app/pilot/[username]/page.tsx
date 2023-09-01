@@ -5,7 +5,7 @@ import RankCard from '@/components/molecules/RankCard'
 import ContentBlock from '@/components/templates/ContentBlock'
 import { getClient } from '@/core/apolloclient'
 import { gql } from '@apollo/client'
-import { ChartDonut, Graph, Person, Warning } from '@/atoms/PhosphorIcon'
+import { ChartDonut, Graph, Person, Warning, MagnifyingGlass } from '@/atoms/PhosphorIcon'
 import RatioChart from '@/components/atoms/RatioChart'
 import PlaystyleChart from '@/components/atoms/PlaystyleChart'
 import PilotStatBar from '@/components/molecules/PilotStatBar'
@@ -394,7 +394,11 @@ export default async function Page({
           subtitle='Based in Ranked games'
           Icon={<RankIcon className='!w-6 !h-6' />}
         >
-          {null}
+          <div className='flex items-center'>
+            <span className='text-xs text-subtle'>
+              <MagnifyingGlass className='w-4 h-4 inline-block mr-1' weight='duotone' />
+              Zoom available</span>
+          </div>
           <RatingChart
             data={pilotData.ratings.map((rating) => ({ date: rating.createdAt, rating: rating.rating }))}
           />
@@ -422,7 +426,7 @@ export default async function Page({
         </ContentBlock>
         <ContentBlock
           title='Playstyle'
-          subtitle='Geometric average for current gamemoede'
+          subtitle='Average per match on currently selected gamemode'
           Icon={<Graph size={24} className='text-subtle' weight='fill' />}
         >
           {null}
@@ -433,6 +437,7 @@ export default async function Page({
               saves: parsedPilotInformation.gamemodeRatings.forward.saves,
               scores: parsedPilotInformation.gamemodeRatings.forward.scores,
               mvp: parsedPilotInformation.gamemodeRatings.forward.mvp,
+              games: parsedPilotInformation.gamemodeRatings.forward.games
             }}
             goalie={{
               assists: parsedPilotInformation.gamemodeRatings.goalie.assists,
@@ -440,6 +445,7 @@ export default async function Page({
               saves: parsedPilotInformation.gamemodeRatings.goalie.saves,
               scores: parsedPilotInformation.gamemodeRatings.goalie.scores,
               mvp: parsedPilotInformation.gamemodeRatings.goalie.mvp,
+              games: parsedPilotInformation.gamemodeRatings.goalie.saves
             }}
           />
         </ContentBlock>

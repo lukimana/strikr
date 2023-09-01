@@ -10,6 +10,7 @@ export interface PlaystyleChartProps {
     scores: number
     saves: number
     mvp: number
+    games: number
   }
   goalie?:{
     assists: number
@@ -17,12 +18,25 @@ export interface PlaystyleChartProps {
     scores: number
     saves: number
     mvp: number
+    games: number
   }
 }
 
 export default function PlaystyleChart({ forward, goalie }: PlaystyleChartProps) {
-  const normalizedForwardValues = forward && normalizePlaystyleAttributes({ assists: forward.assists, knockouts: forward.knockouts, scores: forward.scores, mvp: forward.mvp })
-  const normalizedGoalieValues = goalie && normalizePlaystyleAttributes({ assists: goalie.assists, knockouts: goalie.knockouts, scores: goalie.scores, mvp: goalie.mvp })
+  const normalizedForwardValues = forward && normalizePlaystyleAttributes({ 
+    assists: forward.assists, 
+    knockouts: forward.knockouts, 
+    scores: forward.scores, 
+    mvp: forward.mvp,
+    saves: forward.saves
+  })
+  const normalizedGoalieValues = goalie && normalizePlaystyleAttributes({ 
+    assists: goalie.assists, 
+    knockouts: goalie.knockouts, 
+    scores: goalie.scores, 
+    mvp: goalie.mvp ,
+    saves: goalie.saves
+  })
 
   return <Radar
     options={{
@@ -67,7 +81,7 @@ export default function PlaystyleChart({ forward, goalie }: PlaystyleChartProps)
         'Scores', 
         'Knockouts', 
         'Assists',
-        // 'MVP'
+        'MVP',
         // 'Saves'
         // t('os.terms.saves')
       ],
@@ -78,11 +92,11 @@ export default function PlaystyleChart({ forward, goalie }: PlaystyleChartProps)
             borderColor: '#F69E18',
             label: 'Forward',
             data: [
-              normalizedForwardValues!.scores,
-              normalizedForwardValues!.knockouts,
-              normalizedForwardValues!.assists,
-              // normalizedForwardValues.mvp
-              // normalizedForwardValues.saves
+              normalizedForwardValues?.scores,
+              normalizedForwardValues?.knockouts,
+              normalizedForwardValues?.assists,
+              normalizedForwardValues?.mvp,
+              // normalizedForwardValues?.saves
             ],
           }
         ] : []),
@@ -92,11 +106,16 @@ export default function PlaystyleChart({ forward, goalie }: PlaystyleChartProps)
             borderColor: '#F66618',
             label: 'Goalie',
             data: [
-              normalizedGoalieValues!.scores,
-              normalizedGoalieValues!.knockouts,
-              normalizedGoalieValues!.assists,
-              // normalizedForwardValues.mvp
-              // normalizedGoalieValues.saves
+              normalizedGoalieValues?.scores,
+              normalizedGoalieValues?.knockouts,
+              normalizedGoalieValues?.assists,
+              normalizedGoalieValues?.mvp,
+              // normalizedGoalieValues?.saves
+              // goalie!.scores / goalie!.games,
+              // goalie!.knockouts / goalie!.games,
+              // goalie!.assists / goalie!.games,
+              // goalie!.mvp / goalie!.games,
+              // goalie!.saves / goalie!.games
             ]
           }
         ] : [])
