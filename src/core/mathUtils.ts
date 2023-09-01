@@ -8,6 +8,7 @@ export interface PlaystyleAttributes {
   scores: number;
   mvp: number;
   knockouts: number;
+  saves: number
 }
 
 export function calculateGeometricMean(attributes: number[]): number {
@@ -23,19 +24,21 @@ export function calculateGeometricMean(attributes: number[]): number {
 }
 
 export function normalizePlaystyleAttributes(attributes: PlaystyleAttributes): PlaystyleAttributes {
-  const { assists, scores, mvp, knockouts } = attributes
-  const geometricMean = calculateGeometricMean([assists, scores, mvp, knockouts])
+  const { assists, scores, mvp, knockouts, saves } = attributes
+  const geometricMean = calculateGeometricMean([assists, scores, mvp, knockouts, saves])
 
   const normalizedAssists = assists / geometricMean
   const normalizedScores = scores / geometricMean
   const normalizedMvps = mvp / geometricMean
   const normalizedKnockouts = knockouts / geometricMean
+  const normalizedSaves = saves / geometricMean
 
   return {
     assists: normalizedAssists,
     scores: normalizedScores,
     mvp: normalizedMvps,
     knockouts: normalizedKnockouts,
+    saves: normalizedSaves
   }
 }
 
