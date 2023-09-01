@@ -38,6 +38,7 @@ export function CharacterModal({ children, characterData, characterMastery }: Ch
     saves: characterData.saves,
     scores: characterData.scores,
     mvp: characterData.mvp,
+    games: characterData.games
   }
 
   return <Dialog.Root>
