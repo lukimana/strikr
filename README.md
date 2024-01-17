@@ -12,7 +12,7 @@ I have signed an NDA with Odyssey interactive and cannot disclose non-public inf
 # Running Strikr
 Strikr is made entirely in typescript with React via the para-framework: NextJS.<br/>
 No component library was used, but instead, every commponent is built with TailwindCSS ~~trying to~~ following [Atomic Design](https://atomicdesign.bradfrost.com/chapter-2/)
-```
+```sh
 # Using yarn on this example, but you can replace this with your preferred package manager
 
 # Install dependencies, equivalent on NPM would be `npm i`
