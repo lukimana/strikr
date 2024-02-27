@@ -19,11 +19,11 @@ export default function Home() {
         <div className='bg-support text-xs text-subtle p-4 rounded-lg'>
           <span className='font-semibold text-sm'>We are back!<br /></span>
           - You can find out more information about why and how in the FAQ down below. <br />
-          - Some emoticons might still be broken for the foreseeable future.<br />
+          - The site is still stuck in time just after the release of Finii! New Champs, Emoticons and Champs are still missing!<br />
           - If you know TypeScript and/or NextJS and want to help with the resurrection of Strikr, please get in touch!<br />
         </div>
         <ContentBlock
-          title='Awakening Rotation'
+          title='All current Awakenings'
         >
           {null}
           <div className='grid grid-cols-4 sm:grid-cols-6 md:grid-cols-8 lg:grid-cols-12 2xl:grid-cols-16 gap-4'>
