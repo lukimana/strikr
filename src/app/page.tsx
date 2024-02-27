@@ -17,10 +17,10 @@ export default function Home() {
       />
       <div className='flex flex-col px-4 gap-4'>
         <div className='bg-support text-xs text-subtle p-4 rounded-lg'>
-          <span className='font-semibold text-sm'>Updates:<br /></span>
-          - Less CPU Usage on lower end devices.<br />
-          - Faster loading times for cached users.<br />
-          - Added region selector to search bar. Play a game to force strikr to update your cached information.<br />
+          <span className='font-semibold text-sm'>We are back!<br /></span>
+          - You can find out more information about why and how<a href="https://lukimana.moe"> in this blogpost. </a><br />
+          - Some meoticons might still be broken for the foreseeable future.<br />
+          - Take a look at the <a href="https://lukimana.moe"> FAQ</a>, if you've still got questions!<br />
         </div>
         <ContentBlock
           title='Awakening Rotation'
