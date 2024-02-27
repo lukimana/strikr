@@ -18,7 +18,7 @@ export default function Footer() {
       </p>
       <ul className='flex gap-8 text-white font-semibold mt-4'>
         <li><Link href='https://lukimana.moe'>Contact the maintainer</Link></li>
-        <li><Link href='https://lukimana.moe'>FAQ</Link></li>
+        <li><Link href='https://lukimana.moe/posts/strikr.pro-faq/'>FAQ</Link></li>
       </ul>
     </footer>
 }
