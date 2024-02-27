@@ -18,9 +18,9 @@ export default function Home() {
       <div className='flex flex-col px-4 gap-4'>
         <div className='bg-support text-xs text-subtle p-4 rounded-lg'>
           <span className='font-semibold text-sm'>We are back!<br /></span>
-          - You can find out more information about why and how<a href="https://lukimana.moe"> in this blogpost. </a><br />
-          - Some meoticons might still be broken for the foreseeable future.<br />
-          - Take a look at the <a href="https://lukimana.moe"> FAQ</a>, if you've still got questions!<br />
+          - You can find out more information about why and how in the FAQ down below. <br />
+          - Some emoticons might still be broken for the foreseeable future.<br />
+          - If you know TypeScript and/or NextJS and want to help with the resurrection of Strikr, please get in touch!<br />
         </div>
         <ContentBlock
           title='Awakening Rotation'
