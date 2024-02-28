@@ -26,7 +26,7 @@ const awakenings = [
       en: 'Big Fish'
     },
     'description': {
-      en: 'Gain {value:40% Size} and {value:300 max} {heal:Stagger}.'
+      en: 'Gain {value:40% Size} and {value:300} {heal:max Stagger}.'
     }
   },
   {
@@ -46,7 +46,7 @@ const awakenings = [
       en: 'Bulk Up'
     },
     'description': {
-      en: '{value:Gain 300 max} {heal:Stagger} and {value:1.5} {buf:Power} {value:per 100 max Stagger}.'
+      en: '{value:Gain 300} {heal:max Stagger} and {value:1.5} {buf:Power} {value:per 100 max Stagger}.'
     }
   },
   {
@@ -96,7 +96,7 @@ const awakenings = [
       en: 'Glass Cannon'
     },
     'description': {
-      en: 'Gain {value:8} {damage:Power} and {value:4%} {buff:Speed} {time:every 2.5s} ({value:up to 40} {buff:Power} and {value:20%} {buff:Speed}).\nGetting hit resets the timer.'
+      en: '{value:Gain 8} {damage:Power} and {value:4%} {buff:Speed} {time:every 2.5s} ({value:up to 40} {buff:Power} and {value:20%} {buff:Speed}).\nGetting hit resets the timer.'
     }
   },
   {
@@ -110,7 +110,7 @@ const awakenings = [
     }
   },
   {
-    'id': 'T_ImpactSpecialist',
+    'id': 'T_SpecializedTraining',
     'image': 'https://static.strikr.gg/file/Strikr/awakening/T_ImpactSpecialist.png',
     'name': {
       en: 'Specialized Training'
@@ -133,7 +133,7 @@ const awakenings = [
     'id': 'T_MomentumBoots',
     'image': 'https://static.strikr.gg/file/Strikr/awakening/T_MomentumBoots.png',
     'name': {
-      en: 'Boots of Momentum'
+      en: 'Momentum Boots'
     },
     'description': {
       en: ''
@@ -180,10 +180,10 @@ const awakenings = [
     }
   },
   {
-    'id': 'T_OrbSharer',
+    'id': 'T_OrbReplicator',
     'image': 'https://static.strikr.gg/file/Strikr/awakening/T_OrbSharer.png',
     'name': {
-      en: 'Orb Sharer'
+      en: 'Orb Replicator'
     },
     'description': {
       en: ''
@@ -196,7 +196,7 @@ const awakenings = [
       en: 'Peak Performance'
     },
     'description': {
-      en: 'Gain {value:300 max} {heal:Stagger} and {value:5%} {buff:Speed} {value:per 100 max} {heal:Stagger}.'
+      en: 'Gain {value:300} {heal:max Stagger} and {value:5%} {buff:Speed} {value:per 100} {heal:max Stagger}.'
     }
   },
   {
@@ -213,7 +213,7 @@ const awakenings = [
     'id': 'T_PrimeTime',
     'image': 'https://static.strikr.gg/file/Strikr/awakening/T_PrimeTime.png',
     'name': {
-      en: 'Prime Time'
+      en: 'Primetime'
     },
     'description': {
       en: '{skill:PRIMARY} gains {value:+1 charge} and {damage:hits} {value:5% harder (2% to Core)}.'
@@ -250,7 +250,7 @@ const awakenings = [
     }
   },
   {
-    'id': 'T_ShockAndAwe',
+    'id': 'T_HeavyImpact',
     'image': 'https://static.strikr.gg/file/Strikr/awakening/T_ShockAndAwe.png',
     'name': {
       en: 'Heavy Impact'
@@ -286,7 +286,7 @@ const awakenings = [
       en: 'Spark of Resilience'
     },
     'description': {
-      en: 'SPARK - {value:Gain 50 max} {heal:Stagger}, {value:plus 200 per SPARK you have}.'
+      en: 'SPARK - {value:Gain 50} {heal:max Stagger}, {value:plus 200 per SPARK you have}.'
     }
   },
   {
@@ -340,10 +340,10 @@ const awakenings = [
     }
   },
   {
-    'id': 'T_TempoSwings',
+    'id': 'T_TempoSwing',
     'image': 'https://static.strikr.gg/file/Strikr/awakening/T_TempoSwings.png',
     'name': {
-      en: 'Tempo Swings'
+      en: 'Tempo Swing'
     },
     'description': {
       en: 'Hitting anything {heal:heals} you {value:for 4%} of your {heal:max Stagger} ({value:1.33%} for LIGHT hits) and deals that amount as {damage:damage} to the target hit.'
@@ -377,7 +377,8 @@ const awakenings = [
       en: 'Unstoppable'
     },
     'description': {
-      en: 'While not {effect:staggered}, {value:gain 90%} {buff:knockback} {buff:resistance} and {value:10%} {damage_reduction:damage reduction}'
+      en: 'Gain a shield that protects you from {value:100%} of the {buff:damage} and {value:100%} {buff:knockback} from the first hit you take. This shield recharges at the start of each round and after {time:7.5s} of not getting hit',
+      // en: 'While not {effect:staggered}, {value:gain 90%} {buff:knockback} {buff:resistance} and {value:10%} {damage_reduction:damage reduction}'
     }
   }
   ,{
@@ -427,9 +428,89 @@ const awakenings = [
       en: 'Reverberation'
     },
     'description': {
-      en: 'Gain {value:300} {heal:max Stagger} and [value:.8} {buff:Cooldown Rate} per {value:100 max Stagger}.'
+      en: '{value:Gain 300} {heal:max Stagger} and [value:.8} {buff:Cooldown Rate} per {value:100 max Stagger}.'
     }
-  }
+  },
+  {
+    'id': 'T_Demolitionist',
+    'image': 'https://static.strikr.gg/file/Strikr/awakening/T_Demolitionist.png',
+    'name': {
+      en: 'Demolitionist'
+    },
+    'description': {
+      en: '{value:Gain 25%} {buff:Size}. Whenever you destroy or assist in destroying an enemy barrier, your {buff:cooldowns are reduced} {time:by 3s}.'
+    }
+  },
+  {
+    'id': 'T_AmongTitans',
+    'image': 'https://static.strikr.gg/file/Strikr/awakening/T_AmongTitans.png',
+    'name': {
+      en: 'Among Titans'
+    },
+    'description': {
+      en: '{value:Lose 30%} {debuff:Size} and {value:gain 15%} {buff:Speed}. Your teammates {value:gain 15%} {buff:Size}. '
+    }
+  },
+  {
+    'id': 'T_FightorFlight',
+    'image': 'https://static.strikr.gg/file/Strikr/awakening/T_FightorFlight.png',
+    'name': {
+      en: 'Fight or Flight'
+    },
+    'description': {
+      en: 'Gain {buff:17.5% Speed} {time:for 1.75s} whenever you {damage:hit something} or {damage:get hit}. Refresh your {skill:SECONDARY} whenever you {damage:stagger an enemy} or become {effect:staggered}.'
+    }
+  },
+  {
+    'id': 'T_KnifesEdge',
+    'image': 'https://static.strikr.gg/file/Strikr/awakening/T_KnifesEdge.png',
+    'name': {
+      en: 'Knife\'s Edge'
+    },
+    'description': {
+      en: '{buff:Gain 30 Power} and {buff:30% Speed} whenever you\'re {value:within 400 range} of the Arena\'s edge.'
+    }
+  },
+  {
+    'id': 'T_SparkofLeadership',
+    'image': 'https://static.strikr.gg/file/Strikr/awakening/T_SparkofLeadership.png',
+    'name': {
+      en: 'Spark of Leadership'
+    },
+    'description': {
+      en: 'SPARK - Your Allies gain {value:40% of your SPARK effects}. Gain {buff:5 Cooldown Rate}, {heal:150 max Stagger}, {buff:8 Power}, and {buff:2% Speed}.'
+    }
+  },
+  {
+    'id': 'T_RecoveryDrone',
+    'image': 'https://static.strikr.gg/file/Strikr/awakening/T_RecoveryDrone.png',
+    'name': {
+      en: 'Recovery Drone'
+    },
+    'description': {
+      en: '{value:Gain 30%} {buff:Size}. The first time each set you would be KO\'d, prevent it. '
+    }
+  },
+  {
+    'id': 'T_SiegeMachine',
+    'image': 'https://static.strikr.gg/file/Strikr/awakening/T_SiegeMachine.png',
+    'name': {
+      en: 'Siege Machine'
+    },
+    'description': {
+      en: '{skill_type:PROJECTILES} {value:gain 30%} {buff:travel} or {buff:cast range}. {skill_type:CREATIONS} {buff:gain 30% duration} and {damage:hit} {value:15% harder (3% to Core)}. '
+    }
+  },
+  {
+    'id': 'T_ExplosiveEntrance',
+    'image': 'https://static.strikr.gg/file/Strikr/awakening/T_ExplosiveEntrance.png',
+    'name': {
+      en: 'Explosive Entrance'
+    },
+    'description': {
+      en: '{skill_type:DASH} {buff:range}, {skill_type:BLINK} {buff:range}, and {skill_type:HASTE} effects {value:increased 70%}. Your {skill_type:IMPACT} abilities {damage:hit} {value:12.5% harder (2.5% on Core)}. '
+    }
+  },
 ]
 
 export default awakenings
