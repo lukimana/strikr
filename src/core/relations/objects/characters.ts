@@ -150,7 +150,23 @@ const characters = [
     portrait: 'https://static.strikr.gg/file/Strikr/character/portrait/T_UI_Portrait_CloseUp_UmbrellaUser_Default.png',
     goalscore: 'https://static.strikr.gg/file/Strikr/character/goalscore/T_UI_Portrait_GoalScore_UmbrellaUser.png',
     bodyShot: 'https://static.strikr.gg/file/Strikr/character/body/T_UI_Portrait_Concept_UmbrellaUser.png',
-  }
+  },
+  {
+    id: 'CD_Healer',
+    assetName: 'CD_Healer',
+    name: 'Nao',
+    portrait: 'https://static.strikr.gg/file/Strikr/character/portrait/T_UI_Portrait_CloseUp_Healer_Default.png',
+    goalscore: 'https://static.strikr.gg/file/Strikr/character/goalscore/T_UI_Portrait_GoalScore_Healer.png',
+    bodyShot: 'https://static.strikr.gg/file/Strikr/character/body/T_UI_Portrait_Concept_Healer.png',
+  },
+  {
+    id: 'CD_DrumOni',
+    assetName: 'CD_DrumOni',
+    name: 'Mako',
+    portrait: 'https://static.strikr.gg/file/Strikr/character/portrait/T_UI_Portrait_CloseUp_DrumOni_Default.png',
+    goalscore: 'https://static.strikr.gg/file/Strikr/character/goalscore/T_UI_Portrait_GoalScore_DrumOni.png',
+    bodyShot: 'https://static.strikr.gg/file/Strikr/character/body/T_UI_Portrait_Concept_DrumOni.png',
+  },
 ]
 
 export default characters
