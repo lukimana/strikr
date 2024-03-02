@@ -17,8 +17,8 @@ export default function Footer() {
         Strikr.pro © 2024
       </p>
       <ul className='flex gap-8 text-white font-semibold mt-4'>
-        <li><Link href='https://lukimana.moe'>Contact the maintainer</Link></li>
-        <li><Link href='https://lukimana.moe/posts/strikr.pro-faq/'>FAQ</Link></li>
+        <li><Link href='https://lukimana.moe'>Contact the developers</Link></li>
+        <li><Link href='https://lukimana.moe/posts/strikr.pro-faq/#who-is-currently-working-on-strikrpro'>FAQ</Link></li>
       </ul>
     </footer>
 }
