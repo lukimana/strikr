@@ -163,8 +163,8 @@ const emoticons = [
   { id: 'EmoticonData_T_Emoticon_WumpusGoalie', image: 'http://localhost:3000/i/emoticon/T_Emoticon_WumpusGoalie-512x512.png'},
   { id: 'EmoticonData_T_Emoticon_WumpusStrike', image: 'http://localhost:3000/i/emoticon/T_Emoticon_WumpusStrike-512x512.png'},
 
-  { id: 'EmoticonData_BlobAssexual', image: 'http://localhost:3000/i/emoticon/Pride/T_BlobAssexual-512x512.png'},
-  { id: 'EmoticonData_BlobBissexual', image: 'http://localhost:3000/i/emoticon/Pride/T_BlobBissexual-512x512.png'},
+  { id: 'EmoticonData_BlobAsexual', image: 'http://localhost:3000/i/emoticon/Pride/T_BlobAsexual-512x512.png'},
+  { id: 'EmoticonData_BlobBisexual', image: 'http://localhost:3000/i/emoticon/Pride/T_BlobBisexual-512x512.png'},
   { id: 'EmoticonData_BlobGay', image: 'http://localhost:3000/i/emoticon/Pride/T_BlobGay-512x512.png'},
   { id: 'EmoticonData_BlobLesbian', image: 'http://localhost:3000/i/emoticon/Pride/T_BlobLesbian-512x512.png'},
   { id: 'EmoticonData_BlobPansexual', image: 'http://localhost:3000/i/emoticon/Pride/T_BlobPansexual-512x512.png'},
