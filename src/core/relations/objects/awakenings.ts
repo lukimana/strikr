@@ -461,8 +461,8 @@ const awakenings = [
     }
   },
   {
-    'id': 'T_FightorFlight',
-    'image': 'https://strikr.pro/i/awakening/T_FightorFlight.png',
+    'id': 'T_FightOrFlight',
+    'image': 'https://strikr.pro/i/awakening/T_FightOrFlight.png',
     'name': {
       en: 'Fight or Flight'
     },

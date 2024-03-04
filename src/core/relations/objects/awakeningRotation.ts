@@ -8,7 +8,7 @@ const awakeningRotation = [
   'T_Demolitionist',
   'T_ExplosiveEntrance',
   'T_ExtraSpecial',
-  'T_FightorFlight',
+  'T_FightOrFlight',
   'T_GlassCannon',
   'T_HeavyImpact',
   'T_HotShot',
