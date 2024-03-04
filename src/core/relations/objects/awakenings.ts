@@ -492,7 +492,7 @@ const awakenings = [
   },
   {
     'id': 'T_RecoveryDrone',
-    'image': 'https://strikr.pro/i/awakening/T_RecoveryDrone.png',
+    'image': 'https://strikr.pro/i/awakening/T_PocketPolly.png',
     'name': {
       en: 'Recovery Drone'
     },
