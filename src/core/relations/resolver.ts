@@ -57,7 +57,7 @@ export function getRankFromLP(lp: number) {
 }
 
 export function getEmoticonFromdata(emoticon_data: string) {
-  return emoticons.find( emoticon => emoticon.id === emoticon_data) || { id: 'EmoticonData_DefaultThumbsUp', image: 'https://static.strikr.gg/file/Strikr/emoticon/EmoticonData_DefaultThumbsUp.png' }
+  return emoticons.find( emoticon => emoticon.id === emoticon_data) || { id: 'EmoticonData_DefaultThumbsUp', image: 'https://strikr.pro/i/emoticon/EmoticonData_DefaultThumbsUp.png' }
 }
 
 export function getAwakeningFromdata(awakening_data: string) {

@@ -66,8 +66,8 @@ export default function PilotCard({ username, title, emoticon, badges, masteryLe
       <div>
         <h3 className='font-semibold text-2xl flex items-center gap-2'>
           {decodeURI(username)}
-          { Boolean(tags?.staff) && <Image src='https://static.strikr.gg/file/Strikr/misc/staff.png' className="w-6 h-6" alt='ody' width={32} height={32} /> }
-          { Boolean(tags?.verified) &&  <Image src='https://static.strikr.gg/file/Strikr/misc/verified.png' className="w-7 h-7" alt='creator' width={32} height={32} /> }
+          { Boolean(tags?.staff) && <Image src='https://strikr.pro/i/misc/staff.png' className="w-6 h-6" alt='ody' width={32} height={32} /> }
+          { Boolean(tags?.verified) &&  <Image src='https://strikr.pro/i/misc/verified.png' className="w-7 h-7" alt='creator' width={32} height={32} /> }
         </h3>
         <span className='text-subtle'>{TitleLookup[title as keyof typeof TitleLookup]?.en || 'No title'}</span>
       </div>

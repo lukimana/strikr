@@ -404,14 +404,14 @@ export default function LeaderboardTable({
                   <div className='text-lg font-semibold flex items-center gap-1'>
                     <span>{player.username}</span>
                     { Boolean(player.tags.includes('STAFF')) && <Image 
-                      src='https://static.strikr.gg/file/Strikr/misc/staff.png'
+                      src='https://strikr.pro/i/misc/staff.png'
                       className="w-6 h-6"
                       alt='ody'
                       width={16}
                       height={16}
                     /> }
                     { Boolean(player.tags?.includes('verified')) &&  <Image 
-                      src='https://static.strikr.gg/file/Strikr/misc/verified.png' 
+                      src='https://strikr.pro/i/misc/verified.png' 
                       className="w-6 h-6" 
                       alt='creator' 
                       width={24} 
