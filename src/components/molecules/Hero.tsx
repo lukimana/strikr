@@ -27,7 +27,7 @@ export default function Hero({ title, searchPlaceholder }: HeroProps) {
   }
 
   return <div 
-    className='w-full p-4 -mt-20 h-[40vh] md:h-[50vh] lg:h-[60vh] bg-[url(https://static.strikr.gg/file/Strikr/misc/ui_splash.png)] bg-cover bg-center bg-no-repeat relative flex flex-col py-20 justify-center gap-8'
+    className='w-full p-4 -mt-20 h-[40vh] md:h-[50vh] lg:h-[60vh] bg-[url(https://strikr.pro/i/misc/ui_splash.png)] bg-cover bg-center bg-no-repeat relative flex flex-col py-20 justify-center gap-8'
   >
     <h1 className='text-3xl  xl:text-4xl font-semibold'>{title}</h1>
     <form onSubmit={handleSubmit(onSubmit)}>

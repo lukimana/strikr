@@ -1,4 +1,5 @@
 import rotationAwakenings from '@/core/relations/objects/awakeningRotation'
+import awakeningFormer from '@/core/relations/objects/awakeningFormer'
 import Awakening from '@/components/atoms/Awakening'
 import Hero from '@/components/molecules/Hero'
 import ContentBlock from '@/templates/ContentBlock'
@@ -23,11 +24,26 @@ export default function Home() {
           - If you know TypeScript and/or NextJS and want to help with the resurrection of Strikr, please get in touch!<br />
         </div>
         <ContentBlock
-          title='All current Awakenings'
+          title='All Current Awakenings'
         >
           {null}
           <div className='grid grid-cols-4 sm:grid-cols-6 md:grid-cols-8 lg:grid-cols-12 2xl:grid-cols-16 gap-4'>
               {rotationAwakenings.map((awakening) => {
+                return <Awakening
+                  key={`${awakening}`}
+                  id={awakening}
+                  size='fluid'
+                  interactive
+                />
+              })}
+            </div>
+        </ContentBlock>
+        <ContentBlock
+          title='All Former Awakenings'
+        >
+          {null}
+          <div className='grid grid-cols-4 sm:grid-cols-6 md:grid-cols-8 lg:grid-cols-12 2xl:grid-cols-16 gap-4'>
+              {awakeningFormer.map((awakening) => {
                 return <Awakening
                   key={`${awakening}`}
                   id={awakening}
