@@ -155,7 +155,7 @@ const characters = [
     id: 'CD_Healer',
     assetName: 'CD_Healer',
     name: 'Nao',
-    portrait: 'https://strikr.pro/i/character/portrait/T_UI_Portrait_CloseUp_Healer_Default.png',
+    portrait: 'https://strikr.pro/i/character/portrait/T_UI_Portrait_CloseUp_AN_Healer.png',
     goalscore: 'https://strikr.pro/i/character/goalscore/T_UI_Portrait_GoalScore_Healer.png',
     bodyShot: 'https://strikr.pro/i/character/body/T_UI_Portrait_Concept_Healer.png',
   },
