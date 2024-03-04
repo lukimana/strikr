@@ -472,7 +472,7 @@ const awakenings = [
   },
   {
     'id': 'T_KnifesEdge',
-    'image': 'https://strikr.pro/i/awakening/T_KnifesEdge.png',
+    'image': 'https://strikr.pro/i/awakening/T_PocketPolly.png',
     'name': {
       en: 'Knife\'s Edge'
     },
