@@ -12,6 +12,11 @@ const nextConfig = {
         hostname: 'localhost',
         port: '3000'
       },
+      {
+        protocol: 'https',
+        hostname: 'testing.strikr.pro',
+        port: ''
+      },
     ],
   }
 }
