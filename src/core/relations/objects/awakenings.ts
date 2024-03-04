@@ -382,7 +382,7 @@ const awakenings = [
   }
   ,{
     'id': 'T_SpecializedTraining',
-    'image': 'https://strikr.pro/i/awakening/T_SpecializedTraining.png',
+    'image': 'https://strikr.pro/i/awakening/T_ImpacSpecialist.png',
     'name': {
       en: 'Specialized Training'
     },
