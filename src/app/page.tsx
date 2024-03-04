@@ -54,12 +54,12 @@ export default function Home() {
             </div>
         </ContentBlock>
         <ContentBlock
-          title={'eSports'}
+          title={'Tournaments'}
           Icon={<Trophy className='text-subtle' weight='fill' size={24} />}
         >
           <></>
           <span className='text-subtle text-xs'>
-            More E-Sports events soon™️
+            More events soon™️
           </span>
         </ContentBlock>
       </div>
