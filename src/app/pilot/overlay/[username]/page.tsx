@@ -160,7 +160,7 @@ export default async function Page({
         key={pilotRatingsByNewest[0].id}
       />
       {showCredit !== 'false' && (
-        <span className='text-subtle text-sm ml-auto drop-shadow-lg shadow-black'>Powered by <b className='font-semibold'>strikr.gg</b> (/pilot/overlay/{decodeURI(username)})</span>
+        <span className='text-subtle text-sm ml-auto drop-shadow-lg shadow-black'>Powered by <b className='font-semibold'>strikr.pro</b> (/pilot/overlay/{decodeURI(username)})</span>
       )}
     </div>
   </main>
