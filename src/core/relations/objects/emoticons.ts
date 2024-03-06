@@ -172,7 +172,7 @@ const emoticons = [
   { id: 'EmoticonData_BlobNonbinary', image: 'https://strikr.pro/i/emoticon/Pride/T_BlobNonbinary-512x512.png'},
   { id: 'EmoticonData_BlobPride', image: 'https://strikr.pro/i/emoticon/Pride/T_BlobPride-512x512.png'},
 
-  { id: 'EmoticonData_AtlasDefend', image: 'https://strikr.pro/i/emoticon/T_AtlasDefend-512x512.webp'}, // Community emotes
+  { id: 'EmoticonData_AtlasDefend', image: 'https://omegastrikers.wiki.gg/images/8/8d/Atlas_Defend.gif'}, // Community emotes
   { id: 'EmoticonData_AsherTank', image: 'https://omegastrikers.wiki.gg/images/c/c4/Asher_Tank.png' },
   { id: 'EmoticonData_AtlasTank', image: 'https://omegastrikers.wiki.gg/images/f/fe/Atlas_Tank.png' },
   { id: 'EmoticonData_DrekarTank', image: 'https://omegastrikers.wiki.gg/images/7/7f/Drekar_Tank.png' },
