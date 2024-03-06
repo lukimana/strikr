@@ -20,7 +20,7 @@ export default function Home() {
         <div className='bg-support text-xs text-subtle p-4 rounded-lg'>
           <span className='font-semibold text-sm'>We are back!<br /></span>
           - You can find out more information about why and how in the FAQ down below. <br />
-          - The site is still stuck in time just after the release of Finii! New Champs, Emoticons and Champs are still missing!<br />
+          - The site is currently being updated to add content since the release of Finii! New Emoticons and Titles are still being added!<br />
           - If you know TypeScript and/or NextJS and want to help with the resurrection of Strikr, please get in touch!<br />
         </div>
         <ContentBlock
@@ -54,12 +54,12 @@ export default function Home() {
             </div>
         </ContentBlock>
         <ContentBlock
-          title={'eSports'}
+          title={'Tournaments'}
           Icon={<Trophy className='text-subtle' weight='fill' size={24} />}
         >
           <></>
           <span className='text-subtle text-xs'>
-            More E-Sports events soon™️
+            More events soon™️
           </span>
         </ContentBlock>
       </div>

@@ -7,7 +7,7 @@ import * as Switch from '@radix-ui/react-switch'
 import clsx from 'clsx'
 
 export default function OverlayMenu({ name }: { name: string }) {
-  const [url, setUrl] = useState(`https://strikr.gg/pilot/overlay/${name}?showProfileCard=false&showCredit=false`)
+  const [url, setUrl] = useState(`https://strikr.pro/pilot/overlay/${name}?showProfileCard=false&showCredit=false`)
   const [copied, setCopied] = useState(false)
 
   const handleCheckedChange = (checked: boolean, paramName: string) => {
@@ -65,7 +65,7 @@ export default function OverlayMenu({ name }: { name: string }) {
             </div>
             <div className="flex items-center w-full justify-between" style={{ display: 'flex', alignItems: 'center' }}>
               <label className="text-white text-[15px] leading-none pr-[15px]" htmlFor="airplane-mode">
-                Show &quot;powered by strikr.gg&quot;
+                Show &quot;powered by strikr.pro&quot;
               </label>
               <Switch.Root
                 className="w-[42px] h-[25px] bg-tertiary rounded-full relative data-[state=checked]:bg-accent outline-none cursor-default"
