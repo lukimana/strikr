@@ -125,7 +125,7 @@ const emoticons = [
   { id: 'EmoticonData_JunoGawk', image: 'https://testing.strikr.pro/i/emoticon/Store/T_JunoZoom-512x512.png'},
   { id: 'EmoticonData_JunoGiggle', image: 'https://testing.strikr.pro/i/emoticon/Store/T_JunoLul-512x512.png'},
   { id: 'EmoticonData_JunoShy', image: 'https://testing.strikr.pro/i/emoticon/Store/T_JunoShy-512x512.png'},
-  { id: 'EmoticonData_XRage', image: 'https://testing.strikr.pro/i/emoticon/Store/Store/T_XRAGE-512x512.png'},
+  { id: 'EmoticonData_XRage', image: 'https://testing.strikr.pro/i/emoticon/Store/T_XRAGE-512x512.png'},
 
   { id: 'EmoticonData_BlobboCheer', image: 'https://testing.strikr.pro/i/emoticon/T_BlobboCheer-512x512.png'},
   { id: 'EmoticonData_BlobboLove', image: 'https://testing.strikr.pro/i/emoticon/T_BlobboLove-512x512.png'},
