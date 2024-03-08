@@ -84,7 +84,7 @@ const emoticons = [
   { id: 'EmoticonData_AsherShy', image: 'https://strikr.pro/i/emoticon/Season2Pass/T_AsherShy-512x512.png' },
   { id: 'EmoticonData_AtlasHeal', image: 'https://strikr.pro/i/emoticon/Season2Pass/T_AtlasHeal-512x512.png' },
   { id: 'EmoticonData_DrekarBlahBlah', image: 'https://strikr.pro/i/emoticon/Season2Pass/T_DrekarBlahBlah-512x512.png' },
-  { id: 'EmoticonData_DrekarPeace', image: 'https://strikr.pro/i/emoticon/Season2Pass/T_DrekarPeace-512x512.png' },
+  { id: 'EmoticonData_DrekarPeace', image: 'https://strikr.pro/i/emoticon/Season2Pass/T_DrekarPeace-512x512.webp' },
   { id: 'EmoticonData_DubuHuh', image: 'https://strikr.pro/i/emoticon/Season2Pass/T_DubuHuh-512x512.png' },
   { id: 'EmoticonData_DubuIceCream', image: 'https://strikr.pro/i/emoticon/Season2Pass/T_DubuIceCream-512x512.png' },
   { id: 'EmoticonData_DubuYas', image: 'https://strikr.pro/i/emoticon/Season2Pass/T_DubuYas-512x512.png' },
