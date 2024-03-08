@@ -61,7 +61,7 @@ const emoticons = [
   { id: 'EmoticonData_JunoSleep', image: 'https://strikr.pro/i/emoticon/Season0Pass/T_JunoSleep-512x512.png'},
   { id: 'EmoticonData_KaiShambles', image: 'https://strikr.pro/i/emoticon/Season0Pass/T_KaiFine-512x512.png'},
 
-  { id: 'EmoticonData_AimiCry', image: 'https://strikr.pro/i/emoticon/Season1Pass/T_AimiCry-png'},// Season 1 Pass
+  { id: 'EmoticonData_AimiCry', image: 'https://strikr.pro/i/emoticon/Season1Pass/T_AimiCry.png'},// Season 1 Pass
   { id: 'EmoticonData_AimiNoted', image: 'https://strikr.pro/i/emoticon/Season1Pass/T_AimiNoted-512x512.webp'},
   { id: 'EmoticonData_AimiSweat', image: 'https://strikr.pro/i/emoticon/Season1Pass/T_AimiSweat-512x512.webp'},
   { id: 'EmoticonData_AsherPog', image: 'https://strikr.pro/i/emoticon/Season1Pass/T_AsherPog-512x512.png'},
