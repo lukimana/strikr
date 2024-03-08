@@ -33,12 +33,12 @@ const emoticons = [
   { id: 'EmoticonData_TempoSniperMasteryAnimated', image: 'https://testing.strikr.pro/i/emoticon/StrikerAffinity/T_EstelleKiss-512x512.webp' },
   { id: 'EmoticonData_WhipFighterMastery', image: 'https://testing.strikr.pro/i/emoticon/StrikerAffinity/T_RasmusAngry-512x512.png' },
   { id: 'EmoticonData_WhipFighterMasteryAnimated', image: 'https://testing.strikr.pro/i/emoticon/StrikerAffinity/T_RasmusShocked-512x512.webp' },
-  { id: 'EmoticonData_UmbrellaUserMastery', image: 'https://testing.strikr.pro/i/emoticon/StrikerAffinity/T_KasanLosinIt.png' },
-  { id: 'EmoticonData_UmbrellaUserMasteryAnimated', image: 'https://testing.strikr.pro/i/emoticon/StrikerAffinity/T_KasanRain.webp' },
-  { id: 'EmoticonData_HealerMastery', image: 'https://testing.strikr.pro/i/emoticon/StrikerAffinity/T_HealerOk.png' },
-  { id: 'EmoticonData_HealerMasteryAnimated', image: 'https://testing.strikr.pro/i/emoticon/StrikerAffinity/T_HealerAngry.webp' },
-  { id: 'EmoticonData_DrumOniMastery', image: 'https://testing.strikr.pro/i/emoticon/StrikerAffinity/T_DrumOniWOO.png' },
-  { id: 'EmoticonData_DrumOniMasteryAnimated', image: 'https://testing.strikr.pro/i/emoticon/StrikerAffinity/T_OniBongo.webp' },
+  { id: 'EmoticonData_UmbrellaUserMastery', image: 'https://testing.strikr.pro/i/emoticon/StrikerAffinity/T_KasanLosinIt-512x512.png' },
+  { id: 'EmoticonData_UmbrellaUserMasteryAnimated', image: 'https://testing.strikr.pro/i/emoticon/StrikerAffinity/T_KasanRain-512x512.webp' },
+  { id: 'EmoticonData_HealerMastery', image: 'https://testing.strikr.pro/i/emoticon/StrikerAffinity/T_HealerOk-512x512.png' },
+  { id: 'EmoticonData_HealerMasteryAnimated', image: 'https://testing.strikr.pro/i/emoticon/StrikerAffinity/T_HealerAngry-512x512.webp' },
+  { id: 'EmoticonData_DrumOniMastery', image: 'https://testing.strikr.pro/i/emoticon/StrikerAffinity/T_DrumOniWOO-512x512.png' },
+  { id: 'EmoticonData_DrumOniMasteryAnimated', image: 'https://testing.strikr.pro/i/emoticon/StrikerAffinity/T_OniBongo-512x512.webp' },
 
   { id: 'EmoticonData_Rookie', image: 'https://testing.strikr.pro/i/rank/T_UI_RankedEmblem_Rookie_Low.png'},// Ranks
   { id: 'EmoticonData_Bronze', image: 'https://testing.strikr.pro/i/rank/T_UI_RankedEmblem_Bronze_Low.png'},
@@ -51,7 +51,7 @@ const emoticons = [
   { id: 'EmoticonData_ProLeague', image: 'https://testing.strikr.pro/i/rank/T_UI_RankedEmblem_ProLeague.png'},
   
   { id: 'EmoticonData_DrekarDetective', image: 'https://testing.strikr.pro/i/emoticon/Season0Pass/T_DrexWhat-512x512.png'}, // Beta Season Pass
-  { id: 'EmoticonData_DrekarSpeechless', image: 'https://testing.strikr.pro/i/emoticon/Season0Pass/T_DrexPog.png'},
+  { id: 'EmoticonData_DrekarSpeechless', image: 'https://testing.strikr.pro/i/emoticon/Season0Pass/T_DrexPog-512x512.png'},
   { id: 'EmoticonData_DubuShocked', image: 'https://testing.strikr.pro/i/emoticon/Season0Pass/T_DubuShocked-512x512.png'},
   { id: 'EmoticonData_EstelleFacepalm', image: 'https://testing.strikr.pro/i/emoticon/Season0Pass/T_EstelleFacepalm-512x512.png'},
   { id: 'EmoticonData_EstelleGloat', image: 'https://testing.strikr.pro/i/emoticon/Season0Pass/T_EstelleOho-512x512.png'},
@@ -61,7 +61,7 @@ const emoticons = [
   { id: 'EmoticonData_JunoSleep', image: 'https://testing.strikr.pro/i/emoticon/Season0Pass/T_JunoSleep-512x512.png'},
   { id: 'EmoticonData_KaiShambles', image: 'https://testing.strikr.pro/i/emoticon/Season0Pass/T_KaiFine-512x512.png'},
 
-  { id: 'EmoticonData_AimiCry', image: 'https://testing.strikr.pro/i/emoticon/Season1Pass/T_AimiCry.png'},// Season 1 Pass
+  { id: 'EmoticonData_AimiCry', image: 'https://testing.strikr.pro/i/emoticon/Season1Pass/T_AimiCry-512x512.png'},// Season 1 Pass
   { id: 'EmoticonData_AimiNoted', image: 'https://testing.strikr.pro/i/emoticon/Season1Pass/T_AimiNoted-512x512.webp'},
   { id: 'EmoticonData_AimiSweat', image: 'https://testing.strikr.pro/i/emoticon/Season1Pass/T_AimiSweat-512x512.webp'},
   { id: 'EmoticonData_AsherPog', image: 'https://testing.strikr.pro/i/emoticon/Season1Pass/T_AsherPog-512x512.png'},
@@ -133,7 +133,7 @@ const emoticons = [
   { id: 'EmoticonData_BPS1Badge1', image: 'https://testing.strikr.pro/i/emoticon/T_Emoticon_Season1BadgeTier3-512x512.png'},
   { id: 'EmoticonData_DefaultThumbsUp', image: 'https://testing.strikr.pro/i/emoticon/T_Emoticon_ThumbsUp-512x512.png'},
   { id: 'EmoticonData_DJAtlas', image: 'https://testing.strikr.pro/i/emoticon/T_DJAtlas-512x512.webp'},
-  { id: 'EmoticonData_DubuBop', image: 'https://testing.strikr.pro/i/emoticon/T_DubuNOM.png'},
+  { id: 'EmoticonData_DubuBop', image: 'https://testing.strikr.pro/i/emoticon/T_DubuNOM-512x512.png'},
   { id: 'EmoticonData_DubuOne', image: 'https://testing.strikr.pro/i/emoticon/T_DubuOne-512x512.png'},
   { id: 'EmoticonData_EraUwu', image: 'https://testing.strikr.pro/i/emoticon/T_EraUwu-512x512.png'},
   { id: 'EmoticonData_EternalFlameDubu', image: 'https://testing.strikr.pro/i/emoticon/T_Emoticon_EternalFlameDubu-512x512.png'},
@@ -147,8 +147,8 @@ const emoticons = [
   { id: 'EmoticonData_JulietteVibe', image: 'https://testing.strikr.pro/i/emoticon/T_JulietteVibe-512x512.png'},
   { id: 'EmoticonData_JunoBop', image: 'https://testing.strikr.pro/i/emoticon/T_BigBopJuno-512x512.png'},
   { id: 'EmoticonData_JunoSnackTime', image: 'https://testing.strikr.pro/i/emoticon/T_JunoPopcorn-512x512.png'},
-  { id: 'EmoticonData_JunoStarry', image: 'https://testing.strikr.pro/i/emoticon/T_JunoWOW.png'},
-  { id: 'T_JunoWOW', image: 'https://testing.strikr.pro/i/emoticon/T_JunoWOW.png'},
+  { id: 'EmoticonData_JunoStarry', image: 'https://testing.strikr.pro/i/emoticon/T_JunoWOW-512x512.png'},
+  { id: 'T_JunoWOW', image: 'https://testing.strikr.pro/i/emoticon/T_JunoWOW-512x512.png'},
   { id: 'EmoticonData_KaiGlamour', image: 'https://testing.strikr.pro/i/emoticon/T_KaiSmirk-512x512.png'},
   { id: 'EmoticonData_LunaPeace', image: 'https://testing.strikr.pro/i/emoticon/T_LunaPeace-512x512.png'},
   { id: 'EmoticonData_MusicVS_EdmOni1', image: 'https://testing.strikr.pro/i/emoticon/T_OactaviaYawn-512x512.png'},
@@ -180,6 +180,7 @@ const emoticons = [
   { id: 'EmoticonData_EraTank', image: 'https://omegastrikers.wiki.gg/images/c/c3/Era_Tank.png' },
   { id: 'EmoticonData_EstelleTank', image: 'https://omegastrikers.wiki.gg/images/d/dc/Estelle_Tank.png' },
   { id: 'EmoticonData_FiniiTank', image: 'https://omegastrikers.wiki.gg/images/3/38/Finii_Tank.png' },
+  { id: 'EmoticonData_JulietteGG', image: 'https://omegastrikers.wiki.gg/images/f/f3/Juliette_GG.png' },
   { id: 'EmoticonData_JulietteTank', image: 'https://omegastrikers.wiki.gg/images/1/14/Juliette_Tank.png' },
   { id: 'EmoticonData_JunoTank', image: 'https://omegastrikers.wiki.gg/images/2/25/Juno_Tank.png' },
   { id: 'EmoticonData_KaiTank', image: 'https://omegastrikers.wiki.gg/images/c/c4/Kai_Tank.png' },
