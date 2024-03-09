@@ -120,7 +120,7 @@ const emoticons = [
   { id: 'EmoticonData_BlobSad', image: 'https://testing.strikr.pro/i/emoticon/Store/T_Emoticon_SadBlob-512x512.png'},
   { id: 'EmoticonData_DubuCurious', image: 'https://testing.strikr.pro/i/emoticon/Store/T_DubuNyo-512x512.png'},
   { id: 'EmoticonData_DubuPanicked', image: 'https://testing.strikr.pro/i/emoticon/Store/T_DubuConcern-512x512.png'},
-  { id: 'EmoticonData_FiniiZoom', image: 'https://testing.strikr.pro/i/emoticon/T_FiniiZoom-512x512.png'},
+  { id: 'EmoticonData_FiniiZoom', image: 'https://testing.strikr.pro/i/emoticon/Store/T_FiniiZoom-512x512.png'},
   { id: 'EmoticonData_JulietteDefeated', image: 'https://testing.strikr.pro/i/emoticon/Store/T_JulietteCryge-512x512.png'},
   { id: 'EmoticonData_JulietteRave', image: 'https://testing.strikr.pro/i/emoticon/Store/T_JulietteRave-512x512.png'},
   { id: 'EmoticonData_JunoCute', image: 'https://testing.strikr.pro/i/emoticon/Store/T_JunoHappy-512x512.png'},
