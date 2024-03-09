@@ -17,6 +17,11 @@ const nextConfig = {
         hostname: 'testing.strikr.pro',
         port: ''
       },
+      {
+        protocol: 'https',
+        hostname: 'omegastrikers.wiki.gg',
+        port: ''
+      },
     ],
   }
 }
